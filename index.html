@@ -15,6 +15,7 @@
             --cor-accent-hover: #b20710; /* Vermelho mais escuro no hover */
             --cor-accent-disabled: #770000;
             --cor-header-bg: #1a1a1a; /* Cinza escuro para o cabeçalho */
+            font-size: 16px; /* Base para 1rem, ajustada em media queries */
         }
 
         /* ESTILOS GLOBAIS E RESETS */
@@ -67,9 +68,9 @@
 
         #loginBox {
             background-color: rgba(0, 0, 0, 0.85);
-            padding: 2.5rem 3rem; /* Aumentado um pouco para melhor toque em mobile */
+            padding: 1.5rem 2rem; /* Reduzido para ser menor */
             border-radius: 0.625rem; /* 10px */
-            min-width: 20rem; /* 320px */
+            min-width: 18rem; /* Reduzido */
             box-shadow: 0 0 0.9375rem 0.1875rem var(--cor-accent); /* 15px 3px */
             user-select: none;
             text-align: center;
@@ -89,7 +90,7 @@
         }
         input[type="text"], input[type="password"] {
             padding: 0.625rem; /* 10px */
-            width: 15.625rem; /* 250px */
+            width: 12.5rem; /* Reduzido para caber melhor na caixa menor */
             border: none;
             border-radius: 0.3125rem; /* 5px */
             font-size: 1rem; /* 16px */
@@ -97,6 +98,7 @@
             outline-color: var(--cor-accent);
             background-color: #222;
             color: white;
+            min-height: 2.5rem; /* Altura mínima para toque */
         }
         input[type="text"]:focus, input[type="password"]:focus {
             outline-color: #ff4444;
@@ -117,6 +119,7 @@
             overflow: hidden;
             transition: background-color 0.3s ease;
             user-select: none;
+            min-height: 3rem; /* Altura mínima para toque */
         }
         #btnEntrar:hover:not(:disabled) {
             background-color: var(--cor-accent-hover);
@@ -217,6 +220,7 @@
             font-size: 1rem; /* 16px */
             margin-top: 1.875rem; /* 30px */
             transition: background-color 0.3s ease;
+            min-height: 3rem; /* Altura mínima para toque */
         }
         #telaPerfis button:hover {
             background-color: var(--cor-accent-hover);
@@ -269,8 +273,9 @@
             background-color: #222;
             color: white;
             margin: 0.625rem 0; /* 10px */
+            min-height: 2.5rem; /* Altura mínima para toque */
         }
-        #modal input[type="text"]:focus, #modal input[type="file"]:focus {
+        input[type="text"]:focus, input[type="file"]:focus {
             outline-color: #ff4444;
         }
 
@@ -284,6 +289,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             user-select: none;
+            min-height: 2.5rem; /* Altura mínima para toque */
         }
         #modal button:hover {
             background-color: var(--cor-accent-hover);
@@ -310,6 +316,11 @@
             transition: opacity 0.3s ease;
             user-select: none;
             z-index: 2;
+            min-width: 1.875rem; /* 30px */ /* Aumentado para toque */
+            min-height: 1.875rem; /* 30px */ /* Aumentado para toque */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .editar-icon { right: 0.3125rem; /* 5px */ }
         .excluir-icon { left: 0.3125rem; /* 5px */ background-color: rgba(255, 0, 0, 0.7); }
@@ -350,6 +361,7 @@
             z-index: 50; /* Z-index para o header */
             box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.5); /* 0 2px 10px */
             height: 3.75rem; /* 60px */
+            justify-content: space-between; /* Distribui os itens horizontalmente */
         }
 
         #sitePrincipal .header-site .logo {
@@ -358,13 +370,16 @@
             font-weight: bold;
             margin-right: 1.875rem; /* 30px */
             letter-spacing: 0.0625rem; /* 1px */
+            flex-shrink: 0; /* Impede que o logo encolha */
         }
 
         #sitePrincipal .header-site nav {
             display: flex;
             gap: 1.5625rem; /* 25px */
             align-items: center;
-            margin-right: auto;
+            margin-right: auto; /* Empurra a navegação para a esquerda */
+            flex-grow: 1; /* Permite que a navegação ocupe espaço */
+            flex-wrap: wrap; /* Permite que os itens da navegação quebrem a linha */
         }
 
         #sitePrincipal .header-site nav button {
@@ -376,6 +391,7 @@
             cursor: pointer;
             transition: color 0.2s ease;
             padding: 0.3125rem 0; /* 5px */
+            min-height: 2.5rem; /* Altura mínima para toque */
         }
         #sitePrincipal .header-site nav button:hover {
             color: #ddd;
@@ -420,6 +436,7 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.2s ease, color 0.2s ease;
+            min-height: 2.5rem; /* Altura mínima para toque */
         }
         .genre-dropdown button:hover {
             background-color: rgba(255,255,255,0.15); /* Fundo cinza um pouco mais claro no hover */
@@ -435,23 +452,26 @@
             display: flex;
             align-items: center;
             gap: 0.9375rem; /* 15px */
+            margin-left: auto; /* Empurra para a direita */
         }
         #sitePrincipal .header-site #searchInput {
             background-color: rgba(255, 255, 255, 0.2);
-            border: none;
+            border: 0.125rem solid var(--cor-accent); /* Borda vermelha */
             padding: 0.5rem 0.75rem; /* 8px 12px */
             border-radius: 0.25rem; /* 4px */
             color: white;
             font-size: 0.9375rem; /* 15px */
             outline: none;
-            width: 11.25rem; /* 180px */
-            transition: background-color 0.3s ease;
+            width: 9.375rem; /* 150px - Diminuído */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            min-height: 2.5rem; /* Altura mínima para toque */
         }
         #sitePrincipal .header-site #searchInput::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
         #sitePrincipal .header-site #searchInput:focus {
             background-color: rgba(255, 255, 255, 0.3);
+            border-color: #ff4444; /* Cor da borda ao focar */
         }
 
         #profileIcon {
@@ -468,6 +488,9 @@
             object-fit: cover;
             border: 0.125rem solid white; /* 2px */
             overflow: hidden;
+            min-width: 2.5rem; /* 40px */ /* Aumentado para toque */
+            min-height: 2.5rem; /* 40px */ /* Aumentado para toque */
+            /* margin-left: 0.9375rem; Removido para colar no canto */
         }
         #profileIcon img {
             width: 100%;
@@ -507,7 +530,8 @@
 
         .movie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); /* 200px */
+            /* Alterado para cards menores, mantendo a proporção */
+            grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); /* Reduzido de 12.5rem para 9rem */
             gap: 1.875rem; /* 30px */
         }
 
@@ -527,7 +551,8 @@
 
         .movie-card img {
             width: 100%;
-            height: 18.75rem; /* 300px */
+            /* Ajustado para manter a proporção com o novo minmax do grid */
+            height: 13.5rem; /* Proporcional a 9rem de largura (9 * 1.5 = 13.5) */
             object-fit: cover;
             display: block;
         }
@@ -681,6 +706,8 @@
             cursor: pointer;
             transition: background-color 0.2s ease;
             z-index: 1002;
+            min-width: 2.5rem; /* 40px */ /* Aumentado para toque */
+            min-height: 2.5rem; /* 40px */ /* Aumentado para toque */
         }
         .close-button:hover {
             background-color: var(--cor-accent-hover);
@@ -695,6 +722,7 @@
             right: auto;
             background-color: var(--cor-accent); /* Cor de fundo vermelha */
             color: white; /* Cor do texto branca */
+            min-height: 2.5rem; /* Altura mínima para toque */
         }
         /* Efeito hover para o botão Voltar */
         .player-content .back-to-details-button:hover {
@@ -776,6 +804,8 @@
             cursor: pointer;
             z-index: 10;
             transition: background-color 0.3s ease;
+            min-width: 2.5rem; /* 40px */ /* Aumentado para toque */
+            min-height: 2.5rem; /* 40px */ /* Aumentado para toque */
         }
         .scroll-btn:hover {
             background: var(--cor-accent-hover);
@@ -802,200 +832,219 @@
         /* RESPONSIVIDADE */
         /* Mobile (até 768px) */
         @media (max-width: 48rem) { /* 768px */
+            :root {
+                font-size: 14px; /* Reduz a fonte base para mobile */
+            }
             #loginBox, #modal {
                 width: 90%;
                 min-width: unset;
-                padding: 1.25rem; /* 20px */
+                padding: 1.25rem; /* Ajustado para rem */
             }
             input[type="text"], input[type="password"] {
                 width: 100%;
+                padding: 0.625rem; /* Ajustado para rem */
             }
             #containerPerfis {
-                gap: 0.9375rem; /* 15px */
-                padding: 0.9375rem; /* 15px */
+                gap: 0.9375rem; /* Ajustado para rem */
+                padding: 0.9375rem; /* Ajustado para rem */
                 max-width: 100%;
             }
             .perfil-img {
-                width: 5.625rem; /* 90px */
-                height: 5.625rem; /* 90px */
+                width: 5.625rem; /* Ajustado para rem */
+                height: 5.625rem; /* Ajustado para rem */
             }
             .perfil.adicionar {
-                width: 5.625rem; /* 90px */
-                height: 5.625rem; /* 90px */
-                font-size: 3rem; /* 48px */
+                width: 5.625rem; /* Ajustado para rem */
+                height: 5.625rem; /* Ajustado para rem */
+                font-size: 3rem; /* Ajustado para rem */
             }
             #sitePrincipal .header-site {
                 flex-direction: column;
                 align-items: flex-start;
                 height: auto;
-                padding: 0.625rem 1.25rem; /* 10px 20px */
+                padding: 0.625rem 1.25rem; /* Ajustado para rem */
+                justify-content: flex-start; /* Alinha ao início no mobile */
             }
             #sitePrincipal .header-site .logo {
-                font-size: 1.75rem; /* 28px */
+                font-size: 1.75rem; /* Ajustado para rem */
                 margin-right: 0;
-                margin-bottom: 0.625rem; /* 10px */
+                margin-bottom: 0.625rem; /* Ajustado para rem */
             }
             #sitePrincipal .header-site nav {
                 margin-right: auto;
                 width: 100%;
-                justify-content: space-between; /* Distribuir botões */
-                gap: 0.5rem; /* Espaçamento menor entre botões */
-                margin-bottom: 0.625rem; /* 10px */
-                flex-wrap: wrap; /* Permitir quebra de linha */
-            }
-            #sitePrincipal .header-site nav button {
-                font-size: 0.9375rem; /* 15px */
-                padding: 0.3125rem 0.25rem; /* Ajustar padding */
+                justify-content: space-between;
+                gap: 0.5rem; /* Ajustado para rem */
+                margin-bottom: 0.625rem; /* Ajustado para rem */
+                flex-wrap: wrap;
             }
             #sitePrincipal .header-site .search-profile-area {
                 width: 100%;
-                justify-content: space-between;
-                gap: 0.625rem; /* 10px */
+                justify-content: flex-end; /* Alinha à direita no mobile */
+                gap: 0.625rem; /* Ajustado para rem */
+                margin-left: 0; /* Remove o margin-left para alinhar */
             }
             #sitePrincipal .header-site #searchInput {
-                width: 100%; /* Ocupar largura total disponível */
-                flex-grow: 1; /* Permitir crescimento */
+                width: 100%;
+                flex-grow: 1;
+                border: 0.0625rem solid var(--cor-accent); /* Borda mais fina no mobile */
             }
             #profileIcon {
-                flex-shrink: 0; /* Impedir que o ícone encolha */
+                flex-shrink: 0;
+                width: 2rem; /* Ajustado para rem */
+                height: 2rem; /* Ajustado para rem */
+                min-width: 2rem; /* Garantir tamanho mínimo */
+                min-height: 2rem; /* Garantir tamanho mínimo */
+                margin-left: 0; /* Removido para colar no canto */
             }
             .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); /* 144px, ajustado para caber melhor */
-                gap: 0.9375rem; /* 15px */
-                padding: 0 0.625rem; /* 10px */
+                grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); /* Ajustado para rem */
+                gap: 0.9375rem; /* Ajustado para rem */
+                padding: 0 0.625rem; /* Ajustado para rem */
             }
             .movie-card img {
-                height: 14rem; /* 224px, altura ajustada para mobile */
+                height: 12rem; /* Ajustado para rem (proporcional a 8rem de largura) */
             }
             .details-content, .player-content, #episodiosContent {
                 width: 95%;
-                padding: 1.25rem; /* 20px */
+                padding: 1.25rem; /* Ajustado para rem */
             }
             .details-content h2 {
                 font-size: 1.8em;
             }
             .close-button {
-                top: 0.3125rem; /* 5px */
-                right: 0.3125rem; /* 5px */
-                width: 1.5625rem; /* 25px */
-                height: 1.5625rem; /* 25px */
+                top: 0.3125rem; /* Ajustado para rem */
+                right: 0.3125rem; /* Ajustado para rem */
+                width: 1.5625rem; /* Ajustado para rem */
+                height: 1.5625rem; /* Ajustado para rem */
                 font-size: 1em;
+                min-width: 2rem; /* Garantir tamanho mínimo */
+                min-height: 2rem; /* Garantir tamanho mínimo */
             }
             #episodios-container-horizontal {
-                padding: 0 0.3125rem 0.625rem; /* 0 5px 10px */
+                padding: 0 0.3125rem 0.625rem; /* Ajustado para rem */
             }
             .scroll-btn {
-                font-size: 1.5rem;
-                padding: 0.125rem 0.5rem; /* 2px 8px */
+                font-size: 1.5rem; /* Ajustado para rem */
+                padding: 0.125rem 0.5rem; /* Ajustado para rem */
+                min-width: 2rem; /* Garantir tamanho mínimo */
+                min-height: 2rem; /* Garantir tamanho mínimo */
             }
             .scroll-left {
-                left: 0.3125rem; /* 5px */
+                left: 0.3125rem; /* Ajustado para rem */
             }
             .scroll-right {
-                right: 0.3125rem; /* 5px */
+                right: 0.3125rem; /* Ajustado para rem */
             }
         }
 
         /* Mobile Pequeno (até 480px) */
         @media (max-width: 30rem) { /* 480px */
+            :root {
+                font-size: 12px; /* Reduz ainda mais a fonte base para mobile muito pequeno */
+            }
             #sitePrincipal .header-site .logo {
-                font-size: 1.5rem; /* 24px */
+                font-size: 1.5rem; /* Ajustado para rem */
             }
             #sitePrincipal .header-site nav {
-                justify-content: space-around; /* Pode ser melhor para poucos itens */
+                justify-content: space-around;
             }
             #sitePrincipal .header-site nav button {
-                font-size: 0.875rem; /* 14px */
+                font-size: 0.875rem; /* Ajustado para rem */
             }
             .movie-grid {
-                grid-template-columns: 1fr; /* Uma coluna para melhor visualização */
-                padding: 0 0.5rem; /* 8px padding */
+                grid-template-columns: 1fr;
+                padding: 0 0.5rem; /* Ajustado para rem */
             }
             .movie-card img {
-                height: 12rem; /* 192px, altura ajustada para telas muito pequenas */
+                height: 12rem; /* Ajustado para rem */
             }
             #main-site-content h2 {
-                font-size: 1.5rem; /* 24px */
+                font-size: 1.5rem; /* Ajustado para rem */
             }
-            #profileIcon span {
-                display: none; 
+            #profileIcon span { /* Se houver um span dentro do profileIcon */
+                display: none;
             }
             .episodio-card {
-                min-width: 12.5rem; /* 200px */
-                max-width: 12.5rem; /* 200px */
+                min-width: 12.5rem; /* Ajustado para rem */
+                max-width: 12.5rem; /* Ajustado para rem */
             }
             .episodio-card img {
-                height: 7.5rem; /* 120px */
+                height: 7.5rem; /* Ajustado para rem */
             }
             .episodio-info {
-                font-size: 0.75rem; /* 12px */
-                padding: 0.5rem; /* 8px */
+                font-size: 0.75rem; /* Ajustado para rem */
+                padding: 0.5rem; /* Ajustado para rem */
             }
         }
 
         /* Telas Grandes (TVs, Desktops maiores - a partir de 1200px) */
         @media (min-width: 75rem) { /* 1200px */
+            :root {
+                font-size: 18px; /* Aumenta a fonte base para telas grandes */
+            }
             #loginBox {
-                padding: 3.5rem 4.5rem; /* Maior padding */
+                padding: 3.5rem 4.5rem; /* Ajustado para rem */
             }
             #loginBox h1 {
-                font-size: 4.5rem; /* Maior fonte */
+                font-size: 4.5rem; /* Ajustado para rem */
             }
             input[type="text"], input[type="password"] {
-                width: 18.75rem; /* 300px */
-                padding: 0.75rem; /* 12px */
-                font-size: 1.125rem; /* 18px */
+                width: 18.75rem; /* Ajustado para rem */
+                padding: 0.75rem; /* Ajustado para rem */
+                font-size: 1.125rem; /* Ajustado para rem */
             }
             #btnEntrar {
-                padding: 0.75rem 2.5rem; /* 12px 40px */
-                font-size: 1.125rem; /* 18px */
+                padding: 0.75rem 2.5rem; /* Ajustado para rem */
+                font-size: 1.125rem; /* Ajustado para rem */
             }
             #containerPerfis {
-                gap: 2.5rem; /* 40px */
-                padding: 2.5rem; /* 40px */
+                gap: 2.5rem; /* Ajustado para rem */
+                padding: 2.5rem; /* Ajustado para rem */
             }
             .perfil-img {
-                width: 9.375rem; /* 150px */
-                height: 9.375rem; /* 150px */
+                width: 9.375rem; /* Ajustado para rem */
+                height: 9.375rem; /* Ajustado para rem */
             }
             .perfil.adicionar {
-                width: 9.375rem; /* 150px */
-                height: 9.375rem; /* 150px */
-                font-size: 4.5rem; /* 72px */
+                width: 9.375rem; /* Ajustado para rem */
+                height: 9.375rem; /* Ajustado para rem */
+                font-size: 4.5rem; /* Ajustado para rem */
             }
             #sitePrincipal .header-site {
-                padding: 1.25rem 3.75rem; /* 20px 60px */
-                height: 4.375rem; /* 70px */
+                padding: 1.25rem 3.75rem; /* Ajustado para rem */
+                height: 4.375rem; /* Ajustado para rem */
             }
             #sitePrincipal .header-site .logo {
-                font-size: 2.5rem; /* 40px */
-                margin-right: 2.5rem; /* 40px */
+                font-size: 2.5rem; /* Ajustado para rem */
+                margin-right: 2.5rem; /* Ajustado para rem */
             }
             #sitePrincipal .header-site nav button {
-                font-size: 1.125rem; /* 18px */
+                font-size: 1.125rem; /* Ajustado para rem */
             }
             #sitePrincipal .header-site #searchInput {
-                width: 15.625rem; /* 250px */
-                padding: 0.625rem 1rem; /* 10px 16px */
-                font-size: 1rem; /* 16px */
+                width: 12.5rem; /* 200px - Diminuído para telas grandes */
+                padding: 0.625rem 1rem; /* Ajustado para rem */
+                font-size: 1rem; /* Ajustado para rem */
             }
             #profileIcon {
-                width: 2.5rem; /* 40px */
-                height: 2.5rem; /* 40px */
+                width: 2.5rem; /* Ajustado para rem */
+                height: 2.5rem; /* Ajustado para rem */
+                /* margin-left: 0.9375rem; Removido para colar no canto */
             }
             #main-site-content {
-                padding: 2.5rem 3.75rem; /* 40px 60px */
+                padding: 2.5rem 3.75rem; /* Ajustado para rem */
             }
             #main-site-content h2 {
-                font-size: 2.25rem; /* 36px */
-                margin-bottom: 2rem; /* 32px */
+                font-size: 2.25rem; /* Ajustado para rem */
+                margin-bottom: 2rem; /* Ajustado para rem */
             }
             .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); /* 224px */
-                gap: 2.5rem; /* 40px */
+                grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); /* Ajustado para rem */
+                gap: 2.5rem; /* Ajustado para rem */
             }
             .movie-card img {
-                height: 20rem; /* 320px */
+                height: 15rem; /* Ajustado para rem (proporcional a 10rem de largura) */
             }
             .movie-card h3 {
                 font-size: 1.3em;
@@ -1004,34 +1053,34 @@
                 font-size: 1em;
             }
             .details-content, .player-content, #episodiosContent {
-                max-width: 68.75rem; /* 1100px */
-                padding: 2.5rem; /* 40px */
+                max-width: 68.75rem; /* Ajustado para rem */
+                padding: 2.5rem; /* Ajustado para rem */
             }
             .details-content h2 {
                 font-size: 2.5em;
             }
             .close-button {
-                width: 2.5rem; /* 40px */
-                height: 2.5rem; /* 40px */
+                width: 2.5rem; /* Ajustado para rem */
+                height: 2.5rem; /* Ajustado para rem */
                 font-size: 1.5em;
             }
             .player-content .back-to-details-button {
-                padding: 0.75rem 1.5rem; /* 12px 24px */
-                font-size: 1.125rem; /* 18px */
+                padding: 0.75rem 1.5rem; /* Ajustado para rem */
+                font-size: 1.125rem; /* Ajustado para rem */
             }
             .episodio-card {
-                min-width: 18.75rem; /* 300px */
-                max-width: 18.75rem; /* 300px */
+                min-width: 18.75rem; /* Ajustado para rem */
+                max-width: 18.75rem; /* Ajustado para rem */
             }
             .episodio-card img {
-                height: 12.5rem; /* 200px */
+                height: 12.5rem; /* Ajustado para rem */
             }
             .episodio-info {
-                font-size: 1rem; /* 16px */
+                font-size: 1rem; /* Ajustado para rem */
             }
             .scroll-btn {
-                font-size: 2.5rem;
-                padding: 0.3125rem 1rem; /* 5px 16px */
+                font-size: 2.5rem; /* Ajustado para rem */
+                padding: 0.3125rem 1rem; /* Ajustado para rem */
             }
         }
     </style>
@@ -1042,7 +1091,7 @@
     <div id="loginBox">
         <h1>Xilften</h1>
         <div class="campo">
-            <input type="text" id="usuario" placeholder="Usuário" autocomplete="username" aria-label="Usuário"/>
+            <input type="text" id="usuario" placeholder="Login" autocomplete="username" aria-label="Login"/>
         </div>
         <div class="campo">
             <input type="password" id="senha" placeholder="Senha" autocomplete="current-password" aria-label="Senha"/>
@@ -1054,7 +1103,7 @@
 
 <div id="telaPerfis" class="tela-principal" role="main" aria-label="Tela de seleção de perfis">
     <div id="containerPerfis" tabindex="0" aria-label="Lista de perfis"></div>
-    <button onclick="sair()" aria-label="Voltar para tela de login">Voltar</button>
+    <button onclick="sair()" aria-label="Voltar para a tela de login">Voltar</button>
 </div>
 
 <div id="perfilSelecionado" class="tela-principal" role="main" aria-label="Perfil selecionado">
@@ -1070,7 +1119,7 @@
         <nav>
             <button onclick="showContentSection('home-section')" aria-label="Ir para a seção Início">Início</button>
             <div class="relative genre-button" id="genreButtonContainer">
-                <button id="genreDropdownButton" aria-haspopup="true" aria-expanded="false">Gênero</button>
+                <button id="genreDropdownButton" aria-haspopup="true" aria-expanded="false">Género</button>
                 <div class="genre-dropdown" id="genreDropdown" role="menu">
                     <button role="menuitem" onclick="handleGenreClick('Animação', 'animacao-section')">Animação</button>
                     <button role="menuitem" onclick="handleGenreClick('Ação', 'acao-section')">Ação</button>
@@ -1126,149 +1175,149 @@
             <button onclick="showContentSection('minha-lista-section')" aria-label="Ir para a seção Minha Lista">Minha Lista</button>
         </nav>
         <div class="search-profile-area">
-            <input id="searchInput" type="text" placeholder="Pesquisar..." oninput="pesquisarFilmes()" aria-label="Campo de pesquisa de filmes e séries" />
+            <input id="searchInput" type="text" placeholder="Buscar..." oninput="pesquisarFilmes()" aria-label="Campo de busca de filmes e séries" />
             <div id="profileIcon" onclick="voltarParaPerfisDoSite()" aria-label="Voltar para seleção de perfis"></div>
         </div>
     </header>
     <main id="main-site-content">
         <div id="home-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Adicionados Recentemente</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Adicionados Recentemente</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="acao-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Ação</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Ação</h2>
             <div class="movie-grid">
             </div>
         </div>
         
         <div id="aventura-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Aventura</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Aventura</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="comedia-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Comédia</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Comédia</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="drama-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Drama</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Drama</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="ficcao-cientifica-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Ficção Científica</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Ficção Científica</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="fantasia-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Fantasia</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Fantasia</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="terror-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Terror</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Terror</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="romance-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Romance</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Romance</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="suspense-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Suspense</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Suspense</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="thriller-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Thriller</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Thriller</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="documentario-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Documentário</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Documentário</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="guerra-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Guerra</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Guerra</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="animacao-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Animação</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Género: Animação</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <div id="series-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Séries</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Séries</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <!-- Novas seções de Animes por Gênero -->
         <div id="anime-shounen-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Shounen</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Shounen</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-shoujo-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Shoujo</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Shoujo</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-seinen-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Seinen</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Seinen</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-isekai-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Isekai</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Isekai</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-vida-escolar-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Vida Escolar</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Vida Escolar</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-acao-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Ação</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Ação</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-comedia-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Comédia</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Comédia</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-fantasia-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Fantasia</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Fantasia</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-ficcao-cientifica-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Ficção Científica</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Ficção Científica</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="anime-terror-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Anime: Terror</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Terror</h2>
             <div class="movie-grid">
             </div>
         </div>
@@ -1276,64 +1325,64 @@
 
         <!-- Novas seções de Dorama por Gênero -->
         <div id="dorama-romance-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Romance</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Romance</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-comedia-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Comédia</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Comédia</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-drama-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Drama</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Drama</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-historico-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Histórico</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Histórico</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-escolar-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Escolar</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Escolar</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-policial-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Policial</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Policial</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-suspense-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Suspense</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Suspense</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-terror-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Terror</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Terror</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-fantasia-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Fantasia</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Fantasia</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-medico-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Médico</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Médico</h2>
             <div class="movie-grid">
             </div>
         </div>
         <div id="dorama-ficcao-cientifica-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Dorama: Ficção Científica</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Ficção Científica</h2>
             <div class="movie-grid">
             </div>
         </div>
 
         <!-- Nova seção de Novela -->
         <div id="novela-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Novelas</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Novelas</h2>
             <div class="movie-grid">
                 <p class="text-gray-400 p-4 text-center w-full">Nenhuma novela encontrada.</p>
             </div>
@@ -1341,7 +1390,7 @@
 
 
         <div id="minha-lista-section" class="content-section">
-            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Minha Lista</h2>
+            <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Minha Lista</h2>
             <div class="movie-grid">
             </div>
         </div>
@@ -1385,7 +1434,7 @@
         <input type="file" id="inputFotoPerfil" accept="image/*" aria-label="Foto do perfil" />
         <div class="modal-erro" id="modalErro"></div>
         <div>
-            <button id="btnSalvar">Salvar</button>
+            <button id="btnSalvar">Guardar</button>
             <button onclick="fecharModal()">Cancelar</button>
         </div>
     </div>
@@ -1510,26 +1559,97 @@
 
 
     // --- Dados (Filmes e Séries) ---
-    const homeItems = [
+    // Declaração única dos filmes
+    const filmes = [
         {
             id: 1,
             titulo: "Thunderbolts",
             ano: "2025",
             genero: "Ação, Aventura, Ficção Científica",
-            descricao: "Presos em uma armadilha mortal, uma equipe nada convencional de anti-heróis embarca em uma missão perigosa...",
+            descricao: "Presos em uma armadilha mortal, uma equipa nada convencional de anti-heróis embarca numa missão perigosa...",
             imagem: "https://lumiere-a.akamaihd.net/v1/images/teaser_1sht_-_rgb_for_online_use_only_6b92ba3f.jpeg",
-            trailer: "https://drive.google.com/file/d/1f6dK1VvXE0vq5_Y6n48AjbtlZ-H_7U2T/preview", // NOVO LINK DE TRAILER THUNDERBOLTS (Google Drive)
-            video: "https://www.w3schools.com/html/mov_bbb.mp4", // LINK DE VÍDEO THUNDERBOLTS (usando /preview)
+            trailer: "https://drive.google.com/file/d/1f6dK1VvXE0vq5_Y6n48AjbtlZ-H_7U2T/preview",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: false
         },
         {
-            id: 2,
+            id: 3,
+            titulo: "Duna: Parte 2",
+            ano: "2024",
+            genero: "Ficção Científica, Aventura",
+            descricao: "Paul Atreides une-se a Chani e aos Fremen enquanto busca vingança contra os conspiradores que destruíram a sua família. Enfrentando uma escolha entre o amor da sua vida e o destino do universo conhecido, ele esforça-se para evitar um futuro terrível que só ele pode prever.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/2/25/Dune_Part_Two_poster.jpeg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/Way9Dexny3w",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
+            isSerie: false
+        },
+        {
+            id: 4,
+            titulo: "Interstellar",
+            ano: "2014",
+            genero: "Ficção Científica, Drama",
+            descricao: "Um grupo de exploradores espaciais viaja através de um buraco de minhoca numa tentativa de garantir a sobrevivência da humanidade.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/3/30/Interstellar_Filme.png",
+            trailer: "http://googleusercontent.com/youtube.com/embed/zSWdZVtXT7E",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
+            isSerie: false
+        },
+        {
+            id: 6,
+            titulo: "O Padrinho",
+            ano: "1972",
+            genero: "Drama",
+            descricao: "Um épico sobre a família mafiosa Corleone e o seu patriarca, Vito Corleone, que passa o controlo do seu império para o seu filho relutante, Michael.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/1/1a/The_Godfather.jpg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/sY1S34973zA",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
+            isSerie: false
+        },
+        {
+            id: 7,
+            titulo: "Pulp Fiction",
+            ano: "1994",
+            genero: "Crime, Drama",
+            descricao: "A vida de dois assassinos de aluguer, um pugilista, a esposa de um gangster e um par de assaltantes de restaurante entrelaçam-se em quatro histórias de violência e redenção.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/8/82/Pulp_Fiction_cover.png",
+            trailer: "http://googleusercontent.com/youtube.com/embed/s75f_tG_8gU",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
+            isSerie: false
+        },
+        {
+            id: 8,
+            titulo: "O Senhor dos Anéis: A Irmandade do Anel",
+            ano: "2001",
+            genero: "Fantasia, Aventura",
+            descricao: "Um jovem hobbit herda um anel mágico que é a chave para a destruição do seu mundo e o da escuridão. Ele embarca numa jornada perigosa para destruir o anel.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/a/a2/Lord_of_the_Rings_The_Fellowship_of_the_Ring_Image.jpg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/V75dMMIW2B4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
+            isSerie: false
+        },
+        {
+            id: 9,
+            titulo: "Inception",
+            ano: "2010",
+            genero: "Ficção Científica, Ação",
+            descricao: "Um ladrão que rouba informações valiosas do subconsciente dos seus alvos é encarregado de implantar uma ideia na mente de um CEO.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/b/bc/Inception_Poster.jpg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/YoHD9XEInc0",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
+            isSerie: false
+        }
+    ];
+
+    // Declaração única das séries
+    const series = [
+        {
+            id: 2, 
             titulo: "Sandman",
             ano: "2022",
             genero: "Drama, Fantasia",
             descricao: "Sandman narra a história de Morpheus, também conhecido como Sonho, um dos Perpétuos...",
-            imagem: "https://media.fstatic.com/SRkfNpRZejlpDyG5rC-GHI7-iPQ=/210x312/smart/filters:format(webp)/media/movies/covers/2021/09/As-previsoes-de-datas-de-lancamento-da-serie-Sandman-elenco.jpeg", 
-            trailer: "https://drive.google.com/file/d/1uUvoyg4At2IIpqbTTra4kYaOieQX5dox/preview", // NOVO LINK DE TRAILER SANDMAN (Google Drive)
+            imagem: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEBAVFRUVFRUVFRUVFRUVFRYVFRUXFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0OFRAPFS0dFx0tKy0tLS0tLS0tLS0tLS0rLSstLSstLS0rKy0uKy0tLS0rKy0tLS0rKy0tLSsrLS0tK//AABEIAQMAwgMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAQIDBAUGB//EAD0QAAIBAgQDBgQEBAMJAAAAAAABAgMRBAUSITFBUQYTImGBkTJxocFCUrHRFHLw8Qey4SMzNFNiY4KSwv/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/8QAIREBAQACAwACAgMAAAAAAAAAAAECEQMhMUFREtFhkbH/2gAIAQEAAz8A/wD2Q==", /* Capa atualizada */
+            trailer: "https://drive.google.com/file/d/1uUvoyg4At2IIpqbTTra4kYaOieQX5dox/preview",
             isSerie: true,
             episodios: [
                 { id: 's1e1', titulo: "Episódio 1 - Sonho dos Justos", imagem: "https://kanto.legiaodosherois.com.br/w728-h381-gnw-cfill-gcc-f:fbcover/wp-content/uploads/2021/09/legiao_ZeBC9NQHV0F1.jpg.webp", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
@@ -1541,113 +1661,7 @@
                 { id: 's1e7', titulo: "Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
                 { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
                 { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a91e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f0669262328ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
-            ]
-        }
-    ];
-
-    const filmes = [
-        {
-            id: 1,
-            titulo: "Thunderbolts",
-            ano: "2025",
-            genero: "Ação, Aventura, Ficção Científica",
-            descricao: "Presos em uma armadilha mortal, uma equipe nada convencional de anti-heróis embarca em uma missão perigosa...",
-            imagem: "https://lumiere-a.akamaihd.net/v1/images/teaser_1sht_-_rgb_for_online_use_only_6b92ba3f.jpeg",
-            trailer: "https://drive.google.com/file/d/1f6dK1VvXE0vq5_Y6n48AjbtlZ-H_7U2T/preview", // NOVO LINK DE TRAILER THUNDERBOLTS (Google Drive)
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
-            isSerie: false
-        },
-        {
-            id: 3,
-            titulo: "Duna: Parte 2",
-            ano: "2024",
-            genero: "Ficção Científica, Aventura",
-            descricao: "Paul Atreides se une a Chani e os Fremen enquanto busca vingança contra os conspiradores que destruíram sua família. Enfrentando uma escolha entre o amor de sua vida e o destino do universo conhecido, ele se esforça para evitar um futuro terrível que só ele pode prever.",
-            imagem: "https://upload.wikimedia.org/wikipedia/pt/2/25/Dune_Part_Two_poster.jpeg",
-            trailer: "http://googleusercontent.com/youtube.com/embed/Way9Dexny3w",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
-            isSerie: false
-        },
-        {
-            id: 4,
-            titulo: "Interestelar",
-            ano: "2014",
-            genero: "Ficção Científica, Drama",
-            descricao: "Um grupo de exploradores espaciais viaja através de um buraco de minhoca em uma tentativa de garantir a sobrevivência da humanidade.",
-            imagem: "https://upload.wikimedia.org/wikipedia/pt/3/30/Interstellar_Filme.png",
-            trailer: "http://googleusercontent.com/youtube.com/embed/zSWdZVtXT7E",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
-            isSerie: false
-        },
-        {
-            id: 6,
-            titulo: "O Poderoso Chefão",
-            ano: "1972",
-            genero: "Drama",
-            descricao: "Um épico sobre a família mafiosa Corleone e seu patriarca, Vito Corleone, que passa o controle de seu império para seu filho relutante, Michael.",
-            imagem: "https://upload.wikimedia.org/wikipedia/pt/1/1a/The_Godfather.jpg",
-            trailer: "http://googleusercontent.com/youtube.com/embed/sY1S34973zA",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
-            isSerie: false
-        },
-        {
-            id: 7,
-            titulo: "Pulp Fiction",
-            ano: "1994",
-            genero: "Crime, Drama",
-            descricao: "A vida de dois assassinos de aluguel, um boxeador, a esposa de um gângster e um par de assaltantes de restaurante se entrelaçam em quatro histórias de violência e redenção.",
-            imagem: "https://upload.wikimedia.org/wikipedia/pt/8/82/Pulp_Fiction_cover.png",
-            trailer: "http://googleusercontent.com/youtube.com/embed/s75f_tG_8gU",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
-            isSerie: false
-        },
-        {
-            id: 8,
-            titulo: "O Senhor dos Anéis: A Sociedade do Anel",
-            ano: "2001",
-            genero: "Fantasia, Aventura",
-            descricao: "Um jovem hobbit herda um anel mágico que é a chave para a destruição de seu mundo e o da escuridão. Ele embarca em uma jornada perigosa para destruir o anel.",
-            imagem: "https://upload.wikimedia.org/wikipedia/pt/a/a2/Lord_of_the_Rings_The_Fellowship_of_the_Ring_Image.jpg",
-            trailer: "http://googleusercontent.com/youtube.com/embed/V75dMMIW2B4",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
-            isSerie: false
-        },
-        {
-            id: 9,
-            titulo: "A Origem",
-            ano: "2010",
-            genero: "Ficção Científica, Ação",
-            descricao: "Um ladrão que rouba informações valiosas do subconsciente de seus alvos é encarregado de implantar uma ideia na mente de um C.E.O.",
-            imagem: "https://upload.wikimedia.org/wikipedia/pt/b/bc/Inception_Poster.jpg",
-            trailer: "http://googleusercontent.com/youtube.com/embed/YoHD9XEInc0",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
-            isSerie: false
-        }
-    ];
-
-    // A declaração única da variável 'series'
-    const series = [
-        {
-            id: 2, 
-            titulo: "Sandman",
-            ano: "2022",
-            genero: "Drama, Fantasia",
-            descricao: "Sandman narra a história de Morpheus, também conhecido como Sonho, um dos Perpétuos...",
-            imagem: "https://media.fstatic.com/SRkfNpRZejlpDyG5rC-GHI7-iPQ=/210x312/smart/filters:format(webp)/media/movies/covers/2021/09/As-previsoes-de-datas-de-lancamento-da-serie-Sandman-elenco.jpeg", 
-            trailer: "https://drive.google.com/file/d/1uUvoyg4At2IIpqbTTra4kYaOieQX5dox/preview", // NOVO LINK DE TRAILER SANDMAN (Google Drive)
-            isSerie: true,
-            episodios: [
-                { id: 's1e1', titulo: "Episódio 1 - Sonho dos Justos", imagem: "https://kanto.legiaodosherois.com.br/w728-h381-gnw-cfill-gcc-f:fbcover/wp-content/uploads/2021/09/legiao_ZeBC9NQHV0F1.jpg.webp", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e2', titulo: "Episódio 2 - Anfitriões Imperfeitos", imagem: "https://blog.incoherent.net/wp-content/uploads/2022/08/vlcsnap-2022-08-07-17h42m36s995.png?w=1200", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e3', titulo: "Episódio 3 - Sonhe Comigo", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_41_27_12R-scaled.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e4', titulo: "Episódio 4 - Uma Esperança no Inferno", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_18_53_22R-scaled.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e5', titulo: "Episódio 5 - Sem Parar", imagem: "https://i0.wp.com/subjectifymedia.com/wp-content/uploads/2022/09/john-dee-3.jpg?resize=1300%2C650&ssl=1", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e6', titulo: "O Som das Asas Dela", imagem: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQY020dAlhqHUvq66zGcc6jkuP3GhCuXsr6pLjLtzraKbNBOlVLbEbNAqwvJT5ZfKesKz4lKmYZl5iOaPuQZ-ZGmo32ZjUAfrdFqJiGFp840wOx0c7-rAiycx911sAfoHcCNOM4Jvz7n4dfpBHXNWv-F32ek.jpg?r=412", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e7', titulo: "Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a81e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f0669262328ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
+                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f06692623288ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
             ]
         },
         {
@@ -1655,7 +1669,7 @@
             titulo: "Stranger Things",
             ano: "2016",
             genero: "Ficção Científica, Terror, Drama",
-            descricao: "Quando um jovem garoto desaparece, sua mãe, um chefe de polícia e seus amigos devem confrontar forças sobrenaturais terríveis para trazê-lo de volta.",
+            descricao: "Quando um jovem rapaz desaparece, a sua mãe, um chefe de polícia e os seus amigos devem confrontar forças sobrenaturais terríveis para o trazer de volta.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/7/78/Stranger_Things_logo.png",
             trailer: "http://googleusercontent.com/youtube.com/embed/b9EkMc7qL88",
             isSerie: true,
@@ -1669,7 +1683,7 @@
             titulo: "Dark",
             ano: "2017",
             genero: "Ficção Científica, Drama, Suspense",
-            descricao: "Quatro famílias começam uma desesperada busca por respostas quando duas crianças desaparecem misteriosamente...",
+            descricao: "Quatro famílias começam uma busca desesperada por respostas quando duas crianças desaparecem misteriosamente...",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/b/b3/Dark_poster_temporada_1.jpg",
             trailer: "http://googleusercontent.com/youtube.com/embed/CQePz18sO1E",
             isSerie: true,
@@ -1680,29 +1694,29 @@
         }
     ];
 
-    // Novo array de doramas
+    // Declaração única dos doramas
     const doramas = [
         {
             id: 11,
             titulo: "Pousando no Amor",
             ano: "2019",
             genero: "Romance, Comédia, Drama",
-            descricao: "Uma herdeira sul-coreana acidentalmente cai na Coreia do Norte e se apaixona por um oficial do exército norte-coreano.",
+            descricao: "Uma herdeira sul-coreana acidentalmente cai na Coreia do Norte e apaixona-se por um oficial do exército norte-coreano.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/2/29/Crash_Landing_on_You.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
-            isDorama: true // Nova flag para dorama
+            isDorama: true
         },
         {
             id: 12,
             titulo: "Round 6",
             ano: "2021",
             genero: "Suspense, Drama, Ação",
-            descricao: "Centenas de jogadores endividados aceitam um estranho convite para um jogo de sobrevivência. Um prêmio bilionário os espera, mas os riscos são mortais.",
+            descricao: "Centenas de jogadores endividados aceitam um estranho convite para um jogo de sobrevivência. Um prémio bilionário os espera, mas os riscos são mortais.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/d/d4/Squid_Game.jpeg",
             trailer: "https://www.youtube.com/embed/oqxAJKy0ii8",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1714,7 +1728,7 @@
             descricao: "Anos depois de ser vítima de bullying na escola, uma mulher elabora um plano de vingança meticuloso.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/f/f6/The_Glory_poster.jpg/220px-The_Glory_poster.jpg",
             trailer: "https://www.youtube.com/embed/n02p4z6bC5Q",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1726,7 +1740,7 @@
             descricao: "Um advogado da máfia coreano-italiano retorna à sua terra natal para acertar as contas com um conglomerado corrupto.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/d/d1/Vincenzo_poster.jpg/220px-Vincenzo_poster.jpg",
             trailer: "https://www.youtube.com/embed/dxg15gq7-aQ",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1735,10 +1749,10 @@
             titulo: "Uma Advogada Extraordinária",
             ano: "2022",
             genero: "Drama, Jurídico",
-            descricao: "Uma advogada brilhante no espectro autista enfrenta desafios no tribunal e na vida cotidiana.",
+            descricao: "Uma advogada brilhante no espetro autista enfrenta desafios no tribunal e na vida quotidiana.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/1/1b/Extraordinary_Attorney_Woo.jpg/220px-Extraordinary_Attorney_Woo.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1747,10 +1761,10 @@
             titulo: "Sweet Home",
             ano: "2020",
             genero: "Terror, Apocalíptico",
-            descricao: "Um adolescente problemático e seus vizinhos lutam para sobreviver enquanto humanos se transformam em monstros sedentos.",
+            descricao: "Um adolescente problemático e os seus vizinhos lutam para sobreviver enquanto humanos se transformam em monstros sedentos.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/c/c5/Sweet_Home_poster.jpg/220px-Sweet_Home_poster.jpg",
             trailer: "https://www.youtube.com/embed/M1F5pU539t0",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1759,10 +1773,10 @@
             titulo: "Alquimia das Almas",
             ano: "2022",
             genero: "Fantasia, Romance",
-            descricao: "Uma poderosa feiticeira presa no corpo de uma jovem cega encontra um homem de uma família nobre que busca sua ajuda para mudar seu destino.",
+            descricao: "Uma poderosa feiticeira presa no corpo de uma jovem cega encontra um homem de uma família nobre que busca a sua ajuda para mudar o seu destino.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/7/7b/Alchemy_of_Souls_poster.jpg/220px-Alchemy_of_Souls_poster.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1771,10 +1785,10 @@
             titulo: "Descendentes do Sol",
             ano: "2016",
             genero: "Romance, Médico, Ação",
-            descricao: "Um capitão das forças especiais e uma cirurgiã se apaixonam enquanto trabalham em uma terra devastada pela guerra.",
+            descricao: "Um capitão das forças especiais e uma cirurgiã apaixonam-se enquanto trabalham numa terra devastada pela guerra.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/b/ba/Descendants_of_the_Sun.jpg/220px-Descendants_of_the_Sun.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1783,10 +1797,10 @@
             titulo: "Signal",
             ano: "2016",
             genero: "Policial, Fantasia, Suspense",
-            descricao: "Um detetive do presente e um detetive do passado se comunicam através de um walkie-talkie para resolver casos arquivados.",
+            descricao: "Um detetive do presente e um detetive do passado comunicam-se através de um walkie-talkie para resolver casos arquivados.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/e/e0/Signal_poster.jpg/220px-Signal_poster.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1798,7 +1812,7 @@
             descricao: "Jovens sonhadores buscam o sucesso no mundo das startups de tecnologia, enfrentando desafios e descobrindo o amor.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/b/b2/Start-Up_poster.jpg/220px-Start-Up_poster.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1807,10 +1821,10 @@
             titulo: "Mr. Sunshine",
             ano: "2018",
             genero: "Histórico, Romance, Drama",
-            descricao: "Um garoto coreano que viaja para os EUA em 1871 retorna à Coreia como oficial do exército americano e se apaixona por uma nobre.",
+            descricao: "Um rapaz coreano que viaja para os EUA em 1871 retorna à Coreia como oficial do exército americano e apaixona-se por uma nobre.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/7/7b/Mr._Sunshine_poster.jpg/220px-Mr._Sunshine_poster.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1819,10 +1833,10 @@
             titulo: "Extraordinária",
             ano: "2017",
             genero: "Escolar, Fantasia, Romance",
-            descricao: "Uma garota descobre que é um personagem extra em um mundo de quadrinhos e tenta mudar seu destino.",
+            descricao: "Uma rapariga descobre que é um personagem extra num mundo de banda desenhada e tenta mudar o seu destino.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/c/c5/Extraordinary_You_poster.jpg/220px-Extraordinary_You_poster.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         },
@@ -1834,25 +1848,25 @@
             descricao: "Acompanha a vida de cinco médicos que são amigos desde a faculdade e trabalham no mesmo hospital.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/d/d3/Hospital_Playlist_poster.jpg/220px-Hospital_Playlist_poster.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isDorama: true
         }
     ];
 
-    // Novo array de animes
+    // Declaração única dos animes
     const animes = [
         {
             id: 24,
             titulo: "My Hero Academia",
             ano: "2016",
             genero: "Ação, Shounen, Vida Escolar",
-            descricao: "Em um mundo onde quase todos possuem superpoderes, um garoto sem poderes sonha em se tornar um herói.",
+            descricao: "Num mundo onde quase todos possuem superpoderes, um rapaz sem poderes sonha em tornar-se um herói.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/d/d3/Boku_no_Hero_Academia.jpg/220px-Boku_no_Hero_Academia.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
-            isAnime: true // Nova flag
+            isAnime: true
         },
         {
             id: 25,
@@ -1862,7 +1876,7 @@
             descricao: "Uma estudante preguiçosa e chorona descobre que é uma guerreira mágica destinada a salvar a Terra.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/a/a2/Sailor_Moon_logo.png/220px-Sailor_Moon_logo.png",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isAnime: true
         },
@@ -1874,7 +1888,7 @@
             descricao: "A humanidade vive em cidades protegidas por muralhas gigantes contra criaturas humanoides devoradoras de homens, os Titãs.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/d/d6/Shingeki_no_Kyojin_manga_cover_-_vol_1.jpg/220px-Shingeki_no_Kyojin_manga_cover_-_vol_1.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isAnime: true
         },
@@ -1886,7 +1900,7 @@
             descricao: "Um NEET é transportado para um mundo de fantasia e ganha a habilidade de voltar no tempo após a morte.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/c/c8/ReZero_light_novel_vol_1.jpg/220px-ReZero_light_novel_vol_1.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isAnime: true
         },
@@ -1895,10 +1909,10 @@
             titulo: "Komi Can't Communicate",
             ano: "2021",
             genero: "Comédia, Vida Escolar, Romance",
-            descricao: "Uma garota com extrema dificuldade de comunicação tenta fazer 100 amigos na escola.",
+            descricao: "Uma rapariga com extrema dificuldade de comunicação tenta fazer 100 amigos na escola.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/3/36/Komi_Can%27t_Communicate_volume_1.jpg/220px-Komi_Can%27t_Communicate_volume_1.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isAnime: true
         },
@@ -1907,28 +1921,28 @@
             titulo: "Another",
             ano: "2012",
             genero: "Terror, Mistério",
-            descricao: "Uma série de mortes misteriosas assola uma classe, e um estudante tenta descobrir a verdade por trás delas.",
+            descricao: "Uma série de mortes misteriosas assola uma turma, e um estudante tenta descobrir a verdade por trás delas.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/b/b5/Another_anime_poster.jpg/220px-Another_anime_poster.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isAnime: true
         }
     ];
 
-    // Novo array de novelas (exemplo, pode ser expandido)
+    // Declaração única das novelas (exemplo, pode ser expandido)
     const novelas = [
         {
             id: 30,
             titulo: "Avenida Brasil",
             ano: "2012",
             genero: "Novela, Drama, Romance",
-            descricao: "A saga de Nina em busca de vingança contra sua madrasta, Carminha.",
+            descricao: "A saga de Nina em busca de vingança contra a sua madrasta, Carminha.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/d/d4/Avenida_Brasil.jpg/220px-Avenida_Brasil.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
-            isNovela: true // Nova flag para novela
+            isNovela: true
         },
         {
             id: 31,
@@ -1938,9 +1952,46 @@
             descricao: "Uma história de amor proibido entre um indiano e uma brasileira, com o choque de culturas como pano de fundo.",
             imagem: "https://upload.wikimedia.org/wikipedia/pt/thumb/a/a2/Caminho_das_%C3%8Dndias_poster.jpg/220px-Caminho_das_%C3%8Dndias_poster.jpg",
             trailer: "https://www.youtube.com/embed/fW_B5y16-6k", // Placeholder
-            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
             isSerie: true,
             isNovela: true
+        }
+    ];
+
+    // Declaração única dos itens da home (Adicionados Recentemente)
+    const homeItems = [
+        {
+            id: 1,
+            titulo: "Thunderbolts",
+            ano: "2025",
+            genero: "Ação, Aventura, Ficção Científica",
+            descricao: "Presos em uma armadilha mortal, uma equipa nada convencional de anti-heróis embarca numa missão perigosa...",
+            imagem: "https://lumiere-a.akamaihd.net/v1/images/teaser_1sht_-_rgb_for_online_use_only_6b92ba3f.jpeg",
+            trailer: "https://drive.google.com/file/d/1f6dK1VvXE0vq5_Y6n48AjbtlZ-H_7U2T/preview",
+            video: "https://placehold.co/1280x720/000/fff?text=Video+Placeholder",
+            isSerie: false
+        },
+        {
+            id: 2,
+            titulo: "Sandman",
+            ano: "2022",
+            genero: "Drama, Fantasia",
+            descricao: "Sandman narra a história de Morpheus, também conhecido como Sonho, um dos Perpétuos...",
+            imagem: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEBAVFRUVFRUVFRUVFRUVFRYVFRUXFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0OFRAPFS0dFx0tKy0tLS0tLS0tLS0tLS0rLSstLSstLS0rKy0uKy0tLS0rKy0tLS0rKy0tLSsrLS0tK//AABEIAQMAwgMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAQIDBAUGB//EAD0QAAIBAgQDBgQEBAMJAAAAAAABAgMRBAUSITFBUQYTImGBkTJxocFCUrHRFHLw8Qey4SMzNFNiY4KSwv/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/8QAIREBAQACAwACAgMAAAAAAAAAAAECEQMhMUFREtFhkbH/2gAIAQEAAz8A/wD2Q==", /* Capa atualizada */
+            trailer: "https://drive.google.com/file/d/1uUvoyg4At2IIpqbTTra4kYaOieQX5dox/preview",
+            isSerie: true,
+            episodios: [
+                { id: 's1e1', titulo: "Episódio 1 - Sonho dos Justos", imagem: "https://kanto.legiaodosherois.com.br/w728-h381-gnw-cfill-gcc-f:fbcover/wp-content/uploads/2021/09/legiao_ZeBC9NQHV0F1.jpg.webp", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e2', titulo: "Episódio 2 - Anfitriões Imperfeitos", imagem: "https://blog.incoherent.net/wp-content/uploads/2022/08/vlcsnap-2022-08-07-17h42m36s995.png?w=1200", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e3', titulo: "Episódio 3 - Sonhe Comigo", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_41_27_12R-scaled.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e4', titulo: "Episódio 4 - Uma Esperança no Inferno", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_18_53_22R-scaled.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e5', titulo: "Episódio 5 - Sem Parar", imagem: "https://i0.wp.com/subjectifymedia.com/wp-content/uploads/2022/09/john-dee-3.jpg?resize=1300%2C650&ssl=1", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e6', titulo: "O Som das Asas Dela", imagem: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQY020dAlhqHUvq66zGcc6jkuP3GhCuXsr6pLjLtzraKbNBOlVLbEbNAqwvJT5ZfKesKz4lKmYZl5iOaPuQZ-ZGmo32ZjUAfrdFqJiGFp840wOx0c7-rAiycx911sAfoHcCNOM4Jvz7n4dfpBHXNWv-F32ek.jpg?r=412", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e7', titulo: "Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a91e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f06692623288ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
+            ]
         }
     ];
 
@@ -2042,12 +2093,12 @@
         const senha = inputSenha.value.trim();
 
         if (!usuario) {
-            erroMsg.textContent = "Digite o usuário.";
+            erroMsg.textContent = "Digite o Login.";
             inputUsuario.focus();
             return;
         }
         if (!senha) {
-            erroMsg.textContent = "Digite a senha.";
+            erroMsg.textContent = "Digite a Senha.";
             inputSenha.focus();
             return;
         }
@@ -2075,7 +2126,7 @@
                     btnEntrar.disabled = false;
                 }, 60000);
             } else {
-                erroMsg.textContent = `Usuário ou senha inválidos. Tentativa ${tentativas} de 3.`;
+                erroMsg.textContent = `Login ou Senha inválidos. Tentativa ${tentativas} de 3.`;
             }
         }
         if (!bloqueado) {
@@ -2214,7 +2265,7 @@
             return;
         }
         btnSalvar.disabled = true;
-        btnSalvar.textContent = "Salvando...";
+        btnSalvar.textContent = "A Guardar...";
 
         const processarSalvar = (imagem) => {
             if (modoEdicao) {
@@ -2227,7 +2278,7 @@
             mostrarPerfis();
             fecharModal();
             btnSalvar.disabled = false;
-            btnSalvar.textContent = "Salvar";
+            btnSalvar.textContent = "Guardar";
         };
 
         if (inputFotoPerfil.files.length > 0) {
@@ -2235,7 +2286,7 @@
             if (file.size > 2 * 1024 * 1024) {
                 modalErro.textContent = "Imagem muito grande (máx 2MB).";
                 btnSalvar.disabled = false;
-                btnSalvar.textContent = "Salvar";
+                btnSalvar.textContent = "Guardar";
                 return;
             }
             const reader = new FileReader();
@@ -2341,7 +2392,7 @@
                     contentHtml += filteredContent.map(renderCard).join('');
                 }
                 if (contentHtml === '') {
-                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este gênero.</p>`;
+                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este género.</p>`;
                 }
                 genreGrid.innerHTML = contentHtml;
             }
@@ -2365,7 +2416,7 @@
                     contentHtml += filteredContent.map(renderCard).join('');
                 }
                 if (contentHtml === '') {
-                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este gênero de Anime.</p>`;
+                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este género de Anime.</p>`;
                 }
                 animeGenreGrid.innerHTML = contentHtml;
             }
@@ -2386,7 +2437,7 @@
                     contentHtml += filteredContent.map(renderCard).join('');
                 }
                 if (contentHtml === '') {
-                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este gênero de Dorama.</p>`;
+                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este género de Dorama.</p>`;
                 }
                 doramaGenreGrid.innerHTML = contentHtml;
             }
@@ -2485,9 +2536,9 @@
         const starIcon = isFavorited ? '★' : '☆';
 
         return `
-            <div class="movie-card" data-item-id="${item.id}" onclick="openDetailsOverlay(${item.id})" tabindex="0" role="button" aria-label="${item.titulo}, ano ${item.ano}, gênero ${item.genero}${item.isSerie ? ', série' : ''}">
+            <div class="movie-card" data-item-id="${item.id}" onclick="openDetailsOverlay(${item.id})" tabindex="0" role="button" aria-label="${item.titulo}, ano ${item.ano}, género ${item.genero}${item.isSerie ? ', série' : ''}">
                 <div class="relative overflow-hidden rounded-xl">
-                    <img src="${item.imagem}" class="w-full h-[300px] object-cover rounded-t-lg" alt="Pôster de ${item.titulo}" loading="lazy">
+                    <img src="${item.imagem}" class="w-full h-[13.5rem] object-cover rounded-t-lg" alt="Póster de ${item.titulo}" loading="lazy">
                     <div class="favorito-btn" onclick="event.stopPropagation(); toggleFavorito(${item.id})" tabindex="0" role="button" aria-label="${isFavorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
                         <span class="${starClass}" aria-hidden="true">${starIcon}</span>
                     </div>
@@ -2580,7 +2631,7 @@
         }
         
         playerContentArea.innerHTML = `
-            <iframe src="${itemToPlay.video}" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" allowfullscreen class="w-full h-full rounded-xl" title="Player de ${item.titulo}" allow="autoplay"></iframe>
+            <iframe src="${itemToPlay.video}" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" allowfullscreen class="w-full h-full rounded-xl" title="Player de ${itemToPlay.titulo}" allow="autoplay"></iframe>
         `;
         playerOverlay.classList.add('active');
         detailsOverlay.classList.remove('active');
@@ -2685,7 +2736,7 @@
             mainSiteContent.appendChild(searchResultsSection);
         }
         
-        searchResultsSection.innerHTML = `<h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Resultados da Pesquisa para "${searchTerm}"</h2><div class="movie-grid"></div>`;
+        searchResultsSection.innerHTML = `<h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Resultados da Pesquisa para "${searchTerm}"</h2><div class="movie-grid"></div>`;
 
         const searchGrid = searchResultsSection.querySelector('.movie-grid');
         
