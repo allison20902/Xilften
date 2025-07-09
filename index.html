@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xilften</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* VARIÁVEIS CSS */
+        :root {
+            --cor-bg-dark: #000;
+            --cor-text-dark: #fff;
+            --cor-accent: #e50914; /* Vermelho Netflix */
+            --cor-accent-hover: #b20710; /* Vermelho mais escuro no hover */
+            --cor-accent-disabled: #770000;
+            --cor-header-bg: #1a1a1a; /* Cinza escuro para o cabeçalho */
+        }
+
+        /* ESTILOS GLOBAIS E RESETS */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: var(--cor-bg-dark); /* Fundo padrão do body é preto */
+            color: var(--cor-text-dark);
+            overflow: hidden; /* O body não deve rolar, as telas individuais rolam */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Contexto para as telas absolutas */
+            width: 100vw;
+        }
+
+        /* CLASSES PARA CONTROLE DE TELAS PRINCIPAIS */
+        .tela-principal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .tela-principal.ativa {
+            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* TELA DE LOGIN */
+        #telaLogin {
+            background: url('https://wallpapers.com/images/hd/american-movie-posters-z0puq43u0qbtr6j2.webp') no-repeat center center;
+            background-size: cover;
+            z-index: 100;
+        }
+
+        #loginBox {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 40px 50px;
+            border-radius: 10px;
+            min-width: 320px;
+            box-shadow: 0 0 15px 3px var(--cor-accent);
+            user-select: none;
+            text-align: center;
+        }
+
+        #loginBox h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--cor-accent);
+            user-select: none;
+        }
+
+        .campo {
+            margin: 12px auto;
+            width: fit-content;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline-offset: 2px;
+            outline-color: var(--cor-accent);
+            background-color: #222;
+            color: white;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            outline-color: #ff4444;
+        }
+
+        #btnEntrar {
+            display: block;
+            width: 100%;
+            padding: 10px 30px;
+            background-color: var(--cor-accent);
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 25px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+        #btnEntrar:hover:not(:disabled) {
+            background-color: var(--cor-accent-hover);
+        }
+        #btnEntrar:disabled {
+            background-color: var(--cor-accent-disabled);
+            cursor: default;
+        }
+
+        .erro, .modal-erro {
+            color: #ff4444;
+            margin-top: 10px;
+            min-height: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        /* TELA DE PERFIS */
+        #telaPerfis {
+            background-color: var(--cor-bg-dark); /* Fundo PRETO */
+            z-index: 90;
+        }
+
+        #containerPerfis {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 960px;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        .perfil {
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border-radius: 12px;
+            padding: 5px;
+            user-select: none;
+        }
+        .perfil:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px 3px var(--cor-accent);
+        }
+
+        .perfil-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--cor-accent);
+            display: block;
+            margin: 0 auto;
+            user-select: none;
+        }
+
+        .perfil span {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: white;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .perfil.adicionar {
+            font-size: 60px;
+            color: white;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            user-select: none;
+        }
+        .perfil.adicionar:hover {
+            background-color: #333;
+            transform: scale(1.1);
+        }
+
+        #telaPerfis button {
+            background-color: var(--cor-accent);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+        #telaPerfis button:hover {
+            background-color: var(--cor-accent-hover);
+        }
+
+
+        /* MODAL */
+        #modalFundo {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 110;
+            user-select: none;
+            animation: fadeIn 0.3s ease forwards;
+        }
+        #modalFundo.ativo {
+            display: flex;
+        }
+
+        #modal {
+            background: #111;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 300px;
+            box-shadow: 0 0 20px 3px var(--cor-accent);
+            animation: slideDown 0.3s ease forwards;
+            user-select: none;
+            position: relative;
+        }
+
+        #modal h2 {
+            margin-bottom: 20px;
+            user-select: none;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline-offset: 2px;
+            outline-color: var(--cor-accent);
+            background-color: #222;
+            color: white;
+        }
+        #modal input[type="text"], #modal input[type="file"] {
+            margin: 10px 0;
+            width: 90%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            font-size: 15px;
+            outline-offset: 2px;
+            outline-color: var(--cor-accent);
+            background-color: #222;
+            color: white;
+        }
+        #modal input[type="text"]:focus, #modal input[type="file"]:focus {
+            outline-color: #ff4444;
+        }
+
+        #modal button {
+            background-color: var(--cor-accent);
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            margin: 8px 10px 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+        #modal button:hover {
+            background-color: var(--cor-accent-hover);
+        }
+        #modal button:disabled {
+            background-color: var(--cor-accent-disabled);
+            cursor: default;
+        }
+
+        /* ÍCONES DE EDIÇÃO/EXCLUSÃO DE PERFIL */
+        .editar-icon, .excluir-icon {
+            position: absolute;
+            top: 5px;
+            background-color: rgba(255, 0, 0, 0.6);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            color: white;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            user-select: none;
+            z-index: 2;
+        }
+        .editar-icon { right: 5px; }
+        .excluir-icon { left: 5px; background-color: rgba(255, 0, 0, 0.7); }
+        .perfil:hover .editar-icon, .perfil:hover .excluir-icon { opacity: 0.7; }
+        .editar-icon:hover, .excluir-icon:hover { opacity: 1; }
+
+        /* TELA DE PERFIL SELECIONADO (Não mais usada na navegação principal) */
+        #perfilSelecionado {
+            display: none;
+        }
+
+        /* ESTILOS DO SITE PRINCIPAL */
+        #sitePrincipal {
+            background-color: var(--cor-bg-dark); /* Fundo do site é preto */
+            z-index: 70;
+            align-items: flex-start; /* Alinha o conteúdo ao topo */
+            padding: 0;
+            min-height: 100vh;
+            overflow-y: auto; /* Permite rolagem no conteúdo do site */
+            position: relative; /* Essencial para o sticky funcionar dentro dela */
+            scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+            -ms-overflow-style: none;  /* Oculta a barra de rolagem no IE/Edge */
+        }
+        #sitePrincipal::-webkit-scrollbar { /* Oculta a barra de rolagem no Chrome/Safari */
+            display: none;
+        }
+
+
+        /* HEADER DO SITE (Fixo no topo) */
+        #sitePrincipal .header-site {
+            background-color: var(--cor-header-bg); /* Cinza escuro para o header */
+            display: flex;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky; /* Torna o header fixo no topo */
+            top: 0;
+            width: 100%;
+            z-index: 50; /* Z-index para o header */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            height: 60px;
+        }
+
+        #sitePrincipal .header-site .logo {
+            color: var(--cor-accent);
+            font-size: 32px;
+            font-weight: bold;
+            margin-right: 30px;
+            letter-spacing: 1px;
+        }
+
+        #sitePrincipal .header-site nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            margin-right: auto;
+        }
+
+        #sitePrincipal .header-site nav button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 5px 0;
+        }
+        #sitePrincipal .header-site nav button:hover {
+            color: #ddd;
+        }
+        
+        /* Menu suspenso de Gênero */
+        .genre-button {
+            position: relative; /* Para posicionar o dropdown */
+        }
+        .genre-dropdown {
+            display: none; /* Controlado via JS */
+            position: absolute;
+            top: calc(100% + 5px); /* Abaixo do botão Gênero */
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.85); /* Fundo preto borrado e transparente */
+            backdrop-filter: blur(8px); /* Efeito blur */
+            border-radius: 0.25rem;
+            padding: 0.5rem 0;
+            z-index: 1000; /* Muito alto para garantir que ele apareça sobre tudo */
+            white-space: nowrap;
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+            max-height: 300px;
+            overflow-y: scroll; /* Rolagem sempre visível para depuração, depois hidden */
+            scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+            -ms-overflow-style: none;  /* Oculta a barra de rolagem no IE/Edge */
+            opacity: 0; /* Para transição de opacidade */
+            transition: opacity 0.2s ease-in-out; /* Transição de opacidade do dropdown */
+        }
+        .genre-dropdown::-webkit-scrollbar {
+            display: none;
+        }
+
+        .genre-dropdown button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.5rem 1.5rem;
+            color: white;
+            font-weight: normal;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .genre-dropdown button:hover {
+            background-color: rgba(255,255,255,0.15); /* Fundo cinza um pouco mais claro no hover */
+            color: white;
+        }
+        .genre-dropdown button:active {
+            background-color: var(--cor-accent);
+            color: white;
+        }
+
+
+        #sitePrincipal .header-site .search-profile-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        #sitePrincipal .header-site #searchInput {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            width: 180px;
+            transition: background-color 0.3s ease;
+        }
+        #sitePrincipal .header-site #searchInput::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        #sitePrincipal .header-site #searchInput:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        #profileIcon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--cor-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            object-fit: cover;
+            border: 2px solid white;
+            overflow: hidden;
+        }
+        #profileIcon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* MAIN CONTENT DO SITE */
+        #main-site-content {
+            padding: 30px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-y: hidden; /* O main-site-content não deve rolar, o #sitePrincipal rola */
+            flex-grow: 1; /* Permite que o main ocupe o espaço restante */
+        }
+
+        /* Seções de conteúdo dentro do main-site-content */
+        .content-section {
+            display: none; /* Escondido por padrão, controlado por JS */
+            width: 100%; /* Garante que a seção ocupe a largura total */
+            min-height: calc(100vh - 60px - 60px); /* Altura mínima: viewport - header - padding */
+        }
+        .content-section.active {
+            display: block; /* A seção ativa é exibida */
+        }
+
+
+        #main-site-content h2 {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .movie-card {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .movie-card h3 {
+            font-size: 1.2em;
+            margin: 10px 10px 5px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .movie-card p {
+            font-size: 0.9em;
+            color: #bbb;
+            margin: 0 10px 10px;
+            line-height: 1.4;
+        }
+
+        .favorito-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.7);
+            padding: 0.4rem;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-size: 1.2em;
+            line-height: 1;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+        .movie-card:hover .favorito-btn {
+            opacity: 1;
+        }
+        /* Cor da estrela favorita */
+        .favorito-btn span.favorited {
+            color: yellow;
+        }
+        /* Cor da estrela não favorita */
+        .favorito-btn span.not-favorited {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+
+        /* OVERLAY/MODAL DE DETALHES/PLAYER */
+        /* Overlays: Controlados por opacity e visibility para transições mais suaves e evitar problemas de clique. */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden; /* Inicialmente escondido, mas ocupa espaço para transição */
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .details-content, .player-content, #episodiosContent {
+            background-color: rgba(26, 26, 26, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            overflow-y: auto;
+            max-height: 90vh;
+            position: relative;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            transform: translateY(20px); /* Para animação de entrada */
+            opacity: 0; /* Para animação de entrada */
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+        .overlay.active .details-content,
+        .overlay.active .player-content,
+        .overlay.active #episodiosContent {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .details-content::-webkit-scrollbar,
+        .player-content::-webkit-scrollbar,
+        #episodiosContent::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .details-content iframe,
+        .player-content iframe {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Garante proporção de vídeo */
+            display: block;
+        }
+        
+        .details-content h2, #episodiosContent h2 {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: white;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            text-align: center; /* Centraliza o título dos episódios */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        .details-content p {
+            font-size: 1em;
+            color: #ccc;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .details-content .meta-info {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        /* Botão Fechar em todos os overlays */
+        .close-button { /* Aplica a todos os close-button */
+            position: absolute;
+            top: 15px;
+            right: 15px; 
+            background-color: var(--cor-accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            z-index: 1002;
+        }
+        .close-button:hover {
+            background-color: var(--cor-accent-hover);
+        }
+        /* Ajuste específico para o botão "Voltar" do player para ter padding e não ser redondo */
+        .player-content .back-to-details-button {
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 1em;
+            width: auto; 
+            left: 15px; 
+            right: auto;
+            background-color: var(--cor-accent); /* Cor de fundo vermelha */
+            color: white; /* Cor do texto branca */
+        }
+        /* Efeito hover para o botão Voltar */
+        .player-content .back-to-details-button:hover {
+            background-color: var(--cor-accent-hover);
+        }
+
+
+        /* Estilos para o container de carrossel de episódios */
+        #episodios-carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 10px;
+        }
+
+        #episodios-container-horizontal {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0 10px 15px;
+        }
+
+        #episodios-container-horizontal::-webkit-scrollbar {
+            display: none;
+        }
+        #episodios-container-horizontal {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .episodio-card {
+            min-width: 240px;
+            max-width: 240px;
+            background: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-bottom: 5px;
+        }
+        .episodio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .episodio-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .episodio-info {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 0, 0, 0.8);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 4px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+        .scroll-btn:hover {
+            background: var(--cor-accent-hover);
+        }
+
+        .scroll-left {
+            left: 10px;
+        }
+
+        .scroll-right {
+            right: 10px;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes slideDown {
+            from {transform: translateY(-20px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            #loginBox, #modal {
+                width: 90%;
+                min-width: unset;
+                padding: 20px;
+            }
+            input[type="text"], input[type="password"] {
+                width: 100%;
+            }
+            #containerPerfis {
+                gap: 15px;
+                padding: 15px;
+                max-width: 100%;
+            }
+            .perfil-img {
+                width: 90px;
+                height: 90px;
+            }
+            .perfil.adicionar {
+                width: 90px;
+                height: 90px;
+                font-size: 48px;
+            }
+            #sitePrincipal .header-site {
+                flex-direction: column;
+                align-items: flex-start;
+                height: auto;
+                padding: 10px 20px;
+            }
+            #sitePrincipal .header-site .logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            #sitePrincipal .header-site nav {
+                margin-right: auto;
+                width: 100%;
+                justify-content: space-around;
+                margin-bottom: 10px;
+            }
+            #sitePrincipal .header-site .search-profile-area {
+                width: 100%;
+                justify-content: space-between;
+            }
+            #sitePrincipal .header-site #searchInput {
+                width: calc(100% - 50px);
+            }
+            .movie-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+                padding: 0 10px;
+            }
+            .movie-card img {
+                height: 250px;
+            }
+            .details-content {
+                width: 95%;
+                padding: 20px;
+            }
+            .details-content h2 {
+                font-size: 1.8em;
+            }
+            .player-content {
+                width: 95%;
+                padding: 10px;
+            }
+            .close-button {
+                top: 5px; 
+                right: 5px;
+                width: 25px;
+                height: 25px;
+                font-size: 1em;
+            }
+            /* Ajustes para o carrossel de episódios em mobile */
+            #episodiosContent {
+                width: 95%;
+                padding: 20px;
+            }
+            #episodios-container-horizontal {
+                padding: 0 5px 10px;
+            }
+            .scroll-btn {
+                font-size: 1.5rem;
+                padding: 2px 8px;
+            }
+            .scroll-left {
+                left: 5px;
+            }
+            .scroll-right {
+                right: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .movie-grid {
+                grid-template-columns: 1fr;
+            }
+            .movie-card img {
+                height: 200px;
+            }
+            #main-site-content h2 {
+                font-size: 24px;
+            }
+            #profileIcon span {
+                display: none; 
+            }
+            .episodio-card {
+                min-width: 200px;
+                max-width: 200px;
+            }
+            .episodio-card img {
+                height: 120px;
+            }
+            .episodio-info {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="telaLogin" class="tela-principal" role="main" aria-label="Tela de Login">
+    <div id="loginBox">
+        <h1>Xilften</h1>
+        <div class="campo">
+            <input type="text" id="usuario" placeholder="Usuário" autocomplete="username" aria-label="Usuário"/>
+        </div>
+        <div class="campo">
+            <input type="password" id="senha" placeholder="Senha" autocomplete="current-password" aria-label="Senha"/>
+        </div>
+        <button id="btnEntrar" aria-live="polite">Entrar</button>
+        <div class="erro" id="erroMsg" role="alert" aria-live="assertive"></div>
+    </div>
+</div>
+
+<div id="telaPerfis" class="tela-principal" role="main" aria-label="Tela de seleção de perfis">
+    <div id="containerPerfis" tabindex="0" aria-label="Lista de perfis"></div>
+    <button onclick="sair()" aria-label="Voltar para tela de login">Voltar</button>
+</div>
+
+<div id="perfilSelecionado" class="tela-principal" role="main" aria-label="Perfil selecionado">
+    <img src="" alt="Foto do perfil selecionado" id="fotoPerfilSelecionado" />
+    <h2 id="nomePerfilSelecionado"></h2>
+    <button onclick="entrarNoSite()" style="display: none;" aria-label="Entrar no site">Entrar no Site</button>
+    <button onclick="voltarPerfis()" style="display: none;" aria-label="Voltar para seleção de perfis">Voltar para Perfis</button>
+</div>
+
+<div id="sitePrincipal" class="tela-principal">
+    <header class="header-site">
+        <div class="logo">Xilften</div>
+        <nav>
+            <button onclick="showContentSection('home-section')" aria-label="Ir para a seção Início">Início</button>
+            <div class="relative genre-button" id="genreButtonContainer">
+                <button id="genreDropdownButton" aria-haspopup="true" aria-expanded="false">Gênero</button>
+                <div class="genre-dropdown" id="genreDropdown" role="menu">
+                    <button role="menuitem" onclick="handleGenreClick('Animação', 'animacao-section')">Animação</button>
+                    <button role="menuitem" onclick="handleGenreClick('Ação', 'acao-section')">Ação</button>
+                    <button role="menuitem" onclick="handleGenreClick('Aventura', 'aventura-section')">Aventura</button>
+                    <button role="menuitem" onclick="handleGenreClick('Comédia', 'comedia-section')">Comédia</button>
+                    <button role="menuitem" onclick="handleGenreClick('Ficção Científica', 'ficcao-cientifica-section')">Ficção Científica</button>
+                    <button role="menuitem" onclick="handleGenreClick('Fantasia', 'fantasia-section')">Fantasia</button>
+                    <button role="menuitem" onclick="handleGenreClick('Terror', 'terror-section')">Terror</button>
+                    <button role="menuitem" onclick="handleGenreClick('Romance', 'romance-section')">Romance</button>
+                    <button role="menuitem" onclick="handleGenreClick('Suspense', 'suspense-section')">Suspense</button>
+                    <button role="menuitem" onclick="handleGenreClick('Thriller', 'thriller-section')">Thriller</button>
+                    <button role="menuitem" onclick="handleGenreClick('Documentário', 'documentario-section')">Documentário</button>
+                    <button role="menuitem" onclick="handleGenreClick('Guerra', 'guerra-section')">Guerra</button>
+                </div>
+            </div>
+            <button onclick="showContentSection('series-section')" aria-label="Ir para a seção Séries">Séries</button>
+            <button onclick="showContentSection('minha-lista-section')" aria-label="Ir para a seção Minha Lista">Minha Lista</button>
+        </nav>
+        <div class="search-profile-area">
+            <input id="searchInput" type="text" placeholder="Pesquisar..." oninput="pesquisarFilmes()" aria-label="Campo de pesquisa de filmes e séries" />
+            <div id="profileIcon" onclick="voltarParaPerfisDoSite()" aria-label="Voltar para seleção de perfis"></div>
+        </div>
+    </header>
+    <main id="main-site-content">
+        <div id="home-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Adicionados Recentemente</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="acao-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Ação</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+        
+        <div id="aventura-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Aventura</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="comedia-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Comédia</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="ficcao-cientifica-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Ficção Científica</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="fantasia-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Fantasia</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="terror-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Terror</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="romance-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Romance</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="suspense-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Suspense</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="thriller-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Thriller</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="documentario-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Documentário</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="guerra-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Guerra</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="animacao-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Gênero: Animação</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="series-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Séries</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="minha-lista-section" class="content-section">
+            <h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Minha Lista</h2>
+            <div class="movie-grid">
+            </div>
+        </div>
+
+        <div id="detailsOverlay" class="overlay">
+            <div class="details-content">
+                <button class="close-button" onclick="closeDetailsOverlay()" aria-label="Fechar detalhes">×</button>
+                <div id="detailsContentArea">
+                </div>
+                <button class="bg-[#e50914] hover:bg-[#b20710] px-6 py-3 rounded text-white text-lg font-semibold mt-4" id="playButtonDetailsOverlay">Assistir</button>
+            </div>
+        </div>
+
+        <div id="playerOverlay" class="overlay">
+            <div class="player-content">
+                <button class="back-to-details-button" onclick="closePlayerOverlay()" aria-label="Voltar para os detalhes ou episódios">Voltar</button>
+                <div id="playerContentArea">
+                </div>
+            </div>
+        </div>
+
+        <div id="episodiosOverlay" class="overlay">
+            <div id="episodiosContent">
+                <button class="close-button" onclick="closeEpisodiosOverlay()" aria-label="Fechar episódios">×</button>
+                <h2 id="episodiosTitulo"></h2>
+                <div id="episodios-carousel-wrapper">
+                    <button class="scroll-btn scroll-left" onclick="scrollEpisodios(-1)">‹</button>
+                    <div id="episodios-container-horizontal">
+                        </div>
+                    <button class="scroll-btn scroll-right" onclick="scrollEpisodios(1)">›</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="modalFundo" aria-modal="true" role="dialog" aria-labelledby="modalTitulo" tabindex="-1">
+    <div id="modal">
+        <h2 id="modalTitulo">Adicionar Perfil</h2>
+        <input type="text" id="inputNomePerfil" placeholder="Nome do perfil" autocomplete="off" aria-label="Nome do perfil" />
+        <input type="file" id="inputFotoPerfil" accept="image/*" aria-label="Foto do perfil" />
+        <div class="modal-erro" id="modalErro"></div>
+        <div>
+            <button id="btnSalvar">Salvar</button>
+            <button onclick="fecharModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- Variáveis e Configurações do LOGIN.HTML ---
+    const telaLogin = document.getElementById("telaLogin");
+    const telaPerfis = document.getElementById("telaPerfis");
+    const containerPerfis = document.getElementById("containerPerfis");
+    const erroMsg = document.getElementById("erroMsg");
+    const modalFundo = document.getElementById("modalFundo");
+    const modalTitulo = document.getElementById("modalTitulo");
+    const inputNomePerfil = document.getElementById("inputNomePerfil");
+    const inputFotoPerfil = document.getElementById("inputFotoPerfil");
+    const btnSalvar = document.getElementById("btnSalvar");
+    const btnEntrar = document.getElementById("btnEntrar");
+    const inputUsuario = document.getElementById("usuario");
+    const inputSenha = document.getElementById("senha");
+    const modalErro = document.getElementById("modalErro");
+
+    const perfilSelecionadoDiv = document.getElementById("perfilSelecionado");
+    const fotoPerfilSelecionado = document.getElementById("fotoPerfilSelecionado");
+    const nomePerfilSelecionado = document.getElementById("nomePerfilSelecionado");
+
+    const profileIcon = document.getElementById('profileIcon');
+    let perfilAtualImagem = "";
+
+    const imagemPadraoPerfil = "https://cdn-icons-png.flaticon.com/512/684/684637.png";
+
+    const usuariosFixos = {
+        "master2090": "330620Aa.",
+        "assistir2002": "348761Kn.",
+        "xilften2200": "905123Aa..",
+        "principal90": "542718Kn."
+    };
+
+    let tentativas = 0;
+    let bloqueado = false;
+
+    let perfis = [];
+    let modoEdicao = false;
+    let indiceEditando = null;
+
+    // --- Variáveis e Configurações do SITE.HTML ---
+    const sitePrincipal = document.getElementById('sitePrincipal');
+    const mainSiteContent = document.getElementById('main-site-content');
+    
+    const genreButtonContainer = document.getElementById('genreButtonContainer');
+    const genreDropdownButton = document.getElementById('genreDropdownButton');
+    const genreDropdown = document.getElementById('genreDropdown');
+    let dropdownTimeout;
+
+    const homeSection = document.getElementById('home-section');
+    const acaoSection = document.getElementById('acao-section');
+    const aventuraSection = document.getElementById('aventura-section');
+    const comediaSection = document.getElementById('comedia-section');
+    const ficcaoCientificaSection = document.getElementById('ficcao-cientifica-section');
+    const fantasiaSection = document.getElementById('fantasia-section');
+    const terrorSection = document.getElementById('terror-section');
+    const romanceSection = document.getElementById('romance-section');
+    const suspenseSection = document.getElementById('suspense-section');
+    const thrillerSection = document.getElementById('thriller-section');
+    const documentarioSection = document.getElementById('documentario-section');
+    const guerraSection = document.getElementById('guerra-section');
+    const animacaoSection = document.getElementById('animacao-section');
+    const seriesSection = document.getElementById('series-section');
+    const minhaListaSection = document.getElementById('minha-lista-section');
+    
+    const detailsOverlay = document.getElementById('detailsOverlay');
+    const detailsContentArea = document.getElementById('detailsContentArea');
+    const playButtonDetailsOverlay = document.getElementById('playButtonDetailsOverlay'); 
+    const playerOverlay = document.getElementById('playerOverlay');
+    const playerContentArea = document.getElementById('playerContentArea');
+    
+    const episodiosOverlay = document.getElementById('episodiosOverlay');
+    const episodiosContent = document.getElementById('episodiosContent');
+    const episodiosTitulo = document.getElementById('episodiosTitulo');
+    const episodiosContainerHorizontal = document.getElementById('episodios-container-horizontal');
+
+    let currentDetailedItem = null;
+
+
+    // --- Dados (Filmes e Séries) ---
+    const homeItems = [
+        {
+            id: 1,
+            titulo: "Thunderbolts",
+            ano: "2025",
+            genero: "Ação, Aventura, Ficção Científica",
+            descricao: "Presos em uma armadilha mortal, uma equipe nada convencional de anti-heróis embarca em uma missão perigosa...",
+            imagem: "https://lumiere-a.akamaihd.net/v1/images/teaser_1sht_-_rgb_for_online_use_only_6b92ba3f.jpeg",
+            trailer: "https://drive.google.com/file/d/1f6dK1VvXE0vq5_Y6n48AjbtlZ-H_7U2T/preview", // NOVO LINK DE TRAILER THUNDERBOLTS (Google Drive)
+            video: "https://drive.google.com/file/d/1BcwVjP6FE1JG98n4bwEor-j6Ky78-IVN/preview", // LINK DE VÍDEO THUNDERBOLTS (usando /preview)
+            isSerie: false
+        },
+        {
+            id: 2,
+            titulo: "Sandman",
+            ano: "2022",
+            genero: "Drama, Fantasia",
+            descricao: "Sandman narra a história de Morpheus, também conhecido como Sonho, um dos Perpétuos...",
+            imagem: "https://media.fstatic.com/SRkfNpRZejlpDyG5rC-GHI7-iPQ=/210x312/smart/filters:format(webp)/media/movies/covers/2021/09/As-previsoes-de-datas-de-lancamento-da-serie-Sandman-elenco.jpeg", 
+            trailer: "https://drive.google.com/file/d/1uUvoyg4At2IIpqbTTra4kYaOieQX5dox/preview", // NOVO LINK DE TRAILER SANDMAN (Google Drive)
+            isSerie: true,
+            episodios: [
+                { id: 's1e1', titulo: "Episódio 1 - Sonho dos Justos", imagem: "https://kanto.legiaodosherois.com.br/w728-h381-gnw-cfill-gcc-f:fbcover/wp-content/uploads/2021/09/legiao_ZeBC9NQHV0F1.jpg.webp", video: "https://drive.google.com/file/d/1ZqASeyupoJw6IlEu0ZhjjuzR3xUNhryt/preview" },
+                { id: 's1e2', titulo: "Episódio 2 - Anfitriões Imperfeitos", imagem: "https://blog.incoherent.net/wp-content/uploads/2022/08/vlcsnap-2022-08-07-17h42m36s995.png?w=1200", video: "https://drive.google.com/file/d/1iqYlWi_RC0OBwN4TpAEFegnCKIcPFBS/preview" },
+                { id: 's1e3', titulo: "Episódio 3 - Sonhe Comigo", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_41_27_12R-scaled.jpg", video: "https://drive.google.com/file/d/1OytwXxC4ABFD8L-uUkDHNHt8xbKiu1p6/preview" },
+                { id: 's1e4', titulo: "Episódio 4 - Uma Esperança no Inferno", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_18_53_22R-scaled.jpg", video: "https://drive.google.com/file/d/15TlfKctE410YnSFO-OJe-rNtOHtqGcSd/preview" },
+                { id: 's1e5', titulo: "Episódio 5 - Sem Parar", imagem: "https://i0.wp.com/subjectifymedia.com/wp-content/uploads/2022/09/john-dee-3.jpg?resize=1300%2C650&ssl=1", video: "https://drive.google.com/file/d/1Rp-PUXhA0nCiZKvInTjxZHReoCqWcFE_/preview" },
+                { id: 's1e6', titulo: "Episódio 6 - O Som das Asas Dela", imagem: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQY020dAlhqHUvq66zGcc6jkuP3GhCuXsr6pLjLtzraKbNBOlVLbEbNAqwvJT5ZfKesKz4lKmYZl5iOaPuQZ-ZGmo32ZjUAfrdFqJiGFp840wOx0c7-rAiycx911sAfoHcCNOM4Jvz7n4dfpBHXNWv-F32ek.jpg?r=412", video: "https://drive.google.com/file/d/1NUXrSGklAWnY7oDlIXDyAvjK1DBUcxFR/preview" },
+                { id: 's1e7', titulo: "Episódio 7 - Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://drive.google.com/file/d/1cfKyiRF6wFxXzF2DNvnsGllfSymIWUC6/preview" },
+                { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://drive.google.com/file/d/1ftvfrCrR11HabdoQ38p7YBo6GfTSsf-i/preview" },
+                { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a81e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://drive.google.com/file/d/1PsdJNcCKKrMrFHc6KefUsQOLNMgAEyYJ/preview" },
+                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f0669262328ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://drive.google.com/file/d/1vYs4M4dHnlyzQ5RovdflB_DSEvNQQ6qR/preview" }
+            ]
+        }
+    ];
+
+    const filmes = [
+        {
+            id: 1,
+            titulo: "Thunderbolts",
+            ano: "2025",
+            genero: "Ação, Aventura, Ficção Científica",
+            descricao: "Presos em uma armadilha mortal, uma equipe nada convencional de anti-heróis embarca em uma missão perigosa...",
+            imagem: "https://lumiere-a.akamaihd.net/v1/images/teaser_1sht_-_rgb_for_online_use_only_6b92ba3f.jpeg",
+            trailer: "https://drive.google.com/file/d/1f6dK1VvXE0vq5_Y6n48AjbtlZ-H_7U2T/preview", // NOVO LINK DE TRAILER THUNDERBOLTS (Google Drive)
+            video: "https://drive.google.com/file/d/1BcwVjP6FE1JG98n4bwEor-j6Ky78-IVN/preview", // LINK DE VÍDEO THUNDERBOLTS (usando /preview)
+            isSerie: false
+        },
+        {
+            id: 3,
+            titulo: "Duna: Parte 2",
+            ano: "2024",
+            genero: "Ficção Científica, Aventura",
+            descricao: "Paul Atreides se une a Chani e os Fremen enquanto busca vingança contra os conspiradores que destruíram sua família. Enfrentando uma escolha entre o amor de sua vida e o destino do universo conhecido, ele se esforça para evitar um futuro terrível que só ele pode prever.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/2/25/Dune_Part_Two_poster.jpeg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/Way9Dexny3w",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            isSerie: false
+        },
+        {
+            id: 4,
+            titulo: "Interestelar",
+            ano: "2014",
+            genero: "Ficção Científica, Drama",
+            descricao: "Um grupo de exploradores espaciais viaja através de um buraco de minhoca em uma tentativa de garantir a sobrevivência da humanidade.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/3/30/Interstellar_Filme.png",
+            trailer: "http://googleusercontent.com/youtube.com/embed/zSWdZVtXT7E",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            isSerie: false
+        },
+        {
+            id: 6,
+            titulo: "O Poderoso Chefão",
+            ano: "1972",
+            genero: "Drama",
+            descricao: "Um épico sobre a família mafiosa Corleone e seu patriarca, Vito Corleone, que passa o controle de seu império para seu filho relutante, Michael.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/1/1a/The_Godfather.jpg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/sY1S34973zA",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            isSerie: false
+        },
+        {
+            id: 7,
+            titulo: "Pulp Fiction",
+            ano: "1994",
+            genero: "Crime, Drama",
+            descricao: "A vida de dois assassinos de aluguel, um boxeador, a esposa de um gângster e um par de assaltantes de restaurante se entrelaçam em quatro histórias de violência e redenção.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/8/82/Pulp_Fiction_cover.png",
+            trailer: "http://googleusercontent.com/youtube.com/embed/s75f_tG_8gU",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            isSerie: false
+        },
+        {
+            id: 8,
+            titulo: "O Senhor dos Anéis: A Sociedade do Anel",
+            ano: "2001",
+            genero: "Fantasia, Aventura",
+            descricao: "Um jovem hobbit herda um anel mágico que é a chave para a destruição de seu mundo e o da escuridão. Ele embarca em uma jornada perigosa para destruir o anel.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/a/a2/Lord_of_the_Rings_The_Fellowship_of_the_Ring_Image.jpg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/V75dMMIW2B4",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            isSerie: false
+        },
+        {
+            id: 9,
+            titulo: "A Origem",
+            ano: "2010",
+            genero: "Ficção Científica, Ação",
+            descricao: "Um ladrão que rouba informações valiosas do subconsciente de seus alvos é encarregado de implantar uma ideia na mente de um C.E.O.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/b/bc/Inception_Poster.jpg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/YoHD9XEInc0",
+            video: "https://www.w3schools.com/html/mov_bbb.mp4",
+            isSerie: false
+        }
+    ];
+
+    const series = [
+        {
+            id: 2, 
+            titulo: "Sandman",
+            ano: "2022",
+            genero: "Drama, Fantasia",
+            descricao: "Sandman narra a história de Morpheus, também conhecido como Sonho, um dos Perpétuos...",
+            imagem: "https://media.fstatic.com/SRkfNpRZejlpDyG5rC-GHI7-iPQ=/210x312/smart/filters:format(webp)/media/movies/covers/2021/09/As-previsoes-de-datas-de-lancamento-da-serie-Sandman-elenco.jpeg", 
+            trailer: "https://drive.google.com/file/d/1uUvoyg4At2IIpqbTTra4kYaOieQX5dox/preview", // NOVO LINK DE TRAILER SANDMAN (Google Drive)
+            isSerie: true,
+            episodios: [
+                { id: 's1e1', titulo: "Episódio 1 - Sonho dos Justos", imagem: "https://kanto.legiaodosherois.com.br/w728-h381-gnw-cfill-gcc-f:fbcover/wp-content/uploads/2021/09/legiao_ZeBC9NQHV0F1.jpg.webp", video: "https://drive.google.com/file/d/1ZqASeyupoJw6IlEu0ZhjjuzR3xUNhryt/preview" },
+                { id: 's1e2', titulo: "Episódio 2 - Anfitriões Imperfeitos", imagem: "https://blog.incoherent.net/wp-content/uploads/2022/08/vlcsnap-2022-08-07-17h42m36s995.png?w=1200", video: "https://drive.google.com/file/d/1iqYlWi_RC0OBwN4TpAEFegnCKIcPFBS/preview" },
+                { id: 's1e3', titulo: "Episódio 3 - Sonhe Comigo", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_41_27_12R-scaled.jpg", video: "https://drive.google.com/file/d/1OytwXxC4ABFD8L-uUkDHNHt8xbKiu1p6/preview" },
+                { id: 's1e4', titulo: "Episódio 4 - Uma Esperança no Inferno", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_18_53_22R-scaled.jpg", video: "https://drive.google.com/file/d/15TlfKctE410YnSFO-OJe-rNtOHtqGcSd/preview" },
+                { id: 's1e5', titulo: "Episódio 5 - Sem Parar", imagem: "https://i0.wp.com/subjectifymedia.com/wp-content/uploads/2022/09/john-dee-3.jpg?resize=1300%2C650&ssl=1", video: "https://drive.google.com/file/d/1Rp-PUXhA0nCiZKvInTjxZHReoCqWcFE_/preview" },
+                { id: 's1e6', titulo: "Episódio 6 - O Som das Asas Dela", imagem: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQY020dAlhqHUvq66zGcc6jkuP3GhCuXsr6pLjLtzraKbNBOlVLbEbNAqwvJT5ZfKesKz4lKmYZl5iOaPuQZ-ZGmo32ZjUAfrdFqJiGFp840wOx0c7-rAiycx911sAfoHcCNOM4Jvz7n4dfpBHXNWv-F32ek.jpg?r=412", video: "https://drive.google.com/file/d/1NUXrSGklAWnY7oDlIXDyAvjK1DBUcxFR/preview" },
+                { id: 's1e7', titulo: "Episódio 7 - Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://drive.google.com/file/d/1cfKyiRF6wFxXzF2DNvnsGllfSymIWUC6/preview" },
+                { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://drive.google.com/file/d/1ftvfrCrR11HabdoQ38p7YBo6GfTSsf-i/preview" },
+                { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a81e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://drive.google.com/file/d/1PsdJNcCKKrMrFHc6KefUsQOLNMgAEyYJ/preview" },
+                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f0669262328ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://drive.google.com/file/d/1vYs4M4dHnlyzQ5RovdflB_DSEvNQQ6qR/preview" }
+            ]
+        },
+        {
+            id: 5,
+            titulo: "Stranger Things",
+            ano: "2016",
+            genero: "Ficção Científica, Terror, Drama",
+            descricao: "Quando um jovem garoto desaparece, sua mãe, um chefe de polícia e seus amigos devem confrontar forças sobrenaturais terríveis para trazê-lo de volta.",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/7/78/Stranger_Things_logo.png",
+            trailer: "http://googleusercontent.com/youtube.com/embed/b9EkMc7qL88",
+            isSerie: true,
+            episodios: [
+                { id: 'st1e1', titulo: "Capítulo Um: O Desaparecimento de Will Byers", imagem: "https://sm.ign.com/ign_br/screenshot/default/stranger-things-chapter-one-the-vanishing-of-will-byers-s1e1_z1b7.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 'st1e2', titulo: "Capítulo Dois: A Esquisitona da Rua Maple", imagem: "https://s.aficionados.com.br/imagens/a-esquisitona-da-rua-maple-0_optimized.jpeg", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
+            ]
+        },
+        {
+            id: 10,
+            titulo: "Dark",
+            ano: "2017",
+            genero: "Ficção Científica, Drama, Suspense",
+            descricao: "Quatro famílias começam uma desesperada busca por respostas quando duas crianças desaparecem misteriosamente...",
+            imagem: "https://upload.wikimedia.org/wikipedia/pt/b/b3/Dark_poster_temporada_1.jpg",
+            trailer: "http://googleusercontent.com/youtube.com/embed/CQePz18sO1E",
+            isSerie: true,
+            episodios: [
+                { id: 'd1e1', titulo: "Segredos", imagem: "https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/E2XCSVf_UJTHlReqQhnLyPMBCs/AAAABb5wFk1uF6b-tJq-j-4gXzL9s_z2e5-R4J8wQ0Q_g6x3R5p3N9Q1r_0S-q0g1d-X5X3X0_0C6X6X6X6X6X6X6X6X6X6X6X.jpg?r=236", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 'd1e2', titulo: "Mentiras", imagem: "https://www.netflix.com/static/images/tooltip/dark-2.png", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
+            ]
+        }
+    ];
+
+    // Carregar favoritos do localStorage ou iniciar vazio
+    let favoritos = JSON.parse(localStorage.getItem('xilftenFavoritos')) || [];
+
+    // --- Array combinado de todos os itens disponíveis (filmes e séries) ---
+    // Usamos um Map para garantir que os itens sejam únicos por ID
+    const allItemsMap = new Map();
+    [...filmes, ...series, ...homeItems].forEach(item => {
+        allItemsMap.set(item.id, item);
+    });
+    const allUniqueContentItems = Array.from(allItemsMap.values());
+
+
+    // --- Funções Comuns para Transição de Telas ---
+    function mostrarTela(telaAtivar, telaDesativar) {
+        if (telaDesativar && telaDesativar.classList.contains("ativa")) {
+            telaDesativar.classList.remove("ativa");
+            setTimeout(() => {
+                telaDesativar.style.display = 'none';
+                telaDesativar.style.overflowY = 'hidden';
+            }, 800);
+        }
+
+        telaAtivar.style.display = 'flex';
+        setTimeout(() => {
+            telaAtivar.classList.add("ativa");
+            if (telaAtivar.id === 'sitePrincipal') {
+                telaAtivar.style.overflowY = 'auto';
+            } else {
+                telaAtivar.style.overflowY = 'hidden';
+            }
+        }, 10);
+        document.body.style.overflowY = 'hidden';
+    }
+
+
+    // --- Funções do LOGIN.HTML ---
+    function salvarPerfisStorage() {
+        localStorage.setItem("xilftenPerfis", JSON.stringify(perfis));
+    }
+
+    function carregarPerfisStorage() {
+        const dados = localStorage.getItem("xilftenPerfis");
+        if (dados) {
+            try {
+                perfis = JSON.parse(dados);
+            } catch (e) {
+                console.error("Erro ao carregar perfis do localStorage:", e);
+                perfis = [];
+            }
+        }
+    }
+
+    function salvarFavoritosStorage() {
+        localStorage.setItem('xilftenFavoritos', JSON.stringify(favoritos));
+    }
+
+    window.onload = () => {
+        carregarPerfisStorage();
+        telaLogin.style.display = 'flex';
+        telaLogin.classList.add('ativa');
+        inputUsuario.focus();
+        
+        if (genreButtonContainer && genreDropdownButton && genreDropdown) {
+            genreButtonContainer.addEventListener('mouseenter', showDropdown);
+            genreButtonContainer.addEventListener('mouseleave', hideDropdownWithDelay);
+            genreDropdown.addEventListener('mouseenter', clearHideDropdownTimeout);
+            genreDropdown.addEventListener('mouseleave', hideDropdownWithDelay);
+        }
+        
+        renderAllContentSections();
+    };
+
+    btnEntrar.addEventListener('click', login);
+
+    function login() {
+        if (bloqueado) return;
+
+        const usuario = inputUsuario.value.trim();
+        const senha = inputSenha.value.trim();
+
+        if (!usuario) {
+            erroMsg.textContent = "Digite o usuário.";
+            inputUsuario.focus();
+            return;
+        }
+        if (!senha) {
+            erroMsg.textContent = "Digite a senha.";
+            inputSenha.focus();
+            return;
+        }
+
+        btnEntrar.disabled = true;
+        erroMsg.textContent = "";
+
+        if (usuariosFixos[usuario] === senha) {
+            tentativas = 0;
+            bloqueado = false;
+            erroMsg.textContent = "";
+            mostrarPerfis();
+            mostrarTela(telaPerfis, telaLogin);
+            inputUsuario.value = "";
+            inputSenha.value = "";
+        } else {
+            tentativas++;
+            if (tentativas >= 3) {
+                bloqueado = true;
+                erroMsg.textContent = "Muitas tentativas. Tente novamente em 1 minuto.";
+                setTimeout(() => {
+                    tentativas = 0;
+                    bloqueado = false;
+                    erroMsg.textContent = "";
+                    btnEntrar.disabled = false;
+                }, 60000);
+            } else {
+                erroMsg.textContent = `Usuário ou senha inválidos. Tentativa ${tentativas} de 3.`;
+            }
+        }
+        if (!bloqueado) {
+            btnEntrar.disabled = false;
+        }
+    }
+
+    function mostrarPerfis() {
+        containerPerfis.innerHTML = "";
+
+        perfis.forEach((perfil, i) => {
+            const div = document.createElement("div");
+            div.className = "perfil";
+            div.title = perfil.nome;
+            div.setAttribute("tabindex", "0");
+            div.setAttribute("role", "button");
+            div.setAttribute("aria-label", `Entrar no perfil ${perfil.nome}`);
+
+            const img = document.createElement("img");
+            img.className = "perfil-img";
+            img.src = perfil.imagem || imagemPadraoPerfil;
+            img.alt = `Foto do perfil de ${perfil.nome}`;
+
+            const span = document.createElement("span");
+            span.textContent = perfil.nome;
+
+            const editar = document.createElement("div");
+            editar.className = "editar-icon";
+            editar.innerHTML = "✎";
+            editar.title = "Editar perfil";
+            editar.setAttribute("role", "button");
+            editar.setAttribute("tabindex", "0");
+            editar.setAttribute("aria-label", `Editar perfil ${perfil.nome}`);
+            editar.onclick = (e) => {
+                e.stopPropagation();
+                abrirModal(true, i);
+            };
+            editar.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    abrirModal(true, i);
+                }
+            };
+
+            const excluir = document.createElement("div");
+            excluir.className = "excluir-icon";
+            excluir.innerHTML = "×";
+            excluir.title = "Excluir perfil";
+            excluir.setAttribute("role", "button");
+            excluir.setAttribute("tabindex", "0");
+            excluir.setAttribute("aria-label", `Excluir perfil ${perfil.nome}`);
+            excluir.onclick = (e) => {
+                e.stopPropagation();
+                perfis.splice(i, 1);
+                salvarPerfisStorage();
+                mostrarPerfis();
+            };
+            excluir.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    perfis.splice(i, 1);
+                    salvarPerfisStorage();
+                    mostrarPerfis();
+                }
+            };
+
+            div.onclick = () => entrarNoSite(i);
+            div.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    entrarNoSite(i);
+                }
+            };
+
+            div.appendChild(img);
+            div.appendChild(editar);
+            div.appendChild(excluir);
+            div.appendChild(span);
+            containerPerfis.appendChild(div);
+        });
+
+        if (perfis.length < 8) {
+            const adicionar = document.createElement("div");
+            adicionar.className = "perfil adicionar";
+            adicionar.textContent = "+";
+            adicionar.title = "Adicionar perfil";
+            adicionar.setAttribute("tabindex", "0");
+            adicionar.setAttribute("role", "button");
+            adicionar.setAttribute("aria-label", "Adicionar novo perfil");
+            adicionar.onclick = () => abrirModal(false);
+            adicionar.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    abrirModal(false);
+                }
+            };
+            containerPerfis.appendChild(adicionar);
+        } else {
+            const aviso = document.createElement("div");
+            aviso.className = "modal-erro";
+            aviso.textContent = "Limite de 8 perfis atingido.";
+            containerPerfis.appendChild(aviso);
+        }
+    }
+
+    function abrirModal(editando = false, indice = null) {
+        modoEdicao = editando;
+        indiceEditando = indice;
+        modalTitulo.textContent = editando ? "Editar Perfil" : "Adicionar Perfil";
+        modalErro.textContent = "";
+        inputNomePerfil.value = editando ? perfis[indice].nome : "";
+        inputFotoPerfil.value = "";
+        modalFundo.classList.add("ativo");
+        inputNomePerfil.focus();
+    }
+
+    function fecharModal() {
+        modalFundo.classList.remove("ativo");
+        modalErro.textContent = "";
+    }
+
+    btnSalvar.addEventListener('click', () => {
+        const nome = inputNomePerfil.value.trim();
+        if (nome === "") {
+            modalErro.textContent = "Digite um nome.";
+            inputNomePerfil.focus();
+            return;
+        }
+        if (nome.length > 20) {
+            modalErro.textContent = "Nome muito longo (máx 20 caracteres).";
+            inputNomePerfil.focus();
+            return;
+        }
+        if (!modoEdicao && perfis.length >= 8) {
+            modalErro.textContent = "Limite máximo de 8 perfis atingido.";
+            return;
+        }
+        btnSalvar.disabled = true;
+        btnSalvar.textContent = "Salvando...";
+
+        const processarSalvar = (imagem) => {
+            if (modoEdicao) {
+                perfis[indiceEditando].nome = nome;
+                if (imagem) perfis[indiceEditando].imagem = imagem;
+            } else {
+                perfis.push({ nome, imagem: imagem || imagemPadraoPerfil });
+            }
+            salvarPerfisStorage();
+            mostrarPerfis();
+            fecharModal();
+            btnSalvar.disabled = false;
+            btnSalvar.textContent = "Salvar";
+        };
+
+        if (inputFotoPerfil.files.length > 0) {
+            const file = inputFotoPerfil.files[0];
+            if (file.size > 2 * 1024 * 1024) {
+                modalErro.textContent = "Imagem muito grande (máx 2MB).";
+                btnSalvar.disabled = false;
+                btnSalvar.textContent = "Salvar";
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                processarSalvar(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            processarSalvar(null);
+        }
+    });
+
+    function sair() {
+        mostrarTela(telaLogin, telaPerfis);
+        sitePrincipal.classList.remove("ativa");
+        perfilSelecionadoDiv.classList.remove("ativa");
+
+        inputUsuario.value = "";
+        inputSenha.value = "";
+        erroMsg.textContent = "";
+        inputUsuario.focus();
+    }
+
+    function entrarNoSite(perfilIndex) {
+        const perfil = perfis[perfilIndex];
+        if (!perfil) return;
+
+        perfilAtualImagem = perfil.imagem || imagemPadraoPerfil;
+        updateProfileIcon();
+
+        mostrarTela(sitePrincipal, telaPerfis);
+        showContentSection('home-section');
+    }
+
+    function voltarParaPerfisDoSite() {
+        closeAllOverlays();
+        showContentSection('home-section');
+        mostrarTela(telaPerfis, sitePrincipal);
+    }
+
+    function updateProfileIcon() {
+        if (profileIcon) {
+            if (perfilAtualImagem) {
+                profileIcon.innerHTML = `<img src="${perfilAtualImagem}" alt="Perfil">`;
+            } else {
+                profileIcon.innerHTML = `P`;
+            }
+        }
+    }
+
+    modalFundo.addEventListener("click", e => {
+        if (e.target === modalFundo) fecharModal();
+    });
+
+    inputNomePerfil.addEventListener("keydown", e => {
+        if (e.key === "Enter") btnSalvar.click();
+    });
+
+    inputSenha.addEventListener("keydown", e => {
+        if (e.key === "Enter") btnEntrar.click();
+    });
+    inputUsuario.addEventListener("keydown", e => {
+        if (e.key === "Enter") inputSenha.focus();
+    });
+
+    // --- Funções do SITE.HTML ---
+
+    function showContentSection(sectionId) {
+        document.querySelectorAll('#main-site-content .content-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        const activeSection = document.getElementById(sectionId);
+        if (activeSection) {
+            activeSection.classList.add('active');
+            mainSiteContent.scrollTop = 0;
+        }
+    }
+
+    function renderAllContentSections() {
+        // Agora 'allUniqueContentItems' é a fonte principal de dados para evitar duplicações
+        
+        const homeGrid = homeSection.querySelector('.movie-grid');
+        homeGrid.innerHTML = homeItems.map(renderCard).join('');
+
+        const allGenres = [
+            'Animação', 'Ação', 'Aventura', 'Comédia', 'Ficção Científica', 'Fantasia',
+            'Terror', 'Romance', 'Suspense', 'Thriller', 'Documentário', 'Guerra'
+        ];
+        allGenres.forEach(genre => {
+            const genreSectionId = `${genre.toLowerCase().replace(/ /g, '-')}-section`;
+            const genreSection = document.getElementById(genreSectionId);
+            if (genreSection) {
+                const genreGrid = genreSection.querySelector('.movie-grid');
+                let filteredContent = [];
+
+                if (['Ação', 'Aventura', 'Ficção Científica'].includes(genre)) {
+                    // Para Ação, Aventura, Ficção Científica: Apenas Thunderbolts (id: 1)
+                    const thunderbolts = allUniqueContentItems.find(item => item.id === 1);
+                    if (thunderbolts) {
+                        filteredContent.push(thunderbolts);
+                    }
+                } else if (['Fantasia', 'Terror', 'Suspense'].includes(genre)) {
+                    // Para Fantasia, Terror, Suspense: Deleta todos os cards
+                    filteredContent = [];
+                } else {
+                    // Para outros gêneros, filtra todos os itens únicos que incluem o gênero,
+                    // excluindo Thunderbolts (id: 1) para evitar duplicação
+                    filteredContent = allUniqueContentItems.filter(item => 
+                        item.genero.includes(genre) && item.id !== 1
+                    );
+                }
+
+                let contentHtml = '';
+                if (filteredContent.length > 0) {
+                    contentHtml += filteredContent.map(renderCard).join('');
+                }
+                if (contentHtml === '') {
+                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este gênero.</p>`;
+                }
+                genreGrid.innerHTML = contentHtml;
+            }
+        });
+
+        renderSeriesSection(); 
+        renderMinhaListaSection();
+    }
+
+    function renderSeriesSection() {
+        const seriesGrid = seriesSection.querySelector('.movie-grid');
+        // Filtra Stranger Things (id:5) e Dark (id:10) para não aparecerem na seção Séries.
+        // Apenas Sandman (id:2) aparecerá diretamente na seção Séries.
+        const seriesToDisplay = allUniqueContentItems.filter(item => 
+            item.isSerie && item.id !== 5 && item.id !== 10
+        );
+
+        let content = '';
+        if (seriesToDisplay.length > 0) {
+            content += seriesToDisplay.map(renderCard).join('');
+        }
+        if (content === '') {
+            content = `<p class="text-gray-400 p-4 text-center w-full">Nenhuma série encontrada.</p>`;
+        }
+        seriesGrid.innerHTML = content;
+    }
+
+    function renderMinhaListaSection() {
+        const minhaListaGrid = minhaListaSection.querySelector('.movie-grid');
+        // Usa allUniqueContentItems para filtrar, garantindo que não haja duplicatas
+        const favoritadosToRender = allUniqueContentItems.filter(item => favoritos.includes(item.id));
+        
+        let minhaListaContent = '';
+        if (favoritadosToRender.length > 0) {
+            minhaListaContent += favoritadosToRender.map(renderCard).join('');
+        }
+        if (minhaListaContent === '') {
+            minhaListaContent = `<p class="text-gray-400 p-4 text-center w-full">Você não tem títulos na sua lista.</p>`;
+        }
+        minhaListaGrid.innerHTML = minhaListaContent;
+    }
+
+    function showDropdown() {
+        clearTimeout(dropdownTimeout);
+        if (genreDropdown) {
+            genreDropdown.style.display = 'block';
+            genreDropdown.style.opacity = '1';
+            genreDropdownButton.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    function hideDropdown() {
+        if (genreDropdown) {
+            genreDropdown.style.opacity = '0';
+            setTimeout(() => {
+                genreDropdown.style.display = 'none';
+            }, 200);
+            genreDropdownButton.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    function hideDropdownWithDelay() {
+        clearTimeout(dropdownTimeout);
+        dropdownTimeout = setTimeout(hideDropdown, 200);
+    }
+
+    function clearHideDropdownTimeout() {
+        clearTimeout(dropdownTimeout);
+    }
+
+    function handleGenreClick(genreName, sectionId) {
+        showContentSection(sectionId);
+        hideDropdown();
+    }
+
+    function renderCard(item) {
+        const isFavorited = favoritos.includes(item.id);
+        const starClass = isFavorited ? 'favorited' : 'not-favorited';
+        const starIcon = isFavorited ? '★' : '☆';
+
+        return `
+            <div class="movie-card" data-item-id="${item.id}" onclick="openDetailsOverlay(${item.id})" tabindex="0" role="button" aria-label="${item.titulo}, ano ${item.ano}, gênero ${item.genero}${item.isSerie ? ', série' : ''}">
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="${item.imagem}" class="w-full h-[300px] object-cover rounded-t-lg" alt="Pôster de ${item.titulo}" loading="lazy">
+                    <div class="favorito-btn" onclick="event.stopPropagation(); toggleFavorito(${item.id})" tabindex="0" role="button" aria-label="${isFavorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+                        <span class="${starClass}" aria-hidden="true">${starIcon}</span>
+                    </div>
+                </div>
+                <h3>${item.titulo}</h3>
+                <p>${item.ano} | ${item.genero}</p>
+            </div>
+        `;
+    }
+
+    function openDetailsOverlay(id) {
+        const item = allUniqueContentItems.find(f => f.id === id); // Usa allUniqueContentItems para encontrar o item
+        if (!item) return;
+
+        currentDetailedItem = item;
+
+        // Adicionando referrerpolicy="no-referrer-when-downgrade" como fallback para Google Drive embeds.
+        // O allowfullscreen já está presente, então não precisa adicionar de novo.
+        detailsContentArea.innerHTML = `
+            <div class="aspect-video mb-4">
+                <iframe src="${item.trailer}" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" allowfullscreen class="w-full h-full rounded-xl" title="Trailer de ${item.titulo}" allow="autoplay"></iframe>
+            </div>
+            <h2>${item.titulo}</h2>
+            <p class="meta-info">${item.ano} | ${item.genero}</p>
+            <p>${item.descricao}</p>
+        `;
+        
+        if (item.isSerie) {
+            playButtonDetailsOverlay.textContent = "Ver Episódios";
+            playButtonDetailsOverlay.onclick = () => openEpisodiosOverlay(item.id);
+            playButtonDetailsOverlay.setAttribute('aria-label', `Ver episódios de ${item.titulo}`);
+        } else {
+            playButtonDetailsOverlay.textContent = "Assistir";
+            playButtonDetailsOverlay.onclick = () => openPlayerOverlay(item.id);
+            playButtonDetailsOverlay.setAttribute('aria-label', `Assistir ao filme ${item.titulo}`);
+        }
+
+        detailsOverlay.classList.add('active');
+        sitePrincipal.style.overflowY = 'hidden';
+    }
+
+    function closeDetailsOverlay() {
+        detailsOverlay.classList.remove('active');
+        const iframe = detailsContentArea.querySelector('iframe');
+        if (iframe) iframe.src = "";
+        
+        if (!playerOverlay.classList.contains('active') && !episodiosOverlay.classList.contains('active')) {
+            sitePrincipal.style.overflowY = 'auto';
+        }
+    }
+
+    function openPlayerOverlay(id) {
+        let itemToPlay = null;
+
+        // Procura o item na lista unificada de conteúdo
+        const foundMainItem = allUniqueContentItems.find(item => item.id === id);
+
+        if (foundMainItem) {
+            if (foundMainItem.isSerie && foundMainItem.episodios) {
+                // Se o ID é de uma série, mas a chamada é para um episódio específico (ex: clicou num card de episódio)
+                const episodeFound = foundMainItem.episodios.find(ep => ep.id === id);
+                if (episodeFound) {
+                    itemToPlay = episodeFound; // É um episódio
+                } else {
+                    // Se o ID é da série, mas não é um ID de episódio específico, reproduz o primeiro episódio
+                    if (foundMainItem.episodios.length > 0) {
+                        itemToPlay = foundMainItem.episodios[0];
+                    } else {
+                        console.error("Nenhum episódio encontrado para esta série:", foundMainItem);
+                        return;
+                    }
+                }
+            } else {
+                // É um filme
+                itemToPlay = foundMainItem;
+            }
+        } else {
+            // Se o ID não é de um item principal, tenta encontrar um episódio dentro do currentDetailedItem
+            if (currentDetailedItem && currentDetailedItem.isSerie && currentDetailedItem.episodios) {
+                const episodeFromDetailed = currentDetailedItem.episodios.find(ep => ep.id === id);
+                if (episodeFromDetailed) {
+                    itemToPlay = episodeFromDetailed;
+                }
+            }
+        }
+
+        if (!itemToPlay || !itemToPlay.video) {
+            console.error("Filme/Série/Episódio não encontrado ou URL de vídeo faltando para o ID:", id, itemToPlay);
+            return;
+        }
+        
+        playerContentArea.innerHTML = `
+            <iframe src="${itemToPlay.video}" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" allowfullscreen class="w-full h-full rounded-xl" title="Player de ${itemToPlay.titulo}" allow="autoplay"></iframe>
+        `;
+        playerOverlay.classList.add('active');
+        detailsOverlay.classList.remove('active');
+        episodiosOverlay.classList.remove('active');
+        sitePrincipal.style.overflowY = 'hidden';
+    }
+
+    function closePlayerOverlay() {
+        playerOverlay.classList.remove('active');
+        const iframe = playerContentArea.querySelector('iframe');
+        if (iframe) iframe.src = "";
+
+        if (currentDetailedItem && currentDetailedItem.isSerie) {
+            episodiosOverlay.classList.add('active');
+        } else {
+            detailsOverlay.classList.add('active');
+        }
+    }
+
+    function scrollEpisodios(dir) {
+        episodiosContainerHorizontal.scrollBy({ left: dir * 300, behavior: "smooth" });
+    }
+
+    function openEpisodiosOverlay(serieId) {
+        const serie = allUniqueContentItems.find(item => item.id === serieId && item.isSerie); // Busca na lista única
+        if (!serie || !serie.isSerie || !serie.episodios) {
+            console.error("Série ou episódios não encontrados para o ID:", serieId);
+            return;
+        }
+
+        currentDetailedItem = serie;
+
+        episodiosTitulo.textContent = `Episódios de ${serie.titulo}`;
+        episodiosContainerHorizontal.innerHTML = '';
+
+        serie.episodios.forEach(episodio => {
+            const episodioDiv = document.createElement('div');
+            episodioDiv.className = 'episodio-card';
+            episodioDiv.innerHTML = `
+                <img src="${episodio.imagem}" alt="${episodio.titulo}" loading="lazy">
+                <div class="episodio-info">${episodio.titulo}</div>
+            `;
+            episodioDiv.setAttribute('data-episodio-id', episodio.id);
+            episodioDiv.setAttribute('tabindex', '0');
+            episodioDiv.setAttribute('role', 'button');
+            episodioDiv.setAttribute('aria-label', `Assistir ${episodio.titulo}`);
+            episodioDiv.onclick = () => playEpisode(episodio.id); 
+            episodiosContainerHorizontal.appendChild(episodioDiv);
+        });
+
+        detailsOverlay.classList.remove('active');
+        episodiosOverlay.classList.add('active');
+        sitePrincipal.style.overflowY = 'hidden';
+    }
+
+    function closeEpisodiosOverlay() {
+        episodiosOverlay.classList.remove('active');
+        if (!detailsOverlay.classList.contains('active') && !playerOverlay.classList.contains('active')) {
+            sitePrincipal.style.overflowY = 'auto';
+        }
+    }
+
+    function playEpisode(episodioId) {
+        openPlayerOverlay(episodioId);
+    }
+
+    function toggleFavorito(id) {
+        const index = favoritos.indexOf(id);
+        if (index > -1) {
+            favoritos.splice(index, 1); // Remove dos favoritos
+        } else {
+            favoritos.push(id); // Adiciona aos favoritos
+        }
+        salvarFavoritosStorage(); // Salva o estado atualizado no localStorage
+
+        // Re-renderiza TODAS as seções para garantir consistência visual.
+        renderAllContentSections(); 
+
+        // Garante que a seção ativa atual permaneça visível
+        const currentActiveSectionElement = document.querySelector('.content-section.active');
+        if (currentActiveSectionElement) {
+            showContentSection(currentActiveSectionElement.id);
+        } else {
+            showContentSection('home-section'); // Fallback para a home
+        }
+    }
+
+    function pesquisarFilmes() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        let searchResultsSection = document.getElementById('search-results-section');
+
+        if (!searchResultsSection) {
+            searchResultsSection = document.createElement('div');
+            searchResultsSection.id = 'search-results-section';
+            searchResultsSection.classList.add('content-section');
+            mainSiteContent.appendChild(searchResultsSection);
+        }
+        
+        searchResultsSection.innerHTML = `<h2 style="color: white; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">Resultados da Pesquisa para "${searchTerm}"</h2><div class="movie-grid"></div>`;
+
+        const searchGrid = searchResultsSection.querySelector('.movie-grid');
+        
+        const resultadosFilmes = allUniqueContentItems.filter(item =>
+            item.titulo.toLowerCase().includes(searchTerm) ||
+            item.genero.toLowerCase().includes(searchTerm) ||
+            item.descricao.toLowerCase().includes(searchTerm)
+        );
+
+        let content = '';
+        if (resultadosFilmes.length > 0) {
+            content += resultadosFilmes.map(renderCard).join('');
+        }
+        if (content === '') {
+            content = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para a sua pesquisa.</p>`;
+        }
+        searchGrid.innerHTML = content;
+        showContentSection('search-results-section');
+    }
+
+    function closeAllOverlays() {
+        detailsOverlay.classList.remove('active');
+        playerOverlay.classList.remove('active');
+        episodiosOverlay.classList.remove('active');
+        // Resetar os iframes para parar a reprodução
+        const detailIframe = detailsContentArea.querySelector('iframe');
+        if(detailIframe) detailIframe.src = "";
+        const playerIframe = playerContentArea.querySelector('iframe');
+        if(playerIframe) playerIframe.src = "";
+
+        sitePrincipal.style.overflowY = 'auto';
+    }
+
+</script>
+
+</body>
+</html>
