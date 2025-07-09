@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xilften</title>
+    <!-- Inclui Tailwind CSS para um estilo rápido e responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* VARIÁVEIS CSS */
+        /* VARIÁVEIS CSS para fácil personalização */
         :root {
             --cor-bg-dark: #000;
             --cor-text-dark: #fff;
@@ -18,8 +19,10 @@
 
         /* ESTILOS GLOBAIS E RESETS */
         * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif; /* Usando Inter para um visual moderno */
         }
         body {
             background-color: var(--cor-bg-dark); /* Fundo padrão do body é preto */
@@ -64,33 +67,33 @@
 
         #loginBox {
             background-color: rgba(0, 0, 0, 0.85);
-            padding: 40px 50px;
-            border-radius: 10px;
-            min-width: 320px;
-            box-shadow: 0 0 15px 3px var(--cor-accent);
+            padding: 2.5rem 3rem; /* Aumentado um pouco para melhor toque em mobile */
+            border-radius: 0.625rem; /* 10px */
+            min-width: 20rem; /* 320px */
+            box-shadow: 0 0 0.9375rem 0.1875rem var(--cor-accent); /* 15px 3px */
             user-select: none;
             text-align: center;
         }
 
         #loginBox h1 {
-            font-size: 60px;
-            margin-bottom: 20px;
+            font-size: 3.75rem; /* 60px */
+            margin-bottom: 1.25rem; /* 20px */
             font-weight: bold;
             color: var(--cor-accent);
             user-select: none;
         }
 
         .campo {
-            margin: 12px auto;
+            margin: 0.75rem auto; /* 12px */
             width: fit-content;
         }
         input[type="text"], input[type="password"] {
-            padding: 10px;
-            width: 250px;
+            padding: 0.625rem; /* 10px */
+            width: 15.625rem; /* 250px */
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            outline-offset: 2px;
+            border-radius: 0.3125rem; /* 5px */
+            font-size: 1rem; /* 16px */
+            outline-offset: 0.125rem; /* 2px */
             outline-color: var(--cor-accent);
             background-color: #222;
             color: white;
@@ -102,13 +105,13 @@
         #btnEntrar {
             display: block;
             width: 100%;
-            padding: 10px 30px;
+            padding: 0.625rem 1.875rem; /* 10px 30px */
             background-color: var(--cor-accent);
             color: white;
-            font-size: 16px;
+            font-size: 1rem; /* 16px */
             border: none;
-            border-radius: 5px;
-            margin-top: 25px;
+            border-radius: 0.3125rem; /* 5px */
+            margin-top: 1.5625rem; /* 25px */
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -125,10 +128,10 @@
 
         .erro, .modal-erro {
             color: #ff4444;
-            margin-top: 10px;
-            min-height: 20px;
+            margin-top: 0.625rem; /* 10px */
+            min-height: 1.25rem; /* 20px */
             font-weight: bold;
-            font-size: 14px;
+            font-size: 0.875rem; /* 14px */
             user-select: none;
         }
 
@@ -140,14 +143,14 @@
 
         #containerPerfis {
             display: flex;
-            gap: 30px;
+            gap: 1.875rem; /* 30px */
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 1.875rem; /* 30px */
             background-color: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 960px;
+            padding: 1.25rem; /* 20px */
+            border-radius: 0.625rem; /* 10px */
+            max-width: 60rem; /* 960px */
             box-sizing: border-box;
             user-select: none;
         }
@@ -157,21 +160,21 @@
             text-align: center;
             cursor: pointer;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
-            border-radius: 12px;
-            padding: 5px;
+            border-radius: 0.75rem; /* 12px */
+            padding: 0.3125rem; /* 5px */
             user-select: none;
         }
         .perfil:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 15px 3px var(--cor-accent);
+            box-shadow: 0 0 0.9375rem 0.1875rem var(--cor-accent); /* 15px 3px */
         }
 
         .perfil-img {
-            width: 120px;
-            height: 120px;
+            width: 7.5rem; /* 120px */
+            height: 7.5rem; /* 120px */
             object-fit: cover;
             border-radius: 50%;
-            border: 3px solid var(--cor-accent);
+            border: 0.1875rem solid var(--cor-accent); /* 3px */
             display: block;
             margin: 0 auto;
             user-select: none;
@@ -179,7 +182,7 @@
 
         .perfil span {
             display: block;
-            margin-top: 10px;
+            margin-top: 0.625rem; /* 10px */
             font-weight: bold;
             color: white;
             white-space: nowrap;
@@ -187,12 +190,12 @@
         }
 
         .perfil.adicionar {
-            font-size: 60px;
+            font-size: 3.75rem; /* 60px */
             color: white;
-            width: 120px;
-            height: 120px;
+            width: 7.5rem; /* 120px */
+            height: 7.5rem; /* 120px */
             border-radius: 50%;
-            border: 2px dashed #ccc;
+            border: 0.125rem dashed #ccc; /* 2px */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -207,12 +210,12 @@
         #telaPerfis button {
             background-color: var(--cor-accent);
             color: white;
-            padding: 10px 30px;
-            border-radius: 5px;
+            padding: 0.625rem 1.875rem; /* 10px 30px */
+            border-radius: 0.3125rem; /* 5px */
             border: none;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 30px;
+            font-size: 1rem; /* 16px */
+            margin-top: 1.875rem; /* 30px */
             transition: background-color 0.3s ease;
         }
         #telaPerfis button:hover {
@@ -223,8 +226,10 @@
         /* MODAL */
         #modalFundo {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,0.7);
             display: none;
             justify-content: center;
@@ -239,39 +244,28 @@
 
         #modal {
             background: #111;
-            padding: 30px;
-            border-radius: 10px;
+            padding: 1.875rem; /* 30px */
+            border-radius: 0.625rem; /* 10px */
             text-align: center;
-            min-width: 300px;
-            box-shadow: 0 0 20px 3px var(--cor-accent);
+            min-width: 18.75rem; /* 300px */
+            box-shadow: 0 0 1.25rem 0.1875rem var(--cor-accent); /* 20px 3px */
             animation: slideDown 0.3s ease forwards;
             user-select: none;
             position: relative;
         }
 
         #modal h2 {
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem; /* 20px */
             user-select: none;
         }
-        input[type="text"], input[type="password"] {
-            padding: 10px;
-            width: 250px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            outline-offset: 2px;
-            outline-color: var(--cor-accent);
-            background-color: #222;
-            color: white;
-        }
         #modal input[type="text"], #modal input[type="file"] {
-            margin: 10px 0;
+            margin: 0.625rem 0; /* 10px */
             width: 90%;
-            padding: 8px;
-            border-radius: 5px;
+            padding: 0.5rem; /* 8px */
+            border-radius: 0.3125rem; /* 5px */
             border: none;
-            font-size: 15px;
-            outline-offset: 2px;
+            font-size: 0.9375rem; /* 15px */
+            outline-offset: 0.125rem; /* 2px */
             outline-color: var(--cor-accent);
             background-color: #222;
             color: white;
@@ -283,10 +277,10 @@
         #modal button {
             background-color: var(--cor-accent);
             color: white;
-            padding: 8px 20px;
+            padding: 0.5rem 1.25rem; /* 8px 20px */
             border: none;
-            border-radius: 5px;
-            margin: 8px 10px 0 10px;
+            border-radius: 0.3125rem; /* 5px */
+            margin: 0.5rem 0.625rem 0 0.625rem; /* 8px 10px 0 10px */
             cursor: pointer;
             transition: background-color 0.3s ease;
             user-select: none;
@@ -302,14 +296,14 @@
         /* ÍCONES DE EDIÇÃO/EXCLUSÃO DE PERFIL */
         .editar-icon, .excluir-icon {
             position: absolute;
-            top: 5px;
+            top: 0.3125rem; /* 5px */
             background-color: rgba(255, 0, 0, 0.6);
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
+            width: 1.375rem; /* 22px */
+            height: 1.375rem; /* 22px */
             color: white;
-            font-size: 16px;
-            line-height: 22px;
+            font-size: 1rem; /* 16px */
+            line-height: 1.375rem; /* 22px */
             text-align: center;
             cursor: pointer;
             opacity: 0;
@@ -317,8 +311,8 @@
             user-select: none;
             z-index: 2;
         }
-        .editar-icon { right: 5px; }
-        .excluir-icon { left: 5px; background-color: rgba(255, 0, 0, 0.7); }
+        .editar-icon { right: 0.3125rem; /* 5px */ }
+        .excluir-icon { left: 0.3125rem; /* 5px */ background-color: rgba(255, 0, 0, 0.7); }
         .perfil:hover .editar-icon, .perfil:hover .excluir-icon { opacity: 0.7; }
         .editar-icon:hover, .excluir-icon:hover { opacity: 1; }
 
@@ -349,26 +343,26 @@
             background-color: var(--cor-header-bg); /* Cinza escuro para o header */
             display: flex;
             align-items: center;
-            padding: 15px 30px;
+            padding: 0.9375rem 1.875rem; /* 15px 30px */
             position: sticky; /* Torna o header fixo no topo */
             top: 0;
             width: 100%;
             z-index: 50; /* Z-index para o header */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            height: 60px;
+            box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.5); /* 0 2px 10px */
+            height: 3.75rem; /* 60px */
         }
 
         #sitePrincipal .header-site .logo {
             color: var(--cor-accent);
-            font-size: 32px;
+            font-size: 2rem; /* 32px */
             font-weight: bold;
-            margin-right: 30px;
-            letter-spacing: 1px;
+            margin-right: 1.875rem; /* 30px */
+            letter-spacing: 0.0625rem; /* 1px */
         }
 
         #sitePrincipal .header-site nav {
             display: flex;
-            gap: 25px;
+            gap: 1.5625rem; /* 25px */
             align-items: center;
             margin-right: auto;
         }
@@ -377,11 +371,11 @@
             background: none;
             border: none;
             color: white;
-            font-size: 16px;
+            font-size: 1rem; /* 16px */
             font-weight: 600;
             cursor: pointer;
             transition: color 0.2s ease;
-            padding: 5px 0;
+            padding: 0.3125rem 0; /* 5px */
         }
         #sitePrincipal .header-site nav button:hover {
             color: #ddd;
@@ -394,22 +388,22 @@
         .genre-dropdown {
             display: none; /* Controlado via JS */
             position: absolute;
-            top: calc(100% + 5px); /* Abaixo do botão Gênero */
+            top: calc(100% + 0.3125rem); /* Abaixo do botão Gênero (5px) */
             left: 0;
             background-color: rgba(0, 0, 0, 0.85); /* Fundo preto borrado e transparente */
-            backdrop-filter: blur(8px); /* Efeito blur */
+            backdrop-filter: blur(0.5rem); /* Efeito blur (8px) */
             border-radius: 0.25rem;
             padding: 0.5rem 0;
             z-index: 1000; /* Muito alto para garantir que ele apareça sobre tudo */
             white-space: nowrap;
-            min-width: 160px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.7);
-            max-height: 300px;
-            overflow-y: scroll; /* Rolagem sempre visível para depuração, depois hidden */
-            scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
-            -ms-overflow-style: none;  /* Oculta a barra de rolagem no IE/Edge */
-            opacity: 0; /* Para transição de opacidade */
-            transition: opacity 0.2s ease-in-out; /* Transição de opacidade do dropdown */
+            min-width: 10rem; /* 160px */
+            box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.7); /* 0 4px 8px */
+            max-height: 18.75rem; /* 300px */
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
         }
         .genre-dropdown::-webkit-scrollbar {
             display: none;
@@ -440,17 +434,17 @@
         #sitePrincipal .header-site .search-profile-area {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 0.9375rem; /* 15px */
         }
         #sitePrincipal .header-site #searchInput {
             background-color: rgba(255, 255, 255, 0.2);
             border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
+            padding: 0.5rem 0.75rem; /* 8px 12px */
+            border-radius: 0.25rem; /* 4px */
             color: white;
-            font-size: 15px;
+            font-size: 0.9375rem; /* 15px */
             outline: none;
-            width: 180px;
+            width: 11.25rem; /* 180px */
             transition: background-color 0.3s ease;
         }
         #sitePrincipal .header-site #searchInput::placeholder {
@@ -461,8 +455,8 @@
         }
 
         #profileIcon {
-            width: 32px;
-            height: 32px;
+            width: 2rem; /* 32px */
+            height: 2rem; /* 32px */
             border-radius: 50%;
             background-color: var(--cor-accent);
             display: flex;
@@ -472,7 +466,7 @@
             font-weight: bold;
             cursor: pointer;
             object-fit: cover;
-            border: 2px solid white;
+            border: 0.125rem solid white; /* 2px */
             overflow: hidden;
         }
         #profileIcon img {
@@ -484,9 +478,9 @@
 
         /* MAIN CONTENT DO SITE */
         #main-site-content {
-            padding: 30px;
+            padding: 1.875rem; /* 30px */
             width: 100%;
-            max-width: 1400px;
+            max-width: 87.5rem; /* 1400px */
             margin: 0 auto;
             overflow-y: hidden; /* O main-site-content não deve rolar, o #sitePrincipal rola */
             flex-grow: 1; /* Permite que o main ocupe o espaço restante */
@@ -496,7 +490,7 @@
         .content-section {
             display: none; /* Escondido por padrão, controlado por JS */
             width: 100%; /* Garante que a seção ocupe a largura total */
-            min-height: calc(100vh - 60px - 60px); /* Altura mínima: viewport - header - padding */
+            min-height: calc(100vh - 3.75rem - 3.75rem); /* Altura mínima: viewport - header (60px) - padding (60px) */
         }
         .content-section.active {
             display: block; /* A seção ativa é exibida */
@@ -505,23 +499,23 @@
 
         #main-site-content h2 {
             color: white;
-            font-size: 28px;
+            font-size: 1.75rem; /* 28px */
             font-weight: bold;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            margin-bottom: 1.5625rem; /* 25px */
+            text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7); /* 2px 2px 4px */
         }
 
         .movie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); /* 200px */
+            gap: 1.875rem; /* 30px */
         }
 
         .movie-card {
             background-color: #1a1a1a;
-            border-radius: 8px;
+            border-radius: 0.5rem; /* 8px */
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.5); /* 0 4px 10px */
             text-align: left;
             cursor: pointer;
             position: relative;
@@ -533,14 +527,14 @@
 
         .movie-card img {
             width: 100%;
-            height: 300px;
+            height: 18.75rem; /* 300px */
             object-fit: cover;
             display: block;
         }
 
         .movie-card h3 {
             font-size: 1.2em;
-            margin: 10px 10px 5px;
+            margin: 0.625rem 0.625rem 0.3125rem; /* 10px 10px 5px */
             color: white;
             font-weight: 600;
         }
@@ -548,14 +542,14 @@
         .movie-card p {
             font-size: 0.9em;
             color: #bbb;
-            margin: 0 10px 10px;
+            margin: 0 0.625rem 0.625rem; /* 0 10px 10px */
             line-height: 1.4;
         }
 
         .favorito-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 0.625rem; /* 10px */
+            right: 0.625rem; /* 10px */
             background-color: rgba(0,0,0,0.7);
             padding: 0.4rem;
             border-radius: 50%;
@@ -565,8 +559,8 @@
             color: white;
             font-size: 1.2em;
             line-height: 1;
-            width: 30px;
-            height: 30px;
+            width: 1.875rem; /* 30px */
+            height: 1.875rem; /* 30px */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -594,7 +588,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(0.625rem); /* 10px */
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -611,17 +605,17 @@
 
         .details-content, .player-content, #episodiosContent {
             background-color: rgba(26, 26, 26, 0.95);
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 900px;
+            padding: 1.875rem; /* 30px */
+            border-radius: 0.75rem; /* 12px */
+            max-width: 56.25rem; /* 900px */
             width: 90%;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.7); /* 20px */
             overflow-y: auto;
             max-height: 90vh;
             position: relative;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            transform: translateY(20px); /* Para animação de entrada */
+            transform: translateY(1.25rem); /* Para animação de entrada (20px) */
             opacity: 0; /* Para animação de entrada */
             transition: transform 0.3s ease-out, opacity 0.3s ease-out;
         }
@@ -641,8 +635,8 @@
         .details-content iframe,
         .player-content iframe {
             border: none;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 0 0.625rem rgba(0,0,0,0.5); /* 10px */
             width: 100%;
             aspect-ratio: 16 / 9; /* Garante proporção de vídeo */
             display: block;
@@ -652,34 +646,34 @@
             font-size: 2.2em;
             font-weight: bold;
             color: white;
-            margin-top: 15px;
-            margin-bottom: 10px;
+            margin-top: 0.9375rem; /* 15px */
+            margin-bottom: 0.625rem; /* 10px */
             text-align: center; /* Centraliza o título dos episódios */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7); /* 2px 2px 4px */
         }
         .details-content p {
             font-size: 1em;
             color: #ccc;
             line-height: 1.5;
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem; /* 10px */
         }
         .details-content .meta-info {
             font-size: 0.9em;
             color: #aaa;
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem; /* 20px */
         }
 
         /* Botão Fechar em todos os overlays */
         .close-button { /* Aplica a todos os close-button */
             position: absolute;
-            top: 15px;
-            right: 15px; 
+            top: 0.9375rem; /* 15px */
+            right: 0.9375rem; /* 15px */
             background-color: var(--cor-accent);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 1.875rem; /* 30px */
+            height: 1.875rem; /* 30px */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -693,11 +687,11 @@
         }
         /* Ajuste específico para o botão "Voltar" do player para ter padding e não ser redondo */
         .player-content .back-to-details-button {
-            border-radius: 5px;
-            padding: 8px 15px;
+            border-radius: 0.3125rem; /* 5px */
+            padding: 0.5rem 0.9375rem; /* 8px 15px */
             font-size: 1em;
             width: auto; 
-            left: 15px; 
+            left: 0.9375rem; /* 15px */
             right: auto;
             background-color: var(--cor-accent); /* Cor de fundo vermelha */
             color: white; /* Cor do texto branca */
@@ -712,7 +706,7 @@
         #episodios-carousel-wrapper {
             position: relative;
             overflow: hidden;
-            padding-bottom: 10px;
+            padding-bottom: 0.625rem; /* 10px */
         }
 
         #episodios-container-horizontal {
@@ -720,7 +714,7 @@
             gap: 1rem;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 0 10px 15px;
+            padding: 0 0.625rem 0.9375rem; /* 0 10px 15px */
         }
 
         #episodios-container-horizontal::-webkit-scrollbar {
@@ -732,36 +726,36 @@
         }
 
         .episodio-card {
-            min-width: 240px;
-            max-width: 240px;
+            min-width: 15rem; /* 240px */
+            max-width: 15rem; /* 240px */
             background: #111;
-            border-radius: 8px;
+            border-radius: 0.5rem; /* 8px */
             overflow: hidden;
             position: relative;
             flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.6); /* 0 4px 12px */
             cursor: pointer;
             transition: transform 0.2s ease;
-            margin-bottom: 5px;
+            margin-bottom: 0.3125rem; /* 5px */
         }
         .episodio-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-0.3125rem); /* -5px */
         }
 
         .episodio-card img {
             width: 100%;
-            height: 160px;
+            height: 10rem; /* 160px */
             object-fit: cover;
             display: block;
         }
 
         .episodio-info {
             background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(0.3125rem); /* 5px */
             width: 100%;
             text-align: center;
-            padding: 10px;
-            font-size: 14px;
+            padding: 0.625rem; /* 10px */
+            font-size: 0.875rem; /* 14px */
             font-weight: bold;
             color: white;
             white-space: nowrap;
@@ -777,8 +771,8 @@
             border: none;
             color: white;
             font-size: 2rem;
-            padding: 4px 12px;
-            border-radius: 8px;
+            padding: 0.25rem 0.75rem; /* 4px 12px */
+            border-radius: 0.5rem; /* 8px */
             cursor: pointer;
             z-index: 10;
             transition: background-color 0.3s ease;
@@ -788,11 +782,11 @@
         }
 
         .scroll-left {
-            left: 10px;
+            left: 0.625rem; /* 10px */
         }
 
         .scroll-right {
-            right: 10px;
+            right: 0.625rem; /* 10px */
         }
 
         /* ANIMAÇÕES */
@@ -801,126 +795,221 @@
             to {opacity: 1;}
         }
         @keyframes slideDown {
-            from {transform: translateY(-20px); opacity: 0;}
+            from {transform: translateY(-1.25rem); opacity: 0;} /* -20px */
             to {transform: translateY(0); opacity: 1;}
         }
 
         /* RESPONSIVIDADE */
-        @media (max-width: 768px) {
+        /* Mobile (até 768px) */
+        @media (max-width: 48rem) { /* 768px */
             #loginBox, #modal {
                 width: 90%;
                 min-width: unset;
-                padding: 20px;
+                padding: 1.25rem; /* 20px */
             }
             input[type="text"], input[type="password"] {
                 width: 100%;
             }
             #containerPerfis {
-                gap: 15px;
-                padding: 15px;
+                gap: 0.9375rem; /* 15px */
+                padding: 0.9375rem; /* 15px */
                 max-width: 100%;
             }
             .perfil-img {
-                width: 90px;
-                height: 90px;
+                width: 5.625rem; /* 90px */
+                height: 5.625rem; /* 90px */
             }
             .perfil.adicionar {
-                width: 90px;
-                height: 90px;
-                font-size: 48px;
+                width: 5.625rem; /* 90px */
+                height: 5.625rem; /* 90px */
+                font-size: 3rem; /* 48px */
             }
             #sitePrincipal .header-site {
                 flex-direction: column;
                 align-items: flex-start;
                 height: auto;
-                padding: 10px 20px;
+                padding: 0.625rem 1.25rem; /* 10px 20px */
             }
             #sitePrincipal .header-site .logo {
                 margin-right: 0;
-                margin-bottom: 10px;
+                margin-bottom: 0.625rem; /* 10px */
             }
             #sitePrincipal .header-site nav {
                 margin-right: auto;
                 width: 100%;
                 justify-content: space-around;
-                margin-bottom: 10px;
+                margin-bottom: 0.625rem; /* 10px */
             }
             #sitePrincipal .header-site .search-profile-area {
                 width: 100%;
                 justify-content: space-between;
             }
             #sitePrincipal .header-site #searchInput {
-                width: calc(100% - 50px);
+                width: calc(100% - 3.125rem); /* 50px */
             }
             .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 15px;
-                padding: 0 10px;
+                grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); /* 160px */
+                gap: 0.9375rem; /* 15px */
+                padding: 0 0.625rem; /* 10px */
             }
             .movie-card img {
-                height: 250px;
+                height: 15.625rem; /* 250px */
             }
-            .details-content {
+            .details-content, .player-content, #episodiosContent {
                 width: 95%;
-                padding: 20px;
+                padding: 1.25rem; /* 20px */
             }
             .details-content h2 {
                 font-size: 1.8em;
             }
-            .player-content {
-                width: 95%;
-                padding: 10px;
-            }
             .close-button {
-                top: 5px; 
-                right: 5px;
-                width: 25px;
-                height: 25px;
+                top: 0.3125rem; /* 5px */
+                right: 0.3125rem; /* 5px */
+                width: 1.5625rem; /* 25px */
+                height: 1.5625rem; /* 25px */
                 font-size: 1em;
             }
-            /* Ajustes para o carrossel de episódios em mobile */
-            #episodiosContent {
-                width: 95%;
-                padding: 20px;
-            }
             #episodios-container-horizontal {
-                padding: 0 5px 10px;
+                padding: 0 0.3125rem 0.625rem; /* 0 5px 10px */
             }
             .scroll-btn {
                 font-size: 1.5rem;
-                padding: 2px 8px;
+                padding: 0.125rem 0.5rem; /* 2px 8px */
             }
             .scroll-left {
-                left: 5px;
+                left: 0.3125rem; /* 5px */
             }
             .scroll-right {
-                right: 5px;
+                right: 0.3125rem; /* 5px */
             }
         }
 
-        @media (max-width: 480px) {
+        /* Mobile Pequeno (até 480px) */
+        @media (max-width: 30rem) { /* 480px */
             .movie-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Uma coluna para melhor visualização */
             }
             .movie-card img {
-                height: 200px;
+                height: 12.5rem; /* 200px */
             }
             #main-site-content h2 {
-                font-size: 24px;
+                font-size: 1.5rem; /* 24px */
             }
             #profileIcon span {
-                display: none; 
+                display: none; /* Oculta o texto do perfil para economizar espaço */
             }
             .episodio-card {
-                min-width: 200px;
-                max-width: 200px;
+                min-width: 12.5rem; /* 200px */
+                max-width: 12.5rem; /* 200px */
             }
             .episodio-card img {
-                height: 120px;
+                height: 7.5rem; /* 120px */
             }
             .episodio-info {
-                font-size: 12px;
-                padding: 8px;
+                font-size: 0.75rem; /* 12px */
+                padding: 0.5rem; /* 8px */
+            }
+        }
+
+        /* Telas Grandes (TVs, Desktops maiores - a partir de 1200px) */
+        @media (min-width: 75rem) { /* 1200px */
+            #loginBox {
+                padding: 3.5rem 4.5rem; /* Maior padding */
+            }
+            #loginBox h1 {
+                font-size: 4.5rem; /* Maior fonte */
+            }
+            input[type="text"], input[type="password"] {
+                width: 18.75rem; /* 300px */
+                padding: 0.75rem; /* 12px */
+                font-size: 1.125rem; /* 18px */
+            }
+            #btnEntrar {
+                padding: 0.75rem 2.5rem; /* 12px 40px */
+                font-size: 1.125rem; /* 18px */
+            }
+            #containerPerfis {
+                gap: 2.5rem; /* 40px */
+                padding: 2.5rem; /* 40px */
+            }
+            .perfil-img {
+                width: 9.375rem; /* 150px */
+                height: 9.375rem; /* 150px */
+            }
+            .perfil.adicionar {
+                width: 9.375rem; /* 150px */
+                height: 9.375rem; /* 150px */
+                font-size: 4.5rem; /* 72px */
+            }
+            #sitePrincipal .header-site {
+                padding: 1.25rem 3.75rem; /* 20px 60px */
+                height: 4.375rem; /* 70px */
+            }
+            #sitePrincipal .header-site .logo {
+                font-size: 2.5rem; /* 40px */
+                margin-right: 2.5rem; /* 40px */
+            }
+            #sitePrincipal .header-site nav button {
+                font-size: 1.125rem; /* 18px */
+            }
+            #sitePrincipal .header-site #searchInput {
+                width: 15.625rem; /* 250px */
+                padding: 0.625rem 1rem; /* 10px 16px */
+                font-size: 1rem; /* 16px */
+            }
+            #profileIcon {
+                width: 2.5rem; /* 40px */
+                height: 2.5rem; /* 40px */
+            }
+            #main-site-content {
+                padding: 2.5rem 3.75rem; /* 40px 60px */
+            }
+            #main-site-content h2 {
+                font-size: 2.25rem; /* 36px */
+                margin-bottom: 2rem; /* 32px */
+            }
+            .movie-grid {
+                grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); /* 224px */
+                gap: 2.5rem; /* 40px */
+            }
+            .movie-card img {
+                height: 20rem; /* 320px */
+            }
+            .movie-card h3 {
+                font-size: 1.3em;
+            }
+            .movie-card p {
+                font-size: 1em;
+            }
+            .details-content, .player-content, #episodiosContent {
+                max-width: 68.75rem; /* 1100px */
+                padding: 2.5rem; /* 40px */
+            }
+            .details-content h2 {
+                font-size: 2.5em;
+            }
+            .close-button {
+                width: 2.5rem; /* 40px */
+                height: 2.5rem; /* 40px */
+                font-size: 1.5em;
+            }
+            .player-content .back-to-details-button {
+                padding: 0.75rem 1.5rem; /* 12px 24px */
+                font-size: 1.125rem; /* 18px */
+            }
+            .episodio-card {
+                min-width: 18.75rem; /* 300px */
+                max-width: 18.75rem; /* 300px */
+            }
+            .episodio-card img {
+                height: 12.5rem; /* 200px */
+            }
+            .episodio-info {
+                font-size: 1rem; /* 16px */
+            }
+            .scroll-btn {
+                font-size: 2.5rem;
+                padding: 0.3125rem 1rem; /* 5px 16px */
             }
         }
     </style>
@@ -1194,6 +1283,10 @@
     const episodiosTitulo = document.getElementById('episodiosTitulo');
     const episodiosContainerHorizontal = document.getElementById('episodios-container-horizontal');
 
+    // Removidas as referências a generatePitchButton e pitchResultDiv
+    // const generatePitchButton = document.getElementById('generatePitchButton');
+    // const pitchResultDiv = document.getElementById('pitchResult');
+
     let currentDetailedItem = null;
 
 
@@ -1225,11 +1318,11 @@
                 { id: 's1e3', titulo: "Episódio 3 - Sonhe Comigo", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_41_27_12R-scaled.jpg", video: "https://drive.google.com/file/d/1OytwXxC4ABFD8L-uUkDHNHt8xbKiu1p6/preview" },
                 { id: 's1e4', titulo: "Episódio 4 - Uma Esperança no Inferno", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_18_53_22R-scaled.jpg", video: "https://drive.google.com/file/d/15TlfKctE410YnSFO-OJe-rNtOHtqGcSd/preview" },
                 { id: 's1e5', titulo: "Episódio 5 - Sem Parar", imagem: "https://i0.wp.com/subjectifymedia.com/wp-content/uploads/2022/09/john-dee-3.jpg?resize=1300%2C650&ssl=1", video: "https://drive.google.com/file/d/1Rp-PUXhA0nCiZKvInTjxZHReoCqWcFE_/preview" },
-                { id: 's1e6', titulo: "Episódio 6 - O Som das Asas Dela", imagem: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQY020dAlhqHUvq66zGcc6jkuP3GhCuXsr6pLjLtzraKbNBOlVLbEbNAqwvJT5ZfKesKz4lKmYZl5iOaPuQZ-ZGmo32ZjUAfrdFqJiGFp840wOx0c7-rAiycx911sAfoHcCNOM4Jvz7n4dfpBHXNWv-F32ek.jpg?r=412", video: "https://drive.google.com/file/d/1NUXrSGklAWnY7oDlIXDyAvjK1DBUcxFR/preview" },
-                { id: 's1e7', titulo: "Episódio 7 - Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://drive.google.com/file/d/1cfKyiRF6wFxXzF2DNvnsGllfSymIWUC6/preview" },
-                { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://drive.google.com/file/d/1ftvfrCrR11HabdoQ38p7YBo6GfTSsf-i/preview" },
-                { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a81e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://drive.google.com/file/d/1PsdJNcCKKrMrFHc6KefUsQOLNMgAEyYJ/preview" },
-                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f0669262328ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://drive.google.com/file/d/1vYs4M4dHnlyzQ5RovdflB_DSEvNQQ6qR/preview" }
+                { id: 's1e6', titulo: "O Som das Asas Dela", imagem: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQY020dAlhqHUvq66zGcc6jkuP3GhCuXsr6pLjLtzraKbNBOlVLbEbNAqwvJT5ZfKesKz4lKmYZl5iOaPuQZ-ZGmo32ZjUAfrdFqJiGFp840wOx0c7-rAiycx911sAfoHcCNOM4Jvz7n4dfpBHXNWv-F32ek.jpg?r=412", video: "https://drive.google.com/file/d/1NUXrSGklAWnY7oDlIXDyAvjK1DBUcxFR/preview" },
+                { id: 's1e7', titulo: "Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://drive.google.com/file/d/1cfKyiRF6wFxXzF2DNvnsGllfSymIWUC6/preview" },
+                { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a81e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f0669262328ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
             ]
         }
     ];
@@ -1314,6 +1407,7 @@
         }
     ];
 
+    // A declaração única da variável 'series'
     const series = [
         {
             id: 2, 
@@ -1330,11 +1424,11 @@
                 { id: 's1e3', titulo: "Episódio 3 - Sonhe Comigo", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_41_27_12R-scaled.jpg", video: "https://drive.google.com/file/d/1OytwXxC4ABFD8L-uUkDHNHt8xbKiu1p6/preview" },
                 { id: 's1e4', titulo: "Episódio 4 - Uma Esperança no Inferno", imagem: "https://tomandlorenzo.com/wp-content/uploads/2022/08/TheSandman_Season1_00_18_53_22R-scaled.jpg", video: "https://drive.google.com/file/d/15TlfKctE410YnSFO-OJe-rNtOHtqGcSd/preview" },
                 { id: 's1e5', titulo: "Episódio 5 - Sem Parar", imagem: "https://i0.wp.com/subjectifymedia.com/wp-content/uploads/2022/09/john-dee-3.jpg?resize=1300%2C650&ssl=1", video: "https://drive.google.com/file/d/1Rp-PUXhA0nCiZKvInTjxZHReoCqWcFE_/preview" },
-                { id: 's1e6', titulo: "Episódio 6 - O Som das Asas Dela", imagem: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQY020dAlhqHUvq66zGcc6jkuP3GhCuXsr6pLjLtzraKbNBOlVLbEbNAqwvJT5ZfKesKz4lKmYZl5iOaPuQZ-ZGmo32ZjUAfrdFqJiGFp840wOx0c7-rAiycx911sAfoHcCNOM4Jvz7n4dfpBHXNWv-F32ek.jpg?r=412", video: "https://drive.google.com/file/d/1NUXrSGklAWnY7oDlIXDyAvjK1DBUcxFR/preview" },
-                { id: 's1e7', titulo: "Episódio 7 - Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://drive.google.com/file/d/1cfKyiRF6wFxXzF2DNvnsGllfSymIWUC6/preview" },
-                { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://drive.google.com/file/d/1ftvfrCrR11HabdoQ38p7YBo6GfTSsf-i/preview" },
-                { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a81e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://drive.google.com/file/d/1PsdJNcCKKrMrFHc6KefUsQOLNMgAEyYJ/preview" },
-                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f0669262328ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://drive.google.com/file/d/1vYs4M4dHnlyzQ5RovdflB_DSEvNQQ6qR/preview" }
+                { id: 's1e6', titulo: "O Som das Asas Dela", imagem: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQY020dAlhqHUvq66zGcc6jkuP3GhCuXsr6pLjLtzraKbNBOlVLbEbNAqwvJT5ZfKesKz4lKmYZl5iOaPuQZ-ZGmo32ZjUAfrdFqJiGFp840wOx0c7-rAiycx911sAfoHcCNOM4Jvz7n4dfpBHXNWv-F32ek.jpg?r=412", video: "https://drive.google.com/file/d/1NUXrSGklAWnY7oDlIXDyAvjK1DBUcxFR/preview" },
+                { id: 's1e7', titulo: "Casa de Bonecas", imagem: "https://cdn.mos.cms.futurecdn.net/hBPyFufsLihM8RxQRSMruH.jpg", video: "https://drive.google.com/file/d/1cfKyiRF6wFxXzF2DNvnsGllfSymIWUC6/preview" },
+                { id: 's1e8', titulo: "Brincando de Casinha", imagem: "https://cdn.mos.cms.futurecdn.net/vbBe58kC26yMacjKhC3kCZ.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e9', titulo: "Colecionadores", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003395/shape/cover/sport/2a3ca9a81e3c4b5b93217d6e29778f098e76cf6908fd6f30a71912df2b5ee4d5.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 's1e10', titulo: "Corações Perdidos", imagem: "https://minutemedia-ressh.cloudinary.com/image/upload/v1702003438/shape/cover/sport/f95444a8ea43f0669262328ff210f0ddbd5027d1e49daae2bf011a5b699ddef6.jpg", video: "https://www.w3schools.com/html/mov_bbb.mp4" }
             ]
         },
         {
@@ -1881,6 +1975,10 @@
             playButtonDetailsOverlay.setAttribute('aria-label', `Assistir ao filme ${item.titulo}`);
         }
 
+        // Removida a lógica de esconder o resultado do pitch
+        // pitchResultDiv.classList.add('hidden');
+        // pitchResultDiv.innerHTML = '';
+
         detailsOverlay.classList.add('active');
         sitePrincipal.style.overflowY = 'hidden';
     }
@@ -1890,6 +1988,10 @@
         const iframe = detailsContentArea.querySelector('iframe');
         if (iframe) iframe.src = "";
         
+        // Removida a lógica de esconder o resultado do pitch ao fechar o overlay de detalhes
+        // pitchResultDiv.classList.add('hidden');
+        // pitchResultDiv.innerHTML = '';
+
         if (!playerOverlay.classList.contains('active') && !episodiosOverlay.classList.contains('active')) {
             sitePrincipal.style.overflowY = 'auto';
         }
@@ -1984,6 +2086,12 @@
             episodioDiv.setAttribute('role', 'button');
             episodioDiv.setAttribute('aria-label', `Assistir ${episodio.titulo}`);
             episodioDiv.onclick = () => playEpisode(episodio.id); 
+            episodioDiv.onkeydown = (e) => { // Adicionado para acessibilidade do teclado
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    playEpisode(episodio.id);
+                }
+            };
             episodiosContainerHorizontal.appendChild(episodioDiv);
         });
 
@@ -2066,8 +2174,61 @@
         const playerIframe = playerContentArea.querySelector('iframe');
         if(playerIframe) playerIframe.src = "";
 
+        // Removida a lógica de esconder o resultado do pitch ao fechar todos os overlays
+        // pitchResultDiv.classList.add('hidden');
+        // pitchResultDiv.innerHTML = '';
+
         sitePrincipal.style.overflowY = 'auto';
     }
+
+    // Removidas as funções relacionadas à API Gemini
+    // generatePitchButton.addEventListener('click', generatePitch);
+
+    // async function generatePitch() {
+    //     if (!currentDetailedItem) {
+    //         pitchResultDiv.textContent = "Nenhum item selecionado para gerar o pitch.";
+    //         pitchResultDiv.classList.remove('hidden');
+    //         return;
+    //     }
+
+    //     pitchResultDiv.classList.remove('hidden');
+    //     pitchResultDiv.innerHTML = 'Gerando pitch... <span class="animate-pulse">🎬</span>';
+
+    //     const title = currentDetailedItem.titulo;
+    //     const description = currentDetailedItem.descricao;
+    //     const genre = currentDetailedItem.genero;
+
+    //     const prompt = `Crie um pitch de vendas curto e emocionante (máximo 50 palavras) para o filme/série "${title}". Inclua o gênero (${genre}) e a descrição: "${description}". O pitch deve convencer alguém a assistir imediatamente.`;
+
+    //     try {
+    //         let chatHistory = [];
+    //         chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+    //         const payload = { contents: chatHistory };
+    //         const apiKey = ""; // Deixe como está, a chave será fornecida pelo ambiente.
+    //         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+    //         const response = await fetch(apiUrl, {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(payload)
+    //         });
+
+    //         const result = await response.json();
+            
+    //         if (result.candidates && result.candidates.length > 0 &&
+    //             result.candidates[0].content && result.candidates[0].content.parts &&
+    //             result.candidates[0].content.parts.length > 0) {
+    //             const generatedText = result.candidates[0].content.parts[0].text;
+    //             pitchResultDiv.innerHTML = `<strong>Pitch:</strong> ${generatedText}`;
+    //         } else {
+    //             pitchResultDiv.innerHTML = 'Não foi possível gerar o pitch. Tente novamente.';
+    //             console.error("Erro na resposta da API Gemini:", result);
+    //         }
+    //     } catch (error) {
+    //         pitchResultDiv.innerHTML = 'Erro ao conectar com a API Gemini. Verifique sua conexão ou tente mais tarde.';
+    //         console.error("Erro ao chamar a API Gemini:", error);
+    //     }
+    // }
 
 </script>
 
