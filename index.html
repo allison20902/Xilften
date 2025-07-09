@@ -831,29 +831,41 @@
                 padding: 0.625rem 1.25rem; /* 10px 20px */
             }
             #sitePrincipal .header-site .logo {
+                font-size: 1.75rem; /* 28px */
                 margin-right: 0;
                 margin-bottom: 0.625rem; /* 10px */
             }
             #sitePrincipal .header-site nav {
                 margin-right: auto;
                 width: 100%;
-                justify-content: space-around;
+                justify-content: space-between; /* Distribuir botões */
+                gap: 0.5rem; /* Espaçamento menor entre botões */
                 margin-bottom: 0.625rem; /* 10px */
+                flex-wrap: wrap; /* Permitir quebra de linha */
+            }
+            #sitePrincipal .header-site nav button {
+                font-size: 0.9375rem; /* 15px */
+                padding: 0.3125rem 0.25rem; /* Ajustar padding */
             }
             #sitePrincipal .header-site .search-profile-area {
                 width: 100%;
                 justify-content: space-between;
+                gap: 0.625rem; /* 10px */
             }
             #sitePrincipal .header-site #searchInput {
-                width: calc(100% - 3.125rem); /* 50px */
+                width: 100%; /* Ocupar largura total disponível */
+                flex-grow: 1; /* Permitir crescimento */
+            }
+            #profileIcon {
+                flex-shrink: 0; /* Impedir que o ícone encolha */
             }
             .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); /* 160px */
+                grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); /* 144px, ajustado para caber melhor */
                 gap: 0.9375rem; /* 15px */
                 padding: 0 0.625rem; /* 10px */
             }
             .movie-card img {
-                height: 15.625rem; /* 250px */
+                height: 14rem; /* 224px, altura ajustada para mobile */
             }
             .details-content, .player-content, #episodiosContent {
                 width: 95%;
@@ -886,17 +898,27 @@
 
         /* Mobile Pequeno (até 480px) */
         @media (max-width: 30rem) { /* 480px */
+            #sitePrincipal .header-site .logo {
+                font-size: 1.5rem; /* 24px */
+            }
+            #sitePrincipal .header-site nav {
+                justify-content: space-around; /* Pode ser melhor para poucos itens */
+            }
+            #sitePrincipal .header-site nav button {
+                font-size: 0.875rem; /* 14px */
+            }
             .movie-grid {
                 grid-template-columns: 1fr; /* Uma coluna para melhor visualização */
+                padding: 0 0.5rem; /* 8px padding */
             }
             .movie-card img {
-                height: 12.5rem; /* 200px */
+                height: 12rem; /* 192px, altura ajustada para telas muito pequenas */
             }
             #main-site-content h2 {
                 font-size: 1.5rem; /* 24px */
             }
             #profileIcon span {
-                display: none; /* Oculta o texto do perfil para economizar espaço */
+                display: none; 
             }
             .episodio-card {
                 min-width: 12.5rem; /* 200px */
@@ -1975,10 +1997,6 @@
             playButtonDetailsOverlay.setAttribute('aria-label', `Assistir ao filme ${item.titulo}`);
         }
 
-        // Removida a lógica de esconder o resultado do pitch
-        // pitchResultDiv.classList.add('hidden');
-        // pitchResultDiv.innerHTML = '';
-
         detailsOverlay.classList.add('active');
         sitePrincipal.style.overflowY = 'hidden';
     }
@@ -1988,10 +2006,6 @@
         const iframe = detailsContentArea.querySelector('iframe');
         if (iframe) iframe.src = "";
         
-        // Removida a lógica de esconder o resultado do pitch ao fechar o overlay de detalhes
-        // pitchResultDiv.classList.add('hidden');
-        // pitchResultDiv.innerHTML = '';
-
         if (!playerOverlay.classList.contains('active') && !episodiosOverlay.classList.contains('active')) {
             sitePrincipal.style.overflowY = 'auto';
         }
@@ -2174,61 +2188,8 @@
         const playerIframe = playerContentArea.querySelector('iframe');
         if(playerIframe) playerIframe.src = "";
 
-        // Removida a lógica de esconder o resultado do pitch ao fechar todos os overlays
-        // pitchResultDiv.classList.add('hidden');
-        // pitchResultDiv.innerHTML = '';
-
         sitePrincipal.style.overflowY = 'auto';
     }
-
-    // Removidas as funções relacionadas à API Gemini
-    // generatePitchButton.addEventListener('click', generatePitch);
-
-    // async function generatePitch() {
-    //     if (!currentDetailedItem) {
-    //         pitchResultDiv.textContent = "Nenhum item selecionado para gerar o pitch.";
-    //         pitchResultDiv.classList.remove('hidden');
-    //         return;
-    //     }
-
-    //     pitchResultDiv.classList.remove('hidden');
-    //     pitchResultDiv.innerHTML = 'Gerando pitch... <span class="animate-pulse">🎬</span>';
-
-    //     const title = currentDetailedItem.titulo;
-    //     const description = currentDetailedItem.descricao;
-    //     const genre = currentDetailedItem.genero;
-
-    //     const prompt = `Crie um pitch de vendas curto e emocionante (máximo 50 palavras) para o filme/série "${title}". Inclua o gênero (${genre}) e a descrição: "${description}". O pitch deve convencer alguém a assistir imediatamente.`;
-
-    //     try {
-    //         let chatHistory = [];
-    //         chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-    //         const payload = { contents: chatHistory };
-    //         const apiKey = ""; // Deixe como está, a chave será fornecida pelo ambiente.
-    //         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-    //         const response = await fetch(apiUrl, {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(payload)
-    //         });
-
-    //         const result = await response.json();
-            
-    //         if (result.candidates && result.candidates.length > 0 &&
-    //             result.candidates[0].content && result.candidates[0].content.parts &&
-    //             result.candidates[0].content.parts.length > 0) {
-    //             const generatedText = result.candidates[0].content.parts[0].text;
-    //             pitchResultDiv.innerHTML = `<strong>Pitch:</strong> ${generatedText}`;
-    //         } else {
-    //             pitchResultDiv.innerHTML = 'Não foi possível gerar o pitch. Tente novamente.';
-    //             console.error("Erro na resposta da API Gemini:", result);
-    //         }
-    //     } catch (error) {
-    //         pitchResultDiv.innerHTML = 'Erro ao conectar com a API Gemini. Verifique sua conexão ou tente mais tarde.';
-    //         console.error("Erro ao chamar a API Gemini:", error);
-    //     }
-    // }
 
 </script>
 
