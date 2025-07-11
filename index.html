@@ -64,6 +64,7 @@
         #telaLogin {
             background: url('https://wallpapers.com/images/hd/american-movie-posters-z0puq43u0qbtr6j2.webp') no-repeat center center;
             background-size: cover;
+            background-color: #1a1a1a; /* Cor de fundo fallback para tela de login */
             z-index: 100;
             justify-content: center; /* Centraliza o loginBox */
         }
@@ -961,8 +962,9 @@
                 height: 13.5rem; /* Ajustado para rem (proporcional a 9rem de largura) */
             }
             .details-content, .player-content, #episodiosContent {
-                width: 95%;
-                padding: 1.25rem; /* Ajustado para rem */
+                width: 98%; /* Increased from 95% to 98% for more width */
+                padding: 1rem; /* Slightly reduced padding to give more content space */
+                max-height: 95vh; /* Increased from 90vh to 95vh for more height */
             }
             .details-content h2 {
                 font-size: 1.8em;
@@ -1022,6 +1024,11 @@
             #profileIcon span { /* Se houver um span dentro do profileIcon */
                 display: none;
             }
+            .details-content, .player-content, #episodiosContent {
+                width: 98%; /* Ensure it stays wide on smaller mobiles too */
+                padding: 0.75rem; /* Further reduce padding for very small screens */
+                max-height: 98vh; /* Max height for very small screens */
+            }
             .episodio-card {
                 min-width: 12.5rem; /* Ajustado para rem */
                 max-width: 12.5rem; /* Ajustado para rem */
@@ -1076,7 +1083,7 @@
                 font-size: 2.5rem; /* Ajustado para rem */
                 margin-right: 2.5rem; /* Ajustado para rem */
             }
-            #sitePrincipal .header-site nav button {
+            #sitePrincipal .header-site nav {
                 font-size: 1.125rem; /* Ajustado para rem */
             }
             #sitePrincipal .header-site #searchInput {
@@ -1239,150 +1246,150 @@
         <div id="home-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Adicionados Recentemente</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="acao-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Ação</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         
         <div id="aventura-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Aventura</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="comedia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Comédia</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="drama-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Drama</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="ficcao-cientifica-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Ficção Científica</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="fantasia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Fantasia</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="terror-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Terror</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="romance-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Romance</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="suspense-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Suspense</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="thriller-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Thriller</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="documentario-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Documentário</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="guerra-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Guerra</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="animacao-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Animação</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
         <div id="series-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Séries</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
@@ -1390,91 +1397,91 @@
         <div id="anime-shounen-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Shounen</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-shoujo-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Shoujo</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-seinen-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Seinen</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-isekai-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Isekai</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-vida-escolar-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Vida Escolar</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-acao-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Ação</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-comedia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Comédia</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-fantasia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Fantasia</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-ficcao-cientifica-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Ficção Científica</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="anime-terror-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Terror</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
@@ -1483,100 +1490,100 @@
         <div id="dorama-romance-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Romance</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-comedia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Comédia</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-drama-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Drama</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-historico-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Histórico</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-escolar-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Escolar</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-policial-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Policial</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-suspense-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Suspense</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-terror-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Terror</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-fantasia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Fantasia</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-medico-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Médico</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
         <div id="dorama-ficcao-cientifica-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Ficção Científica</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
@@ -1584,11 +1591,11 @@
         <div id="novela-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Novelas</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                     <p class="text-gray-400 p-4 text-center w-full">Nenhuma novela encontrada.</p>
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
@@ -1596,10 +1603,10 @@
         <div id="minha-lista-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Minha Lista</h2>
             <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
                 <div class="movie-grid">
                 </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
             </div>
         </div>
 
@@ -1939,7 +1946,10 @@
     window.onload = () => {
         carregarPerfisStorage();
         telaLogin.style.display = 'flex';
-        telaLogin.classList.add('ativa');
+        // Adiciona um pequeno atraso para garantir que a propriedade display seja aplicada antes da transição
+        setTimeout(() => {
+            telaLogin.classList.add('ativa');
+        }, 50); 
         inputUsuario.focus();
         
         // Adiciona listeners para o dropdown de Gênero com a sintaxe correta
@@ -2586,7 +2596,7 @@
             searchResultsSection.classList.add('content-section');
             mainSiteContent.appendChild(searchResultsSection);
             // Adiciona o wrapper do carrossel e botões de rolagem
-            searchResultsSection.innerHTML = `<h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Resultados da Pesquisa para "${searchTerm}"</h2><div class="movie-carousel-wrapper"><button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button><div class="movie-grid"></div><button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button></div>`;
+            searchResultsSection.innerHTML = `<h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Resultados da Pesquisa para "${searchTerm}"</h2><div class="movie-carousel-wrapper"><button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button><div class="movie-grid"></div><button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button></div>`;
         }
         
         const searchGrid = searchResultsSection.querySelector('.movie-grid');
