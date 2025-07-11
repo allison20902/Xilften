@@ -531,7 +531,7 @@
         .movie-grid {
             display: grid;
             /* Alterado para cards menores, mantendo a proporção */
-            grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); /* Reduzido de 12.5rem para 9rem */
+            grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); /* Reduzido de 9rem para 8rem */
             gap: 1.875rem; /* 30px */
         }
 
@@ -552,7 +552,7 @@
         .movie-card img {
             width: 100%;
             /* Ajustado para manter a proporção com o novo minmax do grid */
-            height: 13.5rem; /* Proporcional a 9rem de largura (9 * 1.5 = 13.5) */
+            height: 12rem; /* Proporcional a 8rem de largura (8 * 1.5 = 12) */
             object-fit: cover;
             display: block;
         }
@@ -833,7 +833,7 @@
         /* Mobile (até 768px) */
         @media (max-width: 48rem) { /* 768px */
             :root {
-                font-size: 14px; /* Reduz a fonte base para mobile */
+                font-size: 15px; /* Reduz a fonte base para mobile */
             }
             #loginBox, #modal {
                 width: 90%;
@@ -898,12 +898,12 @@
                 margin-left: 0; /* Removido para colar no canto */
             }
             .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); /* Ajustado para rem */
+                grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); /* Ajustado para rem */
                 gap: 0.9375rem; /* Ajustado para rem */
                 padding: 0 0.625rem; /* Ajustado para rem */
             }
             .movie-card img {
-                height: 12rem; /* Ajustado para rem (proporcional a 8rem de largura) */
+                height: 13.5rem; /* Ajustado para rem (proporcional a 9rem de largura) */
             }
             .details-content, .player-content, #episodiosContent {
                 width: 95%;
@@ -941,7 +941,7 @@
         /* Mobile Pequeno (até 480px) */
         @media (max-width: 30rem) { /* 480px */
             :root {
-                font-size: 12px; /* Reduz ainda mais a fonte base para mobile muito pequeno */
+                font-size: 14px; /* Reduz ainda mais a fonte base para mobile muito pequeno */
             }
             #sitePrincipal .header-site .logo {
                 font-size: 1.5rem; /* Ajustado para rem */
@@ -953,7 +953,7 @@
                 font-size: 0.875rem; /* Ajustado para rem */
             }
             .movie-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); /* Ajustado para rem */
                 padding: 0 0.5rem; /* Ajustado para rem */
             }
             .movie-card img {
@@ -2311,7 +2311,7 @@
         }
         
         playerContentArea.innerHTML = `
-            <iframe src="${itemToPlay.video}" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" allowfullscreen loading="lazy" class="w-full h-full rounded-xl" title="Player de ${itemToPlay.titulo}" allow="autoplay"></iframe>
+            <iframe src="${itemToPlay.video}" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" allowfullscreen loading="lazy" class="w-full h-full rounded-xl" title="Player de ${item.titulo}" allow="autoplay"></iframe>
         `;
         playerOverlay.classList.add('active');
         detailsOverlay.classList.remove('active');
