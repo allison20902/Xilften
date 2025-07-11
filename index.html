@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xilften</title>
+    <!-- Inclui Tailwind CSS para um estilo rápido e responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* VARIÁVEIS CSS para fácil personalização */
@@ -18,6 +19,9 @@
         }
 
         /* ESTILOS GLOBAIS E RESETS */
+        html, body {
+            height: 100%; /* Garante que html e body ocupem a altura total */
+        }
         * {
             margin: 0;
             padding: 0;
@@ -27,25 +31,23 @@
         body {
             background-color: var(--cor-bg-dark); /* Fundo padrão do body é preto */
             color: var(--cor-text-dark);
-            overflow: hidden; /* O body não deve rolar, as telas individuais rolam */
+            overflow-y: auto; /* Permite rolagem no body */
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column; /* Para que as telas principais se empilhem */
+            justify-content: flex-start; /* Alinha ao topo */
             align-items: center;
-            position: relative; /* Contexto para as telas absolutas */
+            position: relative; /* Contexto para elementos fixos se necessário */
             width: 100vw;
         }
 
         /* CLASSES PARA CONTROLE DE TELAS PRINCIPAIS */
         .tela-principal {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            min-height: 100vh;
-            display: none;
+            width: 100vw; /* Ocupa a largura total */
+            min-height: 100vh; /* Ocupa no mínimo a altura da viewport */
+            display: none; /* Escondido por padrão */
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* Alinha ao topo */
             align-items: center;
             opacity: 0;
             pointer-events: none;
@@ -63,6 +65,7 @@
             background: url('https://wallpapers.com/images/hd/american-movie-posters-z0puq43u0qbtr6j2.webp') no-repeat center center;
             background-size: cover;
             z-index: 100;
+            justify-content: center; /* Centraliza o loginBox */
         }
 
         #loginBox {
@@ -141,6 +144,7 @@
         #telaPerfis {
             background-color: var(--cor-bg-dark); /* Fundo PRETO */
             z-index: 90;
+            justify-content: center; /* Centraliza o containerPerfis */
         }
 
         #containerPerfis {
@@ -337,15 +341,13 @@
             z-index: 70;
             align-items: flex-start; /* Alinha o conteúdo ao topo */
             padding: 0;
-            min-height: 100vh;
-            overflow-y: auto; /* Permite rolagem no conteúdo do site */
+            /* Removido min-height e overflow-y para que o body gerencie */
             position: relative; /* Essencial para o sticky funcionar dentro dela */
-            scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
-            -ms-overflow-style: none;  /* Oculta a barra de rolagem no IE/Edge */
+            width: 100%; /* Ocupa a largura total */
+            flex-grow: 1; /* Permite que ocupe o espaço restante em uma coluna flex */
         }
-        #sitePrincipal::-webkit-scrollbar { /* Oculta a barra de rolagem no Chrome/Safari */
-            display: none;
-        }
+        /* Removido scrollbar-width e -ms-overflow-style de #sitePrincipal */
+        /* Removido ::-webkit-scrollbar de #sitePrincipal */
 
 
         /* HEADER DO SITE (Fixo no topo) */
@@ -506,13 +508,14 @@
             margin: 0 auto;
             overflow-y: hidden; /* O main-site-content não deve rolar, o #sitePrincipal rola */
             flex-grow: 1; /* Permite que o main ocupe o espaço restante */
+            padding-bottom: 5rem; /* Adicionado padding extra na parte inferior */
         }
 
         /* Seções de conteúdo dentro do main-site-content */
         .content-section {
             display: none; /* Escondido por padrão, controlado por JS */
             width: 100%; /* Garante que a seção ocupe a largura total */
-            min-height: calc(100vh - 3.75rem - 3.75rem); /* Altura mínima: viewport - header (60px) - padding (60px) */
+            /* Removido min-height fixo, o conteúdo irá ditar a altura */
         }
         .content-section.active {
             display: block; /* A seção ativa é exibida */
@@ -558,7 +561,7 @@
             position: relative;
             transition: transform 0.2s ease;
             flex-shrink: 0; /* Impede que os cards encolham */
-            width: 8rem; /* Largura fixa para os cards no carrossel */
+            width: 10rem; /* Aumentado de 8rem para 10rem */
         }
         .movie-card:hover {
             transform: scale(1.05);
@@ -566,7 +569,7 @@
 
         .movie-card img {
             width: 100%;
-            height: 12rem; /* Proporcional a 8rem de largura (8 * 1.5 = 12) */
+            height: 15rem; /* Proporcional a 10rem de largura (10 * 1.5 = 15) */
             object-fit: cover;
             display: block;
         }
@@ -1190,6 +1193,7 @@
                 </div>
             </div>
             <button onclick="showContentSection('series-section')" aria-label="Ir para a seção Séries">Séries</button>
+            <!-- Novo botão Animes e seu dropdown -->
             <div class="relative genre-button" id="animeButtonContainer">
                 <button id="animeDropdownButton" aria-haspopup="true" aria-expanded="false">Animes</button>
                 <div class="genre-dropdown" id="animeDropdown" role="menu">
@@ -1205,6 +1209,7 @@
                     <button role="menuitem" onclick="handleGenreClick('Terror', 'anime-terror-section')">Terror</button>
                 </div>
             </div>
+            <!-- Botão Dorama e seu dropdown -->
             <div class="relative genre-button" id="doramaButtonContainer">
                 <button id="doramaDropdownButton" aria-haspopup="true" aria-expanded="false">Dorama</button>
                 <div class="genre-dropdown" id="doramaDropdown" role="menu">
@@ -1221,6 +1226,7 @@
                     <button role="menuitem" onclick="handleGenreClick('Ficção Científica', 'dorama-ficcao-cientifica-section')">Ficção Científica</button>
                 </div>
             </div>
+            <!-- Novo botão Novela -->
             <button onclick="showContentSection('novela-section')" aria-label="Ir para a seção Novela">Novela</button>
             <button onclick="showContentSection('minha-lista-section')" aria-label="Ir para a seção Minha Lista">Minha Lista</button>
         </nav>
@@ -1380,6 +1386,7 @@
             </div>
         </div>
 
+        <!-- Novas seções de Animes por Gênero -->
         <div id="anime-shounen-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Shounen</h2>
             <div class="movie-carousel-wrapper">
@@ -1472,6 +1479,7 @@
         </div>
 
 
+        <!-- Novas seções de Dorama por Gênero -->
         <div id="dorama-romance-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Romance</h2>
             <div class="movie-carousel-wrapper">
@@ -1572,6 +1580,7 @@
             </div>
         </div>
 
+        <!-- Nova seção de Novela -->
         <div id="novela-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Novelas</h2>
             <div class="movie-carousel-wrapper">
@@ -1893,20 +1902,16 @@
             telaDesativar.classList.remove("ativa");
             setTimeout(() => {
                 telaDesativar.style.display = 'none';
-                telaDesativar.style.overflowY = 'hidden';
+                // Removido overflowY = 'hidden' daqui, pois o body agora gerencia
             }, 800);
         }
 
         telaAtivar.style.display = 'flex';
         setTimeout(() => {
             telaAtivar.classList.add("ativa");
-            if (telaAtivar.id === 'sitePrincipal') {
-                telaAtivar.style.overflowY = 'auto';
-            } else {
-                telaAtivar.style.overflowY = 'hidden';
-            }
+            // Removido a lógica de overflowY aqui, o body agora gerencia
         }, 10);
-        document.body.style.overflowY = 'hidden';
+        // Removido document.body.style.overflowY = 'hidden';
     }
 
 
@@ -2377,7 +2382,7 @@
         return `
             <div class="movie-card" data-item-id="${item.id}" onclick="openDetailsOverlay(${item.id})" tabindex="0" role="button" aria-label="${item.titulo}, ano ${item.ano}, gênero ${item.genero}${item.isSerie ? ', série' : ''}">
                 <div class="relative overflow-hidden rounded-xl">
-                    <img src="${item.imagem}" class="w-full h-[13.5rem] object-cover rounded-t-lg" alt="Póster de ${item.titulo}" loading="lazy">
+                    <img src="${item.imagem}" class="w-full h-[15rem] object-cover rounded-t-lg" alt="Póster de ${item.titulo}" loading="lazy">
                     <div class="favorito-btn" onclick="event.stopPropagation(); toggleFavorito(${item.id})" tabindex="0" role="button" aria-label="${isFavorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
                         <span class="${starClass}" aria-hidden="true">${starIcon}</span>
                     </div>
@@ -2424,7 +2429,7 @@
         }
 
         detailsOverlay.classList.add('active');
-        sitePrincipal.style.overflowY = 'hidden';
+        // Removido sitePrincipal.style.overflowY = 'hidden';
     }
 
     function closeDetailsOverlay() {
@@ -2432,9 +2437,7 @@
         const iframe = detailsContentArea.querySelector('iframe');
         if (iframe) iframe.src = "";
         
-        if (!playerOverlay.classList.contains('active') && !episodiosOverlay.classList.contains('active')) {
-            sitePrincipal.style.overflowY = 'auto';
-        }
+        // Removido a lógica de overflowY aqui, o body agora gerencia
     }
 
     function openPlayerOverlay(id) {
@@ -2486,7 +2489,7 @@
         playerOverlay.classList.add('active');
         detailsOverlay.classList.remove('active');
         episodiosOverlay.classList.remove('active');
-        sitePrincipal.style.overflowY = 'hidden';
+        // Removido sitePrincipal.style.overflowY = 'hidden';
     }
 
     function closePlayerOverlay() {
@@ -2540,14 +2543,12 @@
 
         detailsOverlay.classList.remove('active');
         episodiosOverlay.classList.add('active');
-        sitePrincipal.style.overflowY = 'hidden';
+        // Removido sitePrincipal.style.overflowY = 'hidden';
     }
 
     function closeEpisodiosOverlay() {
         episodiosOverlay.classList.remove('active');
-        if (!detailsOverlay.classList.contains('active') && !playerOverlay.classList.contains('active')) {
-            sitePrincipal.style.overflowY = 'auto';
-        }
+        // Removido a lógica de overflowY aqui, o body agora gerencia
     }
 
     function playEpisode(episodioId) {
@@ -2617,7 +2618,7 @@
         const playerIframe = playerContentArea.querySelector('iframe');
         if(playerIframe) playerIframe.src = "";
 
-        sitePrincipal.style.overflowY = 'auto';
+        // Removido sitePrincipal.style.overflowY = 'auto';
     }
 
 </script>
