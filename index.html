@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xilften</title>
-    <!-- Inclui Tailwind CSS para um estilo rápido e responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* VARIÁVEIS CSS para fácil personalização */
@@ -527,12 +526,26 @@
             margin-bottom: 1.5625rem; /* 25px */
             text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7); /* 2px 2px 4px */
         }
+        
+        /* Carrossel de Filmes/Séries */
+        .movie-carousel-wrapper {
+            position: relative;
+            margin-bottom: 2.5rem; /* Espaçamento entre os carrosséis */
+        }
 
         .movie-grid {
-            display: grid;
-            /* Alterado para cards menores, mantendo a proporção */
-            grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); /* Reduzido de 9rem para 8rem */
+            display: flex; /* Alterado para flex para rolagem horizontal */
+            overflow-x: auto; /* Permite rolagem horizontal */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* Melhor rolagem em dispositivos touch */
+            padding-bottom: 1rem; /* Espaço para a scrollbar invisível */
             gap: 1.875rem; /* 30px */
+            scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+            -ms-overflow-style: none;  /* Oculta a barra de rolagem no IE/Edge */
+        }
+
+        .movie-grid::-webkit-scrollbar {
+            display: none; /* Oculta a barra de rolagem no Chrome/Safari */
         }
 
         .movie-card {
@@ -544,6 +557,8 @@
             cursor: pointer;
             position: relative;
             transition: transform 0.2s ease;
+            flex-shrink: 0; /* Impede que os cards encolham */
+            width: 8rem; /* Largura fixa para os cards no carrossel */
         }
         .movie-card:hover {
             transform: scale(1.05);
@@ -551,7 +566,6 @@
 
         .movie-card img {
             width: 100%;
-            /* Ajustado para manter a proporção com o novo minmax do grid */
             height: 12rem; /* Proporcional a 8rem de largura (8 * 1.5 = 12) */
             object-fit: cover;
             display: block;
@@ -603,6 +617,43 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1.5rem 0.5rem; /* Ajustado para área de clique maior */
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s, background-color 0.3s;
+            height: 100%; /* Ocupa a altura total do carrossel */
+            display: flex;
+            align-items: center;
+        }
+
+        .movie-carousel-wrapper:hover .scroll-arrow {
+            opacity: 1;
+        }
+
+        .scroll-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .scroll-left {
+            left: 0;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
+
+        .scroll-right {
+            right: 0;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
 
         /* OVERLAY/MODAL DE DETALHES/PLAYER */
         /* Overlays: Controlados por opacity e visibility para transições mais suaves e evitar problemas de clique. */
@@ -898,9 +949,10 @@
                 margin-left: 0; /* Removido para colar no canto */
             }
             .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); /* Ajustado para rem */
-                gap: 0.9375rem; /* Ajustado para rem */
                 padding: 0 0.625rem; /* Ajustado para rem */
+            }
+            .movie-card {
+                width: 9rem; /* Ajustado para rem */
             }
             .movie-card img {
                 height: 13.5rem; /* Ajustado para rem (proporcional a 9rem de largura) */
@@ -953,8 +1005,10 @@
                 font-size: 0.875rem; /* Ajustado para rem */
             }
             .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); /* Ajustado para rem */
                 padding: 0 0.5rem; /* Ajustado para rem */
+            }
+            .movie-card {
+                width: 8rem; /* Ajustado para rem */
             }
             .movie-card img {
                 height: 12rem; /* Ajustado para rem */
@@ -1039,9 +1093,8 @@
                 font-size: 2.25rem; /* Ajustado para rem */
                 margin-bottom: 2rem; /* Ajustado para rem */
             }
-            .movie-grid {
-                grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); /* Ajustado para rem */
-                gap: 2.5rem; /* Ajustado para rem */
+            .movie-card {
+                width: 10rem; /* Ajustado para rem */
             }
             .movie-card img {
                 height: 15rem; /* Ajustado para rem (proporcional a 10rem de largura) */
@@ -1137,7 +1190,6 @@
                 </div>
             </div>
             <button onclick="showContentSection('series-section')" aria-label="Ir para a seção Séries">Séries</button>
-            <!-- Novo botão Animes e seu dropdown -->
             <div class="relative genre-button" id="animeButtonContainer">
                 <button id="animeDropdownButton" aria-haspopup="true" aria-expanded="false">Animes</button>
                 <div class="genre-dropdown" id="animeDropdown" role="menu">
@@ -1153,7 +1205,6 @@
                     <button role="menuitem" onclick="handleGenreClick('Terror', 'anime-terror-section')">Terror</button>
                 </div>
             </div>
-            <!-- Botão Dorama e seu dropdown -->
             <div class="relative genre-button" id="doramaButtonContainer">
                 <button id="doramaDropdownButton" aria-haspopup="true" aria-expanded="false">Dorama</button>
                 <div class="genre-dropdown" id="doramaDropdown" role="menu">
@@ -1170,7 +1221,6 @@
                     <button role="menuitem" onclick="handleGenreClick('Ficção Científica', 'dorama-ficcao-cientifica-section')">Ficção Científica</button>
                 </div>
             </div>
-            <!-- Novo botão Novela -->
             <button onclick="showContentSection('novela-section')" aria-label="Ir para a seção Novela">Novela</button>
             <button onclick="showContentSection('minha-lista-section')" aria-label="Ir para a seção Minha Lista">Minha Lista</button>
         </nav>
@@ -1182,216 +1232,365 @@
     <main id="main-site-content">
         <div id="home-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Adicionados Recentemente</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="acao-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Ação</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         
         <div id="aventura-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Aventura</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="comedia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Comédia</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="drama-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Drama</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="ficcao-cientifica-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Ficção Científica</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="fantasia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Fantasia</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="terror-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Terror</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="romance-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Romance</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="suspense-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Suspense</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="thriller-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Thriller</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="documentario-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Documentário</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="guerra-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Guerra</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="animacao-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Gênero: Animação</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
         <div id="series-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Séries</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
-        <!-- Novas seções de Animes por Gênero -->
         <div id="anime-shounen-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Shounen</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-shoujo-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Shoujo</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-seinen-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Seinen</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-isekai-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Isekai</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-vida-escolar-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Vida Escolar</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-acao-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Ação</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-comedia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Comédia</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-fantasia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Fantasia</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-ficcao-cientifica-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Ficção Científica</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="anime-terror-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Anime: Terror</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
 
-        <!-- Novas seções de Dorama por Gênero -->
         <div id="dorama-romance-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Romance</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-comedia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Comédia</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-drama-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Drama</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-historico-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Histórico</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-escolar-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Escolar</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-policial-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Policial</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-suspense-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Suspense</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-terror-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Terror</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-fantasia-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Fantasia</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-medico-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Médico</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
         <div id="dorama-ficcao-cientifica-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Dorama: Ficção Científica</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
-        <!-- Nova seção de Novela -->
         <div id="novela-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Novelas</h2>
-            <div class="movie-grid">
-                <p class="text-gray-400 p-4 text-center w-full">Nenhuma novela encontrada.</p>
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                    <p class="text-gray-400 p-4 text-center w-full">Nenhuma novela encontrada.</p>
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
 
         <div id="minha-lista-section" class="content-section">
             <h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Minha Lista</h2>
-            <div class="movie-grid">
+            <div class="movie-carousel-wrapper">
+                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button>
+                <div class="movie-grid">
+                </div>
+                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button>
             </div>
         </div>
 
@@ -2047,11 +2246,25 @@
         }
     }
 
+    // Função auxiliar para renderizar carrosséis
+    function renderCarousel(containerElement, items, message) {
+        const carouselWrapper = containerElement.querySelector('.movie-carousel-wrapper');
+        const movieGrid = carouselWrapper.querySelector('.movie-grid');
+        
+        let contentHtml = '';
+        if (items.length > 0) {
+            contentHtml += items.map(renderCard).join('');
+        }
+        if (contentHtml === '') {
+            contentHtml = `<p class="text-gray-400 p-4 text-center w-full">${message}</p>`;
+        }
+        movieGrid.innerHTML = contentHtml;
+    }
+
     function renderAllContentSections() {
         // Agora 'allUniqueContentItems' é a fonte principal de dados para evitar duplicações
         
-        const homeGrid = homeSection.querySelector('.movie-grid');
-        homeGrid.innerHTML = homeItems.map(renderCard).join('');
+        renderCarousel(homeSection, homeItems, "Nenhum título adicionado recentemente.");
 
         const allGenres = [
             'Animação', 'Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Fantasia',
@@ -2061,22 +2274,10 @@
             const genreSectionId = `${genre.toLowerCase().replace(/ /g, '-')}-section`;
             const genreSection = document.getElementById(genreSectionId);
             if (genreSection) {
-                const genreGrid = genreSection.querySelector('.movie-grid');
-                let filteredContent = [];
-
-                // IDs de doramas, animes e novelas a serem excluídos das seções de gênero "gerais"
-                filteredContent = allUniqueContentItems.filter(item => 
+                let filteredContent = allUniqueContentItems.filter(item => 
                     item.genero.includes(genre) && !item.isDorama && !item.isAnime && !item.isNovela
                 );
-
-                let contentHtml = '';
-                if (filteredContent.length > 0) {
-                    contentHtml += filteredContent.map(renderCard).join('');
-                }
-                if (contentHtml === '') {
-                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este gênero.</p>`;
-                }
-                genreGrid.innerHTML = contentHtml;
+                renderCarousel(genreSection, filteredContent, `Nenhum título encontrado para este gênero: ${genre}.`);
             }
         });
 
@@ -2089,18 +2290,10 @@
             const animeGenreSectionId = `anime-${genre.toLowerCase().replace(/ /g, '-')}-section`;
             const animeGenreSection = document.getElementById(animeGenreSectionId);
             if (animeGenreSection) {
-                const animeGenreGrid = animeGenreSection.querySelector('.movie-grid');
                 const filteredContent = allUniqueContentItems.filter(item =>
                     item.genero.includes(genre) && item.isAnime // Filtra apenas animes para seções de anime
                 );
-                let contentHtml = '';
-                if (filteredContent.length > 0) {
-                    contentHtml += filteredContent.map(renderCard).join('');
-                }
-                if (contentHtml === '') {
-                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este gênero de Anime.</p>`;
-                }
-                animeGenreGrid.innerHTML = contentHtml;
+                renderCarousel(animeGenreSection, filteredContent, `Nenhum título encontrado para este gênero de Anime: ${genre}.`);
             }
         });
 
@@ -2110,64 +2303,28 @@
             const doramaGenreSectionId = `dorama-${genre.toLowerCase().replace(/ /g, '-')}-section`;
             const doramaGenreSection = document.getElementById(doramaGenreSectionId);
             if (doramaGenreSection) {
-                const doramaGenreGrid = doramaGenreSection.querySelector('.movie-grid');
                 const filteredContent = allUniqueContentItems.filter(item =>
                     item.genero.includes(genre) && item.isDorama // Filtra apenas doramas para seções de dorama
                 );
-                let contentHtml = '';
-                if (filteredContent.length > 0) {
-                    contentHtml += filteredContent.map(renderCard).join('');
-                }
-                if (contentHtml === '') {
-                    contentHtml = `<p class="text-gray-400 p-4 text-center w-full">Nenhum título encontrado para este gênero de Dorama.</p>`;
-                }
-                doramaGenreGrid.innerHTML = contentHtml;
+                renderCarousel(doramaGenreSection, filteredContent, `Nenhum título encontrado para este gênero de Dorama: ${genre}.`);
             }
         });
 
         // Renderiza a seção de novelas
-        const novelaGrid = novelaSection.querySelector('.movie-grid');
         const novelasToDisplay = allUniqueContentItems.filter(item => item.isNovela);
-        let novelaContent = '';
-        if (novelasToDisplay.length > 0) {
-            novelaContent += novelasToDisplay.map(renderCard).join('');
-        }
-        if (novelaContent === '') {
-            novelaContent = `<p class="text-gray-400 p-4 text-center w-full">Nenhuma novela encontrada.</p>`;
-        }
-        novelaGrid.innerHTML = novelaContent;
+        renderCarousel(novelaSection, novelasToDisplay, "Nenhuma novela encontrada.");
     }
 
     function renderSeriesSection() {
-        const seriesGrid = seriesSection.querySelector('.movie-grid');
-        // Filtra todos os doramas, animes e novelas para não aparecerem na seção Séries.
         const seriesToDisplay = allUniqueContentItems.filter(item => 
             item.isSerie && !item.isDorama && !item.isAnime && !item.isNovela
         );
-
-        let content = '';
-        if (seriesToDisplay.length > 0) {
-            content += seriesToDisplay.map(renderCard).join('');
-        }
-        if (content === '') {
-            content = `<p class="text-gray-400 p-4 text-center w-full">Nenhuma série encontrada.</p>`;
-        }
-        seriesGrid.innerHTML = content;
+        renderCarousel(seriesSection, seriesToDisplay, "Nenhuma série encontrada.");
     }
 
     function renderMinhaListaSection() {
-        const minhaListaGrid = minhaListaSection.querySelector('.movie-grid');
-        // Usa allUniqueContentItems para filtrar, garantindo que não haja duplicatas
         const favoritadosToRender = allUniqueContentItems.filter(item => favoritos.includes(item.id));
-        
-        let minhaListaContent = '';
-        if (favoritadosToRender.length > 0) {
-            minhaListaContent += favoritadosToRender.map(renderCard).join('');
-        }
-        if (minhaListaContent === '') {
-            minhaListaContent = `<p class="text-gray-400 p-4 text-center w-full">Você não tem títulos na sua lista.</p>`;
-        }
-        minhaListaGrid.innerHTML = minhaListaContent;
+        renderCarousel(minhaListaSection, favoritadosToRender, "Você não tem títulos na sua lista.");
     }
 
     // Modificada para aceitar parâmetros para reuso
@@ -2229,6 +2386,16 @@
                 <p>${item.ano} | ${item.genero}</p>
             </div>
         `;
+    }
+
+    // Nova função para rolagem horizontal dos carrosséis
+    function scrollMovies(button, direction) {
+        const movieGrid = button.parentNode.querySelector('.movie-grid');
+        const scrollAmount = movieGrid.clientWidth * 0.8; // Rola 80% da largura visível
+        movieGrid.scrollBy({
+            left: direction * scrollAmount,
+            behavior: 'smooth'
+        });
     }
 
     function openDetailsOverlay(id) {
@@ -2417,10 +2584,10 @@
             searchResultsSection.id = 'search-results-section';
             searchResultsSection.classList.add('content-section');
             mainSiteContent.appendChild(searchResultsSection);
+            // Adiciona o wrapper do carrossel e botões de rolagem
+            searchResultsSection.innerHTML = `<h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Resultados da Pesquisa para "${searchTerm}"</h2><div class="movie-carousel-wrapper"><button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">&#x2329;</button><div class="movie-grid"></div><button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">&#x232A;</button></div>`;
         }
         
-        searchResultsSection.innerHTML = `<h2 style="color: white; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5625rem; text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.7);">Resultados da Pesquisa para "${searchTerm}"</h2><div class="movie-grid"></div>`;
-
         const searchGrid = searchResultsSection.querySelector('.movie-grid');
         
         const resultadosFilmes = allUniqueContentItems.filter(item =>
