@@ -2274,16 +2274,16 @@
         let itemToPlay = null;
 
         // Procura o item na lista unificada de conteúdo
-        const foundMainItem = allUniqueContentItems.find(item => item.id === id);
+        const foundMainItem = allUniqueContentItems.find(contentItem => contentItem.id === id);
 
-        if (foundMainItem) {
+        if (foundMainItem) { // Se for um filme/série principal
             if (foundMainItem.isSerie && foundMainItem.episodios) {
-                // Se o ID é de uma série, mas a chamada é para um episódio específico (ex: clicou num card de episódio)
-                const episodeFound = foundMainItem.episodios.find(ep => ep.id === id);
+                // Se o ID é de uma série, verifica se a chamada é para um episódio específico
+                const episodeFound = foundMainItem.episodios.find(episodeItem => episodeItem.id === id);
                 if (episodeFound) {
-                    itemToPlay = episodeFound; // É um episódio
+                    itemToPlay = episodeFound; // É um episódio específico
                 } else {
-                    // Se o ID é da série, mas não é um ID de episódio específico, reproduz o primeiro episódio
+                    // Se o ID é da série, mas não de um episódio específico, reproduz o primeiro episódio
                     if (foundMainItem.episodios.length > 0) {
                         itemToPlay = foundMainItem.episodios[0];
                     } else {
@@ -2296,9 +2296,9 @@
                 itemToPlay = foundMainItem;
             }
         } else {
-            // Se o ID não é de um item principal, tenta encontrar um episódio dentro do currentDetailedItem
+            // Se o ID não é de um item principal, tenta encontrar um episódio dentro do item detalhado atual
             if (currentDetailedItem && currentDetailedItem.isSerie && currentDetailedItem.episodios) {
-                const episodeFromDetailed = currentDetailedItem.episodios.find(ep => ep.id === id);
+                const episodeFromDetailed = currentDetailedItem.episodios.find(episodeItem => episodeItem.id === id);
                 if (episodeFromDetailed) {
                     itemToPlay = episodeFromDetailed;
                 }
@@ -2310,8 +2310,11 @@
             return;
         }
         
+        // Garante que o título seja uma string, mesmo se for undefined
+        const videoTitle = itemToPlay.titulo || '';
+
         playerContentArea.innerHTML = `
-            <iframe src="${itemToPlay.video}" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" allowfullscreen loading="lazy" class="w-full h-full rounded-xl" title="Player de ${item.titulo}" allow="autoplay"></iframe>
+            <iframe src="${itemToPlay.video}" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="no-referrer-when-downgrade" allowfullscreen loading="lazy" class="w-full h-full rounded-xl" title="Player de ${videoTitle}" allow="autoplay"></iframe>
         `;
         playerOverlay.classList.add('active');
         detailsOverlay.classList.remove('active');
