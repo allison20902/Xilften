@@ -1,28 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <!-- OTIMIZAÇÃO PRINCIPAL PARA DISPOSITIVOS MÓVEIS (INCLUINDO IPHONE 13) -->
-    <!-- Define a largura da viewport para a largura do dispositivo e a escala inicial para 1.0. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <title>Xilften</title>
-    <link rel="icon" type="image/png" href="https://img.freepik.com/vetores-premium/x-toque-de-pincel-vermelho-fundo-preto-simbolo-vetorial-abstrato-contraste-de-cores-em-bold_213497-4271.jpg">
-    <meta name="robots" content="noindex">
-    <meta name="google-site-verification" content="Yb0aZPbgrOeT4a7u7ucjkvTXt5Jm8_wMAN3LLWbfLxs" />
-
-    <!-- OTIMIZAÇÃO: Pré-conexão para recursos externos para carregamento mais rápido -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://wallpapers.com">
-    <link rel="dns-prefetch" href="https://wallpapers.com">
-    <link rel="preconnect" href="https://cdn-icons-png.flaticon.com">
-    <link rel="dns-prefetch" href="https://cdn-icons-png.flaticon.com">
-    <!-- Adicionando Font Awesome para o ícone do hambúrguer -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2k6+zQyJ+wM4oP+3wW1K8cQo8lK30Wl30Wl30Wl30w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- OTIMIZAÇÃO: Carregamento assíncrono para o script do Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com" async></script>
-    <style>
+<meta charset="utf-8"/>
+<!-- OTIMIZAÇÃO PRINCIPAL PARA DISPOSITIVOS MÓVEIS (INCLUINDO IPHONE 13) -->
+<!-- Define a largura da viewport para a largura do dispositivo e a escala inicial para 1.0. -->
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>Xilften</title>
+<link href="https://img.freepik.com/vetores-premium/x-toque-de-pincel-vermelho-fundo-preto-simbolo-vetorial-abstrato-contraste-de-cores-em-bold_213497-4271.jpg" rel="icon" type="image/png"/>
+<meta content="noindex" name="robots"/>
+<meta content="Yb0aZPbgrOeT4a7u7ucjkvTXt5Jm8_wMAN3LLWbfLxs" name="google-site-verification">
+<!-- OTIMIZAÇÃO: Pré-conexão para recursos externos para carregamento mais rápido -->
+<link href="https://cdn.tailwindcss.com" rel="preconnect"/>
+<link href="https://cdn.tailwindcss.com" rel="dns-prefetch"/>
+<link href="https://wallpapers.com" rel="preconnect"/>
+<link href="https://wallpapers.com" rel="dns-prefetch"/>
+<link href="https://cdn-icons-png.flaticon.com" rel="preconnect"/>
+<link href="https://cdn-icons-png.flaticon.com" rel="dns-prefetch"/>
+<!-- Adicionando Font Awesome para o ícone do hambúrguer -->
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" rel="stylesheet" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2k6+zQyJ+wM4oP+3wW1K8cQo8lK30Wl30Wl30Wl30w==">
+<!-- OTIMIZAÇÃO: Carregamento assíncrono para o script do Tailwind CSS -->
+<script async="" src="https://cdn.tailwindcss.com"></script>
+<style>
         /* CSS VARIABLES for easy customization */
         :root {
             --cor-bg-dark: #000;
@@ -1842,607 +1841,575 @@
            }
        }
     </style>
-</head>
+</link></meta></head>
 <body>
-
-<div id="telaLogin" class="tela-principal" role="main" aria-label="Tela de Login">
-    <!-- NEW: Using a div with a background image instead of an iframe -->
-    <div id="background-image"></div>
-    <div id="loginBox">
-        <h1>Xilften</h1>
-        <!-- O container flex-col e w-full centraliza os inputs e o botão -->
-        <div class="flex flex-col items-center">
-            <div class="campo">
-                <input type="text" id="usuario" placeholder="Login" autocomplete="username" aria-label="Login"/>
-            </div>
-            <div class="campo">
-                <input type="password" id="senha" placeholder="Senha" autocomplete="current-password" aria-label="Senha"/>
-            </div>
-            <button id="btnEntrar" aria-live="polite">Entrar</button>
-        </div>
-        <div class="erro" id="erroMsg" role="alert" aria-live="assertive"></div>
-    </div>
+<div aria-label="Tela de Login" class="tela-principal" id="telaLogin" role="main">
+<!-- NEW: Using a div with a background image instead of an iframe -->
+<div id="background-image"></div>
+<div id="loginBox">
+<h1>Xilften</h1>
+<!-- O container flex-col e w-full centraliza os inputs e o botão -->
+<div class="flex flex-col items-center">
+<div class="campo">
+<input aria-label="Login" autocomplete="username" id="usuario" placeholder="Login" type="text"/>
 </div>
-
-<div id="telaPerfis" class="tela-principal" role="main" aria-label="Tela de seleção de perfis">
-    <div id="containerPerfis" tabindex="0" aria-label="Lista de perfis"></div>
-    <button onclick="logout()" aria-label="Voltar para a tela de login">Voltar</button>
+<div class="campo">
+<input aria-label="Senha" autocomplete="current-password" id="senha" placeholder="Senha" type="password"/>
 </div>
-
-<div id="perfilSelecionado" class="tela-principal" role="main" aria-label="Perfil selecionado">
-    <img src="" alt="Foto do perfil selecionado" id="fotoPerfilSelecionado" />
-    <h2 id="nomePerfilSelecionado"></h2>
-    <button onclick="entrarNoSite()" style="display: none;" aria-label="Entrar no site">Entrar no Site</button>
-    <button onclick="voltarPerfis()" style="display: none;" aria-label="Voltar para seleção de perfis">Voltar para Perfis</button>
+<button aria-live="polite" id="btnEntrar">Entrar</button>
 </div>
-
-<div id="sitePrincipal" class="tela-principal">
-    <header class="header-site">
-        <!-- NEW: Contêiner para o menu de hambúrguer e a logo -->
-        <div class="mobile-header-left">
-            <div class="hamburger-menu" id="hamburgerMenu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="logo">Xilften</div>
-        </div>
-        <nav id="main-nav">
-            <button onclick="showContentSection('home-section')" aria-label="Ir para a seção Início">Início</button>
-            <div class="relative genre-button" id="genreButtonContainer">
-                <button id="genreDropdownButton" aria-haspopup="true" aria-expanded="false">Gênero</button>
-                <div class="genre-dropdown" id="genreDropdown" role="menu">
-                    <button role="menuitem" onclick="handleGenreClick('Animação', 'animacao-section')">Animação</button>
-                    <button role="menuitem" onclick="handleGenreClick('Ação', 'acao-section')">Ação</button>
-                    <button role="menuitem" onclick="handleGenreClick('Aventura', 'aventura-section')">Aventura</button>
-                    <button role="menuitem" onclick="handleGenreClick('Comédia', 'comedia-section')">Comédia</button>
-                    <button role="menuitem" onclick="handleGenreClick('Drama', 'drama-section')">Drama</button>
-                    <button role="menuitem" onclick="handleGenreClick('Ficção Científica', 'ficcao-cientifica-section')">Ficção Científica</button>
-                    <button role="menuitem" onclick="handleGenreClick('Fantasia', 'fantasia-section')">Fantasia</button>
-                    <button role="menuitem" onclick="handleGenreClick('Terror', 'terror-section')">Terror</button>
-                    <button role="menuitem" onclick="handleGenreClick('Romance', 'romance-section')">Romance</button>
-                    <button role="menuitem" onclick="handleGenreClick('Suspense', 'suspense-section')">Suspense</button>
-                    <button role="menuitem" onclick="handleGenreClick('Thriller', 'thriller-section')">Thriller</button>
-                    <button role="menuitem" onclick="handleGenreClick('Documentário', 'documentario-section')">Documentário</button>
-                    <button role="menuitem" onclick="handleGenreClick('Guerra', 'guerra-section')">Guerra</button>
-                </div>
-            </div>
-            <button onclick="showContentSection('series-section')" aria-label="Ir para a seção Séries">Séries</button>
-            <div class="relative genre-button" id="animeButtonContainer">
-                <button id="animeDropdownButton" aria-haspopup="true" aria-expanded="false">Animes</button>
-                <div class="genre-dropdown" id="animeDropdown" role="menu">
-                    <button role="menuitem" onclick="handleGenreClick('Shounen', 'anime-shounen-section')">Shounen</button>
-                    <button role="menuitem" onclick="handleGenreClick('Shoujo', 'anime-shoujo-section')">Shoujo</button>
-                    <button role="menuitem" onclick="handleGenreClick('Seinen', 'anime-seinen-section')">Seinen</button>
-                    <button role="menuitem" onclick="handleGenreClick('Isekai', 'anime-isekai-section')">Isekai</button>
-                    <button role="menuitem" onclick="handleGenreClick('Vida Escolar', 'anime-vida-escolar-section')">Vida Escolar</button>
-                    <button role="menuitem" onclick="handleGenreClick('Ação', 'anime-acao-section')">Ação</button>
-                    <button role="menuitem" onclick="handleGenreClick('Comédia', 'anime-comedia-section')">Comédia</button>
-                    <button role="menuitem" onclick="handleGenreClick('Fantasia', 'anime-fantasia-section')">Fantasia</button>
-                    <button role="menuitem" onclick="handleGenreClick('Ficção Científica', 'anime-ficcao-cientifica-section')">Ficção Científica</button>
-                    <button role="menuitem" onclick="handleGenreClick('Terror', 'anime-terror-section')">Terror</button>
-                </div>
-            </div>
-            <div class="relative genre-button" id="doramaButtonContainer">
-                <button id="doramaDropdownButton" aria-haspopup="true" aria-expanded="false">Dorama</button>
-                <div class="genre-dropdown" id="doramaDropdown" role="menu">
-                    <button role="menuitem" onclick="handleGenreClick('Romance', 'dorama-romance-section')">Romance</button>
-                    <button role="menuitem" onclick="handleGenreClick('Comédia', 'dorama-comedia-section')">Comédia</button>
-                    <button role="menuitem" onclick="handleGenreClick('Drama', 'dorama-drama-section')">Drama</button>
-                    <button role="menuitem" onclick="handleGenreClick('Histórico', 'dorama-historico-section')">Histórico</button>
-                    <button role="menuitem" onclick="handleGenreClick('Escolar', 'dorama-escolar-section')">Escolar</button>
-                    <button role="menuitem" onclick="handleGenreClick('Policial', 'dorama-policial-section')">Policial</button>
-                    <button role="menuitem" onclick="handleGenreClick('Suspense', 'dorama-suspense-section')">Suspense</button>
-                    <button role="menuitem" onclick="handleGenreClick('Terror', 'dorama-terror-section')">Terror</button>
-                    <button role="menuitem" onclick="handleGenreClick('Fantasia', 'dorama-fantasia-section')">Fantasia</button>
-                    <button role="menuitem" onclick="handleGenreClick('Médico', 'dorama-medico-section')">Médico</button>
-                    <button role="menuitem" onclick="handleGenreClick('Ficção Científica', 'dorama-ficcao-cientifica-section')">Ficção Científica</button>
-                </div>
-            </div>
-            <button onclick="showContentSection('novela-section')" aria-label="Ir para a seção Novela">Novela</button>
-            <button onclick="showContentSection('minha-lista-section')" aria-label="Ir para a seção Minha Lista">Minha Lista</button>
-        </nav>
-        <div class="search-profile-area">
-            <input id="searchInput" type="text" placeholder="Buscar..." oninput="pesquisarFilmes()" aria-label="Campo de busca de filmes e séries" />
-            <div id="profileIcon" onclick="voltarParaPerfisDoSite()" aria-label="Voltar para seleção de perfis"></div>
-        </div>
-    </header>
-
-    <!-- MENU DE NAVEGAÇÃO LATERAL (MOBILE) -->
-    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-    <nav class="mobile-nav-menu" id="mobileNavMenu">
-        <button onclick="showContentSectionAndCloseMenu('home-section')">Início</button>
-        <div class="nav-dropdown-btn" onclick="toggleMobileDropdown(this)">
+<div aria-live="assertive" class="erro" id="erroMsg" role="alert"></div>
+</div>
+</div>
+<div aria-label="Tela de seleção de perfis" class="tela-principal" id="telaPerfis" role="main">
+<div aria-label="Lista de perfis" id="containerPerfis" tabindex="0"></div>
+<button aria-label="Voltar para a tela de login" onclick="logout()">Voltar</button>
+</div>
+<div aria-label="Perfil selecionado" class="tela-principal" id="perfilSelecionado" role="main">
+<img alt="Foto do perfil selecionado" id="fotoPerfilSelecionado" src=""/>
+<h2 id="nomePerfilSelecionado"></h2>
+<button aria-label="Entrar no site" onclick="entrarNoSite()" style="display: none;">Entrar no Site</button>
+<button aria-label="Voltar para seleção de perfis" onclick="voltarPerfis()" style="display: none;">Voltar para Perfis</button>
+</div>
+<div class="tela-principal" id="sitePrincipal">
+<header class="header-site">
+<!-- NEW: Contêiner para o menu de hambúrguer e a logo -->
+<div class="mobile-header-left">
+<div class="hamburger-menu" id="hamburgerMenu">
+<i class="fas fa-bars"></i>
+</div>
+<div class="logo">Xilften</div>
+</div>
+<nav id="main-nav">
+<button aria-label="Ir para a seção Início" onclick="showContentSection('home-section')">Início</button>
+<div class="relative genre-button" id="genreButtonContainer">
+<button aria-expanded="false" aria-haspopup="true" id="genreDropdownButton">Gênero</button>
+<div class="genre-dropdown" id="genreDropdown" role="menu">
+<button onclick="handleGenreClick('Animação', 'animacao-section')" role="menuitem">Animação</button>
+<button onclick="handleGenreClick('Ação', 'acao-section')" role="menuitem">Ação</button>
+<button onclick="handleGenreClick('Aventura', 'aventura-section')" role="menuitem">Aventura</button>
+<button onclick="handleGenreClick('Comédia', 'comedia-section')" role="menuitem">Comédia</button>
+<button onclick="handleGenreClick('Drama', 'drama-section')" role="menuitem">Drama</button>
+<button onclick="handleGenreClick('Ficção Científica', 'ficcao-cientifica-section')" role="menuitem">Ficção Científica</button>
+<button onclick="handleGenreClick('Fantasia', 'fantasia-section')" role="menuitem">Fantasia</button>
+<button onclick="handleGenreClick('Terror', 'terror-section')" role="menuitem">Terror</button>
+<button onclick="handleGenreClick('Romance', 'romance-section')" role="menuitem">Romance</button>
+<button onclick="handleGenreClick('Suspense', 'suspense-section')" role="menuitem">Suspense</button>
+<button onclick="handleGenreClick('Thriller', 'thriller-section')" role="menuitem">Thriller</button>
+<button onclick="handleGenreClick('Documentário', 'documentario-section')" role="menuitem">Documentário</button>
+<button onclick="handleGenreClick('Guerra', 'guerra-section')" role="menuitem">Guerra</button>
+</div>
+</div>
+<button aria-label="Ir para a seção Séries" onclick="showContentSection('series-section')">Séries</button>
+<div class="relative genre-button" id="animeButtonContainer">
+<button aria-expanded="false" aria-haspopup="true" id="animeDropdownButton">Animes</button>
+<div class="genre-dropdown" id="animeDropdown" role="menu">
+<button onclick="handleGenreClick('Shounen', 'anime-shounen-section')" role="menuitem">Shounen</button>
+<button onclick="handleGenreClick('Shoujo', 'anime-shoujo-section')" role="menuitem">Shoujo</button>
+<button onclick="handleGenreClick('Seinen', 'anime-seinen-section')" role="menuitem">Seinen</button>
+<button onclick="handleGenreClick('Isekai', 'anime-isekai-section')" role="menuitem">Isekai</button>
+<button onclick="handleGenreClick('Vida Escolar', 'anime-vida-escolar-section')" role="menuitem">Vida Escolar</button>
+<button onclick="handleGenreClick('Ação', 'anime-acao-section')" role="menuitem">Ação</button>
+<button onclick="handleGenreClick('Comédia', 'anime-comedia-section')" role="menuitem">Comédia</button>
+<button onclick="handleGenreClick('Fantasia', 'anime-fantasia-section')" role="menuitem">Fantasia</button>
+<button onclick="handleGenreClick('Ficção Científica', 'anime-ficcao-cientifica-section')" role="menuitem">Ficção Científica</button>
+<button onclick="handleGenreClick('Terror', 'anime-terror-section')" role="menuitem">Terror</button>
+</div>
+</div>
+<div class="relative genre-button" id="doramaButtonContainer">
+<button aria-expanded="false" aria-haspopup="true" id="doramaDropdownButton">Dorama</button>
+<div class="genre-dropdown" id="doramaDropdown" role="menu">
+<button onclick="handleGenreClick('Romance', 'dorama-romance-section')" role="menuitem">Romance</button>
+<button onclick="handleGenreClick('Comédia', 'dorama-comedia-section')" role="menuitem">Comédia</button>
+<button onclick="handleGenreClick('Drama', 'dorama-drama-section')" role="menuitem">Drama</button>
+<button onclick="handleGenreClick('Histórico', 'dorama-historico-section')" role="menuitem">Histórico</button>
+<button onclick="handleGenreClick('Escolar', 'dorama-escolar-section')" role="menuitem">Escolar</button>
+<button onclick="handleGenreClick('Policial', 'dorama-policial-section')" role="menuitem">Policial</button>
+<button onclick="handleGenreClick('Suspense', 'dorama-suspense-section')" role="menuitem">Suspense</button>
+<button onclick="handleGenreClick('Terror', 'dorama-terror-section')" role="menuitem">Terror</button>
+<button onclick="handleGenreClick('Fantasia', 'dorama-fantasia-section')" role="menuitem">Fantasia</button>
+<button onclick="handleGenreClick('Médico', 'dorama-medico-section')" role="menuitem">Médico</button>
+<button onclick="handleGenreClick('Ficção Científica', 'dorama-ficcao-cientifica-section')" role="menuitem">Ficção Científica</button>
+</div>
+</div>
+<button aria-label="Ir para a seção Novela" onclick="showContentSection('novela-section')">Novela</button>
+<button aria-label="Ir para a seção Minha Lista" onclick="showContentSection('minha-lista-section')">Minha Lista</button>
+</nav>
+<div class="search-profile-area">
+<input aria-label="Campo de busca de filmes e séries" id="searchInput" oninput="pesquisarFilmes()" placeholder="Buscar..." type="text"/>
+<div aria-label="Voltar para seleção de perfis" id="profileIcon" onclick="voltarParaPerfisDoSite()"></div>
+</div>
+</header>
+<!-- MENU DE NAVEGAÇÃO LATERAL (MOBILE) -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+<nav class="mobile-nav-menu" id="mobileNavMenu">
+<button onclick="showContentSectionAndCloseMenu('home-section')">Início</button>
+<div class="nav-dropdown-btn" onclick="toggleMobileDropdown(this)">
             Gênero
             <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="nav-dropdown-content">
-            <button onclick="showContentSectionAndCloseMenu('animacao-section')">Animação</button>
-            <button onclick="showContentSectionAndCloseMenu('acao-section')">Ação</button>
-            <button onclick="showContentSectionAndCloseMenu('aventura-section')">Aventura</button>
-            <button onclick="showContentSectionAndCloseMenu('comedia-section')">Comédia</button>
-            <button onclick="showContentSectionAndCloseMenu('drama-section')">Drama</button>
-            <button onclick="showContentSectionAndCloseMenu('ficcao-cientifica-section')">Ficção Científica</button>
-            <button onclick="showContentSectionAndCloseMenu('fantasia-section')">Fantasia</button>
-            <button onclick="showContentSectionAndCloseMenu('terror-section')">Terror</button>
-            <button onclick="showContentSectionAndCloseMenu('romance-section')">Romance</button>
-            <button onclick="showContentSectionAndCloseMenu('suspense-section')">Suspense</button>
-            <button onclick="showContentSectionAndCloseMenu('thriller-section')">Thriller</button>
-            <button onclick="showContentSectionAndCloseMenu('documentario-section')">Documentário</button>
-            <button onclick="showContentSectionAndCloseMenu('guerra-section')">Guerra</button>
-        </div>
-        <button onclick="showContentSectionAndCloseMenu('series-section')">Séries</button>
-        <div class="nav-dropdown-btn" onclick="toggleMobileDropdown(this)">
+</div>
+<div class="nav-dropdown-content">
+<button onclick="showContentSectionAndCloseMenu('animacao-section')">Animação</button>
+<button onclick="showContentSectionAndCloseMenu('acao-section')">Ação</button>
+<button onclick="showContentSectionAndCloseMenu('aventura-section')">Aventura</button>
+<button onclick="showContentSectionAndCloseMenu('comedia-section')">Comédia</button>
+<button onclick="showContentSectionAndCloseMenu('drama-section')">Drama</button>
+<button onclick="showContentSectionAndCloseMenu('ficcao-cientifica-section')">Ficção Científica</button>
+<button onclick="showContentSectionAndCloseMenu('fantasia-section')">Fantasia</button>
+<button onclick="showContentSectionAndCloseMenu('terror-section')">Terror</button>
+<button onclick="showContentSectionAndCloseMenu('romance-section')">Romance</button>
+<button onclick="showContentSectionAndCloseMenu('suspense-section')">Suspense</button>
+<button onclick="showContentSectionAndCloseMenu('thriller-section')">Thriller</button>
+<button onclick="showContentSectionAndCloseMenu('documentario-section')">Documentário</button>
+<button onclick="showContentSectionAndCloseMenu('guerra-section')">Guerra</button>
+</div>
+<button onclick="showContentSectionAndCloseMenu('series-section')">Séries</button>
+<div class="nav-dropdown-btn" onclick="toggleMobileDropdown(this)">
             Animes
             <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="nav-dropdown-content">
-            <button onclick="showContentSectionAndCloseMenu('anime-shounen-section')">Shounen</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-shoujo-section')">Shoujo</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-seinen-section')">Seinen</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-isekai-section')">Isekai</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-vida-escolar-section')">Vida Escolar</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-acao-section')">Ação</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-comedia-section')">Comédia</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-fantasia-section')">Fantasia</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-ficcao-cientifica-section')">Ficção Científica</button>
-            <button onclick="showContentSectionAndCloseMenu('anime-terror-section')">Terror</button>
-        </div>
-        <div class="nav-dropdown-btn" onclick="toggleMobileDropdown(this)">
+</div>
+<div class="nav-dropdown-content">
+<button onclick="showContentSectionAndCloseMenu('anime-shounen-section')">Shounen</button>
+<button onclick="showContentSectionAndCloseMenu('anime-shoujo-section')">Shoujo</button>
+<button onclick="showContentSectionAndCloseMenu('anime-seinen-section')">Seinen</button>
+<button onclick="showContentSectionAndCloseMenu('anime-isekai-section')">Isekai</button>
+<button onclick="showContentSectionAndCloseMenu('anime-vida-escolar-section')">Vida Escolar</button>
+<button onclick="showContentSectionAndCloseMenu('anime-acao-section')">Ação</button>
+<button onclick="showContentSectionAndCloseMenu('anime-comedia-section')">Comédia</button>
+<button onclick="showContentSectionAndCloseMenu('anime-fantasia-section')">Fantasia</button>
+<button onclick="showContentSectionAndCloseMenu('anime-ficcao-cientifica-section')">Ficção Científica</button>
+<button onclick="showContentSectionAndCloseMenu('anime-terror-section')">Terror</button>
+</div>
+<div class="nav-dropdown-btn" onclick="toggleMobileDropdown(this)">
             Dorama
             <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="nav-dropdown-content">
-            <button onclick="showContentSectionAndCloseMenu('dorama-romance-section')">Romance</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-comedia-section')">Comédia</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-drama-section')">Drama</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-historico-section')">Histórico</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-escolar-section')">Escolar</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-policial-section')">Policial</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-suspense-section')">Suspense</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-terror-section')">Terror</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-fantasia-section')">Fantasia</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-medico-section')">Médico</button>
-            <button onclick="showContentSectionAndCloseMenu('dorama-ficcao-cientifica-section')">Ficção Científica</button>
-        </div>
-        <button onclick="showContentSectionAndCloseMenu('novela-section')">Novela</button>
-        <button onclick="showContentSectionAndCloseMenu('minha-lista-section')">Minha Lista</button>
-    </nav>
-    <main id="main-site-content">
-        <!-- A seção "Continuar Assistindo" agora está escondida por padrão e é ativada apenas se houver itens -->
-        <div id="hero-banner-container">
-            <!-- Os itens do hero banner serão injetados aqui via JavaScript -->
-        </div>
-
-        <div id="continue-watching-section" class="content-section">
-            <h2>Continuar Assistindo</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid" id="continueWatchingGrid">
-                    <!-- Cards de 'Continuar Assistindo' serão renderizados aqui pelo JS -->
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="home-section" class="content-section">
-            <h2>Adicionados Recentemente</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="acao-section" class="content-section">
-            <h2>Gênero: Ação</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        
-        <div id="aventura-section" class="content-section">
-            <h2>Gênero: Aventura</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="comedia-section" class="content-section">
-            <h2>Gênero: Comédia</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="drama-section" class="content-section">
-            <h2>Gênero: Drama</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="ficcao-cientifica-section" class="content-section">
-            <h2>Gênero: Ficção Científica</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="fantasia-section" class="content-section">
-            <h2>Gênero: Fantasia</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="terror-section" class="content-section">
-            <h2>Gênero: Terror</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="romance-section" class="content-section">
-            <h2>Gênero: Romance</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="suspense-section" class="content-section">
-            <h2>Gênero: Suspense</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="thriller-section" class="content-section">
-            <h2>Gênero: Thriller</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="documentario-section" class="content-section">
-            <h2>Gênero: Documentário</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="guerra-section" class="content-section">
-            <h2>Gênero: Guerra</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="animacao-section" class="content-section">
-            <h2>Gênero: Animação</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="series-section" class="content-section">
-            <h2>Séries</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="anime-shounen-section" class="content-section">
-            <h2>Anime: Shounen</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-shoujo-section" class="content-section">
-            <h2>Anime: Shoujo</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-seinen-section" class="content-section">
-            <h2>Anime: Seinen</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-isekai-section" class="content-section">
-            <h2>Anime: Isekai</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-vida-escolar-section" class="content-section">
-            <h2>Anime: Vida Escolar</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-acao-section" class="content-section">
-            <h2>Anime: Ação</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-comedia-section" class="content-section">
-            <h2>Anime: Comédia</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-fantasia-section" class="content-section">
-            <h2>Anime: Fantasia</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-ficcao-cientifica-section" class="content-section">
-            <h2>Anime: Ficção Científica</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="anime-terror-section" class="content-section">
-            <h2>Anime: Terror</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-
-        <div id="dorama-romance-section" class="content-section">
-            <h2>Dorama: Romance</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-comedia-section" class="content-section">
-            <h2>Dorama: Comédia</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-drama-section" class="content-section">
-            <h2>Dorama: Drama</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-historico-section" class="content-section">
-            <h2>Dorama: Histórico</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-escolar-section" class="content-section">
-            <h2>Dorama: Escolar</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-policial-section" class="content-section">
-            <h2>Dorama: Policial</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-suspense-section" class="content-section">
-            <h2>Dorama: Suspense</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-terror-section" class="content-section">
-            <h2>Dorama: Terror</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-fantasia-section" class="content-section">
-            <h2>Dorama: Fantasia</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-medico-section" class="content-section">
-            <h2>Dorama: Médico</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-        <div id="dorama-ficcao-cientifica-section" class="content-section">
-            <h2>Dorama: Ficção Científica</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="novela-section" class="content-section">
-            <h2>Novelas</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                    <p class="text-gray-400 p-4 text-center w-full">Nenhuma novela encontrada.</p>
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-
-        <div id="minha-lista-section" class="content-section">
-            <h2>Minha Lista</h2>
-            <div class="movie-carousel-wrapper">
-                <button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
-                <div class="movie-grid">
-                </div>
-                <button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
-            </div>
-        </div>
-
-        <div id="detailsOverlay" class="overlay">
-            <div class="details-content">
-                <button class="close-button" onclick="closeDetailsOverlay()" aria-label="Fechar detalhes">×</button>
-                <div id="detailsContentArea">
-                </div>
-                <button class="bg-[#e50914] hover:bg-[#b20710] px-6 py-3 rounded text-white text-lg font-semibold mt-4" id="playButtonDetailsOverlay">Assistir</button>
-            </div>
-        </div>
-
-        <div id="playerOverlay" class="overlay">
-            <div class="player-content">
-                <div class="player-header">
-                    <button class="close-button back-to-details-button" onclick="closePlayerOverlay()" aria-label="Fechar player">Fechar</button>
-                    <h2 id="mediaTitulo" class="text-xl font-bold ml-4"></h2>
-                </div>
-                <div id="playerContentArea">
-                    <!-- OTIMIZAÇÃO: Adiciona loading="lazy" e outras propriedades para iframes -->
-                    </div>
-                <div class="player-controls">
-                    <div class="player-buttons-left">
-                        <button id="prevEpisodeBtn" onclick="playPrevEpisode()">Voltar Episódio</button>
-                        <button id="nextEpisodeBtn" onclick="playNextEpisode()">Próximo Episódio</button>
-                    </div>
-                    <div class="player-buttons-right">
-                        <button id="prevSeasonBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onclick="playPrevSeason()">Temporada Anterior</button>
-                        <button id="nextSeasonBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onclick="playNextSeason()">Próxima Temporada</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="episodiosOverlay" class="overlay">
-            <div id="episodiosContent">
-                <button class="close-button" onclick="closeEpisodiosOverlay()" aria-label="Voltar para detalhes da série">×</button>
-                <h2 id="episodiosTitulo"></h2>
-                <div class="season-buttons" id="episodiosSeasonButtons"></div>
-                <div id="episodios-container-horizontal">
-                </div>
-            </div>
-        </div>
-    </main>
 </div>
-
-<div id="modalFundo" aria-modal="true" role="dialog" aria-labelledby="modalTitulo" tabindex="-1">
-    <div id="modal">
-        <h2 id="modalTitulo">Adicionar Perfil</h2>
-        <input type="text" id="inputNomePerfil" placeholder="Nome do perfil" autocomplete="off" aria-label="Nome do perfil" />
-        <input type="file" id="inputFotoPerfil" accept="image/*" aria-label="Foto do perfil" />
-        <div class="modal-erro" id="modalErro"></div>
-        <div>
-            <button id="btnSalvar">Guardar</button>
-            <button onclick="fecharModal()">Cancelar</button>
-        </div>
-    </div>
+<div class="nav-dropdown-content">
+<button onclick="showContentSectionAndCloseMenu('dorama-romance-section')">Romance</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-comedia-section')">Comédia</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-drama-section')">Drama</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-historico-section')">Histórico</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-escolar-section')">Escolar</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-policial-section')">Policial</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-suspense-section')">Suspense</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-terror-section')">Terror</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-fantasia-section')">Fantasia</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-medico-section')">Médico</button>
+<button onclick="showContentSectionAndCloseMenu('dorama-ficcao-cientifica-section')">Ficção Científica</button>
 </div>
-
+<button onclick="showContentSectionAndCloseMenu('novela-section')">Novela</button>
+<button onclick="showContentSectionAndCloseMenu('minha-lista-section')">Minha Lista</button>
+</nav>
+<main id="main-site-content">
+<!-- A seção "Continuar Assistindo" agora está escondida por padrão e é ativada apenas se houver itens -->
+<div id="hero-banner-container">
+<!-- Os itens do hero banner serão injetados aqui via JavaScript -->
+</div>
+<div class="content-section" id="continue-watching-section">
+<h2>Continuar Assistindo</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid" id="continueWatchingGrid">
+<!-- Cards de 'Continuar Assistindo' serão renderizados aqui pelo JS -->
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="home-section">
+<h2>Adicionados Recentemente</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="acao-section">
+<h2>Gênero: Ação</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="aventura-section">
+<h2>Gênero: Aventura</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="comedia-section">
+<h2>Gênero: Comédia</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="drama-section">
+<h2>Gênero: Drama</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="ficcao-cientifica-section">
+<h2>Gênero: Ficção Científica</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="fantasia-section">
+<h2>Gênero: Fantasia</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="terror-section">
+<h2>Gênero: Terror</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="romance-section">
+<h2>Gênero: Romance</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="suspense-section">
+<h2>Gênero: Suspense</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="thriller-section">
+<h2>Gênero: Thriller</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="documentario-section">
+<h2>Gênero: Documentário</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="guerra-section">
+<h2>Gênero: Guerra</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="animacao-section">
+<h2>Gênero: Animação</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="series-section">
+<h2>Séries</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-shounen-section">
+<h2>Anime: Shounen</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-shoujo-section">
+<h2>Anime: Shoujo</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-seinen-section">
+<h2>Anime: Seinen</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-isekai-section">
+<h2>Anime: Isekai</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-vida-escolar-section">
+<h2>Anime: Vida Escolar</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-acao-section">
+<h2>Anime: Ação</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-comedia-section">
+<h2>Anime: Comédia</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-fantasia-section">
+<h2>Anime: Fantasia</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-ficcao-cientifica-section">
+<h2>Anime: Ficção Científica</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="anime-terror-section">
+<h2>Anime: Terror</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-romance-section">
+<h2>Dorama: Romance</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-comedia-section">
+<h2>Dorama: Comédia</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-drama-section">
+<h2>Dorama: Drama</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-historico-section">
+<h2>Dorama: Histórico</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-escolar-section">
+<h2>Dorama: Escolar</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-policial-section">
+<h2>Dorama: Policial</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-suspense-section">
+<h2>Dorama: Suspense</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-terror-section">
+<h2>Dorama: Terror</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-fantasia-section">
+<h2>Dorama: Fantasia</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-medico-section">
+<h2>Dorama: Médico</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="dorama-ficcao-cientifica-section">
+<h2>Dorama: Ficção Científica</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="novela-section">
+<h2>Novelas</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+<p class="text-gray-400 p-4 text-center w-full">Nenhuma novela encontrada.</p>
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="content-section" id="minha-lista-section">
+<h2>Minha Lista</h2>
+<div class="movie-carousel-wrapper">
+<button class="scroll-arrow scroll-left" onclick="scrollMovies(this, -1)">〈</button>
+<div class="movie-grid">
+</div>
+<button class="scroll-arrow scroll-right" onclick="scrollMovies(this, 1)">〉</button>
+</div>
+</div>
+<div class="overlay" id="detailsOverlay">
+<div class="details-content">
+<button aria-label="Fechar detalhes" class="close-button" onclick="closeDetailsOverlay()">×</button>
+<div id="detailsContentArea">
+</div>
+<button class="bg-[#e50914] hover:bg-[#b20710] px-6 py-3 rounded text-white text-lg font-semibold mt-4" id="playButtonDetailsOverlay">Assistir</button>
+</div>
+</div>
+<div class="overlay" id="playerOverlay">
+<div class="player-content">
+<div class="player-header">
+<button aria-label="Fechar player" class="close-button back-to-details-button" onclick="closePlayerOverlay()">Fechar</button>
+<h2 class="text-xl font-bold ml-4" id="mediaTitulo"></h2>
+</div>
+<div id="playerContentArea">
+<!-- OTIMIZAÇÃO: Adiciona loading="lazy" e outras propriedades para iframes -->
+</div>
+<div class="player-controls">
+<div class="player-buttons-left">
+<button id="prevEpisodeBtn" onclick="playPrevEpisode()">Voltar Episódio</button>
+<button id="nextEpisodeBtn" onclick="playNextEpisode()">Próximo Episódio</button>
+</div>
+<div class="player-buttons-right">
+<button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" id="prevSeasonBtn" onclick="playPrevSeason()">Temporada Anterior</button>
+<button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" id="nextSeasonBtn" onclick="playNextSeason()">Próxima Temporada</button>
+</div>
+</div>
+</div>
+</div>
+<div class="overlay" id="episodiosOverlay">
+<div id="episodiosContent">
+<button aria-label="Voltar para detalhes da série" class="close-button" onclick="closeEpisodiosOverlay()">×</button>
+<h2 id="episodiosTitulo"></h2>
+<div class="season-buttons" id="episodiosSeasonButtons"></div>
+<div id="episodios-container-horizontal">
+</div>
+</div>
+</div>
+</main>
+</div>
+<div aria-labelledby="modalTitulo" aria-modal="true" id="modalFundo" role="dialog" tabindex="-1">
+<div id="modal">
+<h2 id="modalTitulo">Adicionar Perfil</h2>
+<input aria-label="Nome do perfil" autocomplete="off" id="inputNomePerfil" placeholder="Nome do perfil" type="text"/>
+<input accept="image/*" aria-label="Foto do perfil" id="inputFotoPerfil" type="file"/>
+<div class="modal-erro" id="modalErro"></div>
+<div>
+<button id="btnSalvar">Guardar</button>
+<button onclick="fecharModal()">Cancelar</button>
+</div>
+</div>
+</div>
 <script>
     // --- LOGIN.HTML Variables and Configurations ---
     const telaLogin = document.getElementById("telaLogin");
@@ -5240,9 +5207,25 @@
         heroBannerInterval = setInterval(rotateBanner, 12000); // Rotação a cada 12 segundos
     }
 </script>
-
 <body oncontextmenu="return false;">
-</html>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const iframes = document.querySelectorAll(".player-content iframe");
 
-
-
+  iframes.forEach(iframe => {
+    iframe.addEventListener("load", () => {
+      iframe.contentWindow.document.addEventListener("click", () => {
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) {
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) {
+          iframe.msRequestFullscreen();
+        }
+      });
+    });
+  });
+});
+</script>
+</body></html>
